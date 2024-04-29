@@ -1,9 +1,9 @@
 ---
 layout: article
-title: "面向 API 编程: Spark 基础"
+title: "API Oriented Programming: Spark Basics"
 date: 2021-01-11
-modify_date: 2021-01-13
-excerpt: "面向 API 编程 - Spark 基础 (API Oriented Programming with Spark)"
+modify_date: 2024-04-28
+excerpt: "API Oriented Programming: Spark Basics"
 tags: [Spark, Python, Scala]
 mathjax: false
 mathjax_autoNumber: false
@@ -14,152 +14,136 @@ key: api-oriented-programming-with-spark-1
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Apache_Spark_logo.svg/1200px-Apache_Spark_logo.svg.png" width="30%">
 </div>
 
-## Spark 的设计与运行原理
+## Understanding Spark's Design and Operation Principles
 
-### Spark 概述
+### Overview of Spark
 
-Spark 运行速度很快
+Spark is renowned for its exceptional processing speed.
 
-- 内存中做计算, 使用循环数据流 (即上一次 Reduce 的结果作为 input 给下一次 MapReduce 使用) 很少使用 IO 流
-  - 能够不落磁盘, 尽量不落, 但不是 100% 不落
-- DAG 设计机制 - 流水线优化
+- It leverages in-memory computing and adopts a cyclic data flow approach (where results from previous Reduce operations are used as inputs for subsequent MapReduce operations), significantly minimizing reliance on IO streams.
+  - While it aims to minimize disk usage, it may occasionally resort to disk operations, although it strives to keep them to a minimum.
+- Its design is based on Directed Acyclic Graphs (DAGs) for efficient pipeline optimization.
 
+### Spark's Runtime Architecture
 
-### Spark 运行架构
+#### Fundamental Concepts and Architectural Design of Spark
 
-#### Spark 基本概念和架构设计
-
-- RDD: Resillient DIstributed Dataset. 分布式内存数据集 (高度受限的共享内存模型)
-- DAG: RDD 之间的依赖关系
-- Executor: 运行在工作节点 (Worker Node) 的一个进程, 负责运行 Task
-  - 每个进程会派生出很多线程, 每个线程再去执行相关任务
-- Application: Spark 编写的程序 
-- Task: 运行在 Executor 上的工作单元
-- Job: 一个 Job 包含多个 RDD 以及作用于相应 RDD 上的各种操作 (RDD + 操作)
-- Stage: 一个 Job 的基本调度单位. 一个 Job 会分为多组 Task. 每组 Task 被称为 Stage, 或者 TaskSet. 代表了一组关联的, 相互没有 Shuffle 依赖关系的任务组成的任务集合
+- RDD: Resilient Distributed Dataset. It represents a distributed in-memory dataset (employing a highly constrained shared-memory model).
+- DAG: Describes the dependency relationships between RDDs.
+- Executor: A process running on a worker node, responsible for executing tasks.
+  - Each process spawns multiple threads, with each thread handling relevant tasks.
+- Application: A program developed using Spark.
+- Task: The basic unit of work executed by an Executor.
+- Job: Comprising multiple RDDs and various operations applied to them (RDD + operation).
+- Stage: The primary scheduling unit of a job, consisting of multiple groups of tasks. Each group, known as a Stage or TaskSet, represents a set of tasks with no inter-task shuffle dependencies.
 
 ![spark-architecture](https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/spark-architecture.png){:.rounded}
 
-> Driver Program 任务控制节点
+> Driver Program: Task Control Node
 
-***
+---
 
-> Cluster Manager (集群资源管理器) 就是用来调度集群中 CPU, 内存, 带宽等等这些资源
-> 
-> 可以用 Spark 自带的作为 Cluster Manager, 同时也可以用 Hadoop Yarn, Mesos 等
+> The Cluster Manager is responsible for scheduling cluster resources such as CPU, memory, bandwidth, and more.
+>
+> Spark provides its own built-in Cluster Manager, but it also supports integration with other systems like Hadoop YARN and Mesos.
 
-Driver Program 向 Cluster Manager 申请资源, 启动 Worker Node 的 Executor. 同时将代码和文件数据发送给 Worker Node, Executor 派生出来的线程就会去执行任务, 然后将执行结果返回给 Driver Program
+The Driver Program requests resources from the Cluster Manager and initiates Executors on Worker Nodes. It then sends code and file data to the Worker Node, where threads spawned by Executors execute tasks. Finally, the execution results are sent back to the Driver Program.
 
-
-#### Spark 运行基本流程
+#### Basic Workflow of Spark Execution
 
 ![spark-diagram-1](https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/spark-diagram-1.png){:.rounded}
 
+The Spark Context generates a Directed Acyclic Graph (DAG) based on the dependencies of your RDDs. Your code operates directly on this DAG. The DAG is then handed over to the DAG Scheduler, which parses it into multiple stages, each comprising several tasks.
 
-Spark Context 会根据你的 RDD 依赖关系去生成一个 DAG 关系图. 代码会直接在 DAG 上进行操作. DAG 图会交给 DAG Scehduler 进行处理, 将 DAG 图解析成很多个阶段, 每一个阶段 (Stage) 会包括很多个任务.
+Threads spawned by Executors request execution from the Task Scheduler, which is responsible for task distribution.
 
-Executor 派生出来的线程会向 Task Scheduler 申请运行, 由 Task Scheduler 负责分发
+**Computing Approaches Data**
 
-**计算向数据靠拢**
+If machines A (with data), B, and C simultaneously request from the Task Scheduler, who gets the task?
 
-如果机器 A (带有数据), B, C 同时像 Task Scheduler 申请, 那么 Task Scheduler 会分发给谁呢?
+The answer is A. The Task Scheduler checks if A has the data; if so, it assigns the task directly to A. Otherwise, it needs to transfer the data from A to another machine.
 
-答案是 A, Task Scheduler 会 check 如果 A 有数据, 那么就会直接发给 A. 否则还得将数据从 A 发给其他的机器
+#### RDD Operation Principles
 
-
-#### RDD 运行原理
-
-> Hadoop 不适合处理迭代式的任务, 因为 Hadoop 会将中间数据储存在磁盘中, 下一个子任务会从磁盘中重新读取数据. **磁盘 IO 开销**以及**序列化/反序列化开销**都很大
+> Hadoop is not suitable for iterative tasks because it stores intermediate data on disk, requiring subsequent tasks to reread the data from disk. The overhead of **disk IO** and **serialization/deserialization** is significant.
 >
-> 不同的任务都可以抓换成不同的 RDD 之间的转换, 最终都会变成 DAG 依赖关系
+> Different tasks can all be transformed into RDD transformations, ultimately forming DAG dependency relationships.
 
-**RDD**: 分布式对象, 本质上是一个**只读**的分区记录集合, 数据特别大的话, 可以分布式的存在不同的机器上, 每一个机器都是数据的一个分区, 所以就可以进行分布式的高效的并行计算
+**RDD**: A distributed object fundamentally a **read-only** collection of partitioned records. If the data is extensive, it can be distributed across different machines, with each machine hosting a partition of the data, facilitating efficient parallel computation.
 
-RDD 之所以称为*高度受限的共享内存模型*
+The term "highly restricted shared-memory model" for RDDs signifies:
 
-- 高度受限: 只读; 不可修改, 一旦生成就不可以更改
-- 生成在内存中的数据集合
+- "Highly restricted": Read-only; once generated, it cannot be altered.
+- "Shared memory model": Data sets generated in memory.
 
+##### Types of RDD Operations
 
-##### RDD 操作类型
+- Action: Actions perform actions on the RDD.
+- Transformation: Transformations modify the RDD.
 
-- Action: 动作类型操作
-- Transformation: 转换类型操作
+Both types of operations are coarse-grained modifications, capable of modifying the entire RDD at once.
 
-这两种操作都是粗粒度的修改, 一次只能对 RDD 全集进行修改转换
+> They can only modify entire sets; unlike SQL, they cannot transform specific rows or columns.
 
-> 只能全部修改, 不可以像 SQL 一样针对某一行对某一列进行转换
+##### RDD Execution Process
 
+- RDDs are created by reading from external data sources.
+- RDDs undergo a series of transformations, with each transformation generating a different RDD for the next operation.
+- The final RDD undergoes an Action operation to transform and output it to an external data source.
 
-##### RDD 执行过程
+**Some Characteristics of RDDs**
 
-- RDD 读入外部数据源进行创建
-- RDD 经过一系列转换 (Transformation) 操作, 每一次都会产生不同的 RDD 提供给下一次操作使用
-- 最后一个 RDD 经过 Action 操作进行转换并输出到外部数据源
+1. Lazy Evaluation Mechanism
 
-
-**RDD 的一些特点**
-
-1. 惰性调用机制
-
-Transformation 操作是不会提供结果的, 只是记录转换的过程/轨迹, 并没有发生计算. 只有出发到 Action 操作, 才会真正的触发计算, 比如 `.count()` 
+Transformation operations do not yield results immediately; they merely record the process/trajectory of transformation without actual computation. Computation is triggered only when it reaches an Action operation, such as `.count()`.
 
 ![spark-rdd-transformation-example](https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/spark-rdd-transformation-example.png){:.rounded}
 
-2. 天然的容错性
+1. Inherent Fault Tolerance
 
-Spark 具有天然的容错性, 主要是在 RDD 的转换过程中存在 Lineage 血缘关系, 即在上面的图中 B 是由 A 转换来的, E 又是由 B 和 D 转换来的.
+Spark possesses inherent fault tolerance, primarily due to the existence of lineage relationships during RDD transformations. In the diagram above, for example, B is derived from A, and E is derived from both B and D. If data recovery is necessary, retracing the lineage process is sufficient.
 
-需要恢复数据的话, 只需要逆过程寻找即可
+3. Avoiding Unnecessary Serialization/Deserialization
 
-3. 避免不需要的序列化/反序列化
+Intermediate results of RDDs are persisted in **memory**, and `RDD.cache()` minimizes unnecessary disk I/O operations. Data transfer operations among multiple RDDs in memory are facilitated by `RDD.cache()`.
 
-RDD 的中间结果会被持久化到**内存**, `RDD.cache()` 避免了不必要的磁盘读写开销, 数据在内存中多个 RDD 之间进行传递的操作 `RDD.catch()`
+##### Dependency Relationships and Stage Division of RDDs
 
-
-##### RDD 的依赖关系和阶段的划分
-
-> 为什么一个作业 (Job) 要分成多个不同的阶段 (Stage) ?
+> Why divide a job into multiple stages?
 >
-> - 窄依赖: **不**划分阶段, 可以进行 Pipeline 优化
-> - 宽依赖: 划分多个阶段, 不能进行 Pipeline 优化
+> - Narrow Dependency: No stage division, allowing for pipeline optimization.
+> - Wide Dependency: Division into multiple stages, preventing pipeline optimization.
 
-而去区分宽/窄依赖的一个重要的操作就是是否 Shuffle
+The key distinction between wide and narrow dependencies lies in whether Shuffle occurs:
 
-1. 在网络中大规模的来回进行的数据传输
-2. 不同节点之间相互传输数据
+1. Massive data transmission back and forth in the network.
+2. Data transmission between different nodes.
 
-**宽依赖 vs 窄依赖**
+**Wide Dependency vs. Narrow Dependency**
 
-- 窄依赖: 一个父 RDD 分区对应一个子 RDD 分区或者 多个父 RDD 分区对应一个 子 RDD 分区
-- 宽依赖: 一个父 RDD 分区对应多个子 RDD 分区
+- Narrow Dependency: Each parent RDD partition corresponds to one child RDD partition, or multiple parent RDD partitions correspond to one child RDD partition.
+- Wide Dependency: One parent RDD partition corresponds to multiple child RDD partitions.
 
+Optimization Principle: Fork/Join Mechanism
 
-优化原理: fork/join 机制
-
-> 不发生无意义的等待, 但是只要发生 Shuffle (宽依赖) 一定会写磁盘
+> Avoiding meaningless waits, but Shuffle (wide dependency) always incurs disk writes.
 
 ![spark-fork-and-join](https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/spark-fork-and-join.png){:.rounded}
 
+**Reverse Parsing of DAG**
 
-**DAG 图反向解析**
-
-- 窄依赖: 不断加入阶段
-- 宽依赖: 生成不同阶段
+- Narrow Dependency: Continuously add stages.
+- Wide Dependency: Generate different stages.
 
 ![spark-stage-division](https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/spark-stage-division.png){:.rounded}
 
-
-##### RDD 运行过程
+##### Execution of RDD
 
 ![how-spark-runs-your-application](https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/how-spark-runs-your-application.png){:.rounded}
 
+## Using PySpark (Overview)
 
-## Spark 开发 (略)
-
-### 使用 pyspark (略)
-
-`WordCount` 例子
+#### Example: WordCount
 
 ```python
 from pyspark import SparkConf, SparkContext
@@ -173,9 +157,8 @@ logData = sc.textFile(logFile, 2).cache()
 numAs = logData.filter(lambda line: 'a' in line).count()
 numBs = logData.filter(lambda line: 'b' in line).count()
 
-print("Line with a: {numAs}, with b: {numBs}".format(numAs=numAs, numBs=numBs))
+print("Lines containing 'a': {numAs}, lines containing 'b': {numBs}".format(numAs=numAs, numBs=numBs))
 ```
-
 
 ## References
 
