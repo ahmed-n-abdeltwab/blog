@@ -19,37 +19,53 @@ key: page-about
 comment: false
 ---
 
-<img src="https://github.com/Zhenye-Na/Zhenye-Na.github.io/blob/master/assets/images/avatar/avatar.jpg?raw=true" class="avatar" vspace="50" />
+<img src="https://github.com/ahmed-n-abdeltwab/ahmed-n-abdeltwab.github.io/blob/master/assets/images/avatar/avatar.jpg?raw=true" class="avatar" vspace="50" />
 <br>
 
 <div align="center">
-  <img src="http://ghchart.rshah.org/f94f54/Zhenye-Na" alt="Zhenye-Na's Github Chart" />
+  <img src="http://ghchart.rshah.org/f94f54/ahmed-n-abdeltwab" alt="Ahmed Nasser's Github Chart" />
 </div><br>
 
 
 ## About Me
 
-I'm a second-year Master student in Industrial Engineering at University of Illinois [(ISE @ Illinois)](https://ise.illinois.edu/), with concentration in Advanced Analytics and Computational Science & Engineering. I worked with [Prof. Justin A. Sirignano](http://jasirign.github.io/) on Deep Learning with High-Frequency Finacial Data. I am currently working with [Prof. Bob Norris](https://ise.illinois.edu/directory/profile/wrnorris) on Autonomous Vehicles. My research interest lies in Artificial Intelligence (AI). Within AI, I am interested in problems related to probabilistic modeling, machine learning and recently, self-driving cars. I obtained my Bachelor Degree in [Dalian University of Technology](http://en.dlut.edu.cn/), majoring in Harbor, Waterway and Coastal Engineering under the supervision of [Prof. Tingguo Chen](http://faculty.dlut.edu.cn/chentg/zh_CN/index/786083/list/index.htm). I worked with [Prof. Meng Jiang](http://faculty.dlut.edu.cn/1998011035/zh_CN/index.htm) on my thesis topic being "The Structure Design of a Gravity Quay Wall of Ocean Fishery Group in Dalian".
+I’m a **Backend Developer** with a Bachelor’s Degree in **Computer Science** from [Fayoum University](https://www.fayoum.edu.eg/), where I graduated in **June 2022**. I have completed advanced coursework in **Full-Stack Web Development** through [Udacity](https://www.udacity.com/), mastering technologies like **TypeScript, Node.js, and PostgreSQL**. I am passionate about building scalable and efficient web applications, with a focus on **backend development** and **cloud-native technologies**.
+
+I worked on several projects, including a [**Spyware Detector**](https://github.com/ahmed-n-abdeltwab/spyware-detector), where I developed a backend web service using **Flask** that achieved a **96.3% detection rate** for spyware files with a **false positive rate of <3.6%**. I also built a [**real-time Chat App**](https://github.com/ahmed-n-abdeltwab/chat) using **TypeScript, WebSocket, and Express.js**, improving error handling by **30%** through a custom error handling mechanism. During my internship at **NDM**, I implemented a **Django API** and frontend for a company project, resulting in a **25% increase in efficiency** and a **30% reduction in errors**.
+
+My technical expertise includes **JavaScript, Python, Node.js, Express, TypeScript, and C++**, and I am proficient in tools like **Docker, CI/CD (CircleCI, GitHub Actions), and PostgreSQL**. I have also worked with **AWS (Elastic Beanstalk)** and **Kubernetes** for deploying and managing applications.
+
+My interests lie in **Artificial Intelligence (AI)**, **backend development**, and **cloud-native technologies**. I am particularly fascinated by the challenges of building scalable, efficient, and secure systems. I am also exploring **AI tools** and their applications in solving real-world problems.
 
 
 
 ## Education
 
-**M.S. in Advanced Analytics**  
-University of Illinois Urbana - Champaign, 2017 to present
+**B.Sc. in Computer Science**  
+Fayoum University, 2018 to 2022  
+*Relevant Coursework: Data Structures, Algorithms, Web Development, Database Systems, Artificial Intelligence.*
 
-**B.E. in Harbor, Waterway and Coastal Engineering**  
-Dalian University of Technology, 2013 to 2017  
-*Thesis: The Structure Design of a Gravity Quay Wall of Ocean Fishery Group in Dalian.*
+**Professional Web Development Nanodegree**  
+Udacity, Aug. 2020 – Oct. 2020  
+*Completed 10+ projects on full-stack web development, including frontend and backend technologies.*
+
+**Advanced Full-Stack Web Development Nanodegree**  
+Udacity, Oct. 2022 – Dec. 2022  
+*Mastered 10+ technologies, including TypeScript, Node.js, Express, and PostgreSQL.*
 
 
 
 ## Latest News
 
-- February, 2019. Independent Study, topics being "Self-Driving Vehicles Simulation using Machine Learning". [Project details](https://github.com/Zhenye-Na/self-driving-vehicles-sim-with-ml)
-- December 23, 2018. Started participating kaggle competition - [Humpback Whale Identification](https://www.kaggle.com/c/humpback-whale-identification). Concluded as Top 20% solution using Siamese Net and DenseNet-156 architecture with Data Augmentation, Bounding Boxes prediction and Ensemble methods.
-- December 15, 2018. Finished our Deep Learning group project "Deep Reinforcement Learning - Flappy Bird Hack using Double Q Learning". Check [this project](https://github.com/drl-dql) out!
-- Summer 2018. Participated in [Youtube-8M Challange](https://www.kaggle.com/c/youtube8m-2018).
+- **November 2022**. Completed the **Advanced Full-Stack Web Development Nanodegree** from Udacity, mastering technologies like **TypeScript, Node.js, Express, and PostgreSQL**. [Certificate](https://www.udacity.com/).
+- **September 2022 – November 2022**. Interned as a **Backend Developer at NDM**, where I implemented a **Django API** and frontend for a company project, resulting in a **25% increase in efficiency** and a **30% reduction in errors**.
+- **August 2022**. Developed a **real-time Chat App** using **TypeScript, WebSocket, and Express.js**, improving error handling by **30%** through a custom error handling mechanism. [Project details](https://github.com/ahmed-n-abdeltwab/chat-app).
+- **June 2022**. Graduated with a **Bachelor’s Degree in Computer Science** from **Fayoum University**, specializing in **backend development** and **cloud-native technologies**.
+- **May 2022**. Built a **Spyware Detector** using **Flask**, achieving a **96.3% detection rate** with a **false positive rate of <3.6%**. Containerized the application with **Docker** for reproducible environments. [Project details](https://github.com/ahmed-n-abdeltwab/spyware-detector).
+Here’s the **Achievements** section rewritten in the same style as your example, using your provided achievements:
+- **2021–2022**. Ranked **26th** in the **ECPC Qualification** and won the **First Solve Prize** in the same competition.
+- **2020–2022**. Competed in **Google Code Jam** for three consecutive years, advancing to two rounds each year.
+- **October 2020**. Completed the **Professional Web Development Nanodegree** from Udacity, working on **10+ projects** in full-stack web development. [Certificate](https://www.udacity.com/).
 
 
 
