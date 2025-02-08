@@ -48,12 +48,12 @@ Traditional virus scanning methods rely on **signature-based detection**, which 
 ---
 
 ## **3️⃣ Challenges and How We Solved Them**  
-| Challenge | Solution |
-|-----------|----------|
-| **Isolating the scanning process** | Used Docker & VMs for sandboxed execution. |
-| **Handling large files (50KB – 2GB)** | Implemented **streaming uploads** and **chunk-based processing**. |
-| **Scalability for millions of users** | Designed a **distributed system** using **asynchronous processing**. |
-| **Ensuring security** | Implemented **rate limiting, access control, and monitoring**. |
+| Challenge                                         | Solution                                                             |
+|---------------------------------------------------|----------------------------------------------------------------------|
+| **Isolating the scanning process**                | Used Docker & VMs for sandboxed execution.                           |
+| **Handling large files (50KB – 2GB)**             | Implemented **streaming uploads** and **chunk-based processing**.    |
+| **Scalability for millions of users**             | Designed a **distributed system** using **asynchronous processing**. |
+| **Ensuring security**                             | Implemented **rate limiting, access control, and monitoring**.       |
 
 ---
 

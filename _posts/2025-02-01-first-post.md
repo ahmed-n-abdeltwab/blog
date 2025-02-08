@@ -156,10 +156,10 @@ Create tables using:
 
 ```markdown
 | Name  | Age | Country  |
-|-------|----|---------|
-| John  | 25 | USA     |
-| Alice | 30 | Canada  |
-| Bob   | 28 | UK      |
+|-------|-----|----------|
+| John  | 25  | USA      |
+| Alice | 30  | Canada   |
+| Bob   | 28  | UK       |
 ```
 
 ### Horizontal Lines
