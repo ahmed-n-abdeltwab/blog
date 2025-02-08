@@ -5,8 +5,8 @@ date: 2025-02-01
 modify_date: 2025-02-01
 excerpt: "A beginner-friendly guide to Markdown syntax for formatting text."
 tags: ["Markdown", "Writing", "Formatting", "Guide"]
-mathjax: false
-mathjax_autoNumber: false
+mathjax: true
+mathjax_autoNumber: true
 key: markdown-guide
 ---
 
