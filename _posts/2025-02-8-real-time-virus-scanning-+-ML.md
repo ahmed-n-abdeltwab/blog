@@ -6,8 +6,8 @@ modify_date: 2025-02-08
 excerpt: "Building a scalable, real-time virus scanning system using ML presented unique challenges in security, performance, and architecture. In this blog, we share our journey of designing an isolated scanning process, integrating an AI-powered malware detection model, and ensuring scalability for millions of users. From handling large files to improving detection accuracy, here’s what we learned and what’s next for our project."
 tags: ["MachineLearning", "RealTimeProcessing", "ScalableSystems", "DistributedComputing", "CloudSecurity", "FileScanning", "APIDesign",
   "CyberSecurity", "VirusScanning", "AIForSecurity", "ThreatDetection", "BackendDevelopment", "TypeScript", "NodeJS", "Python"]
-mathjax: false
-mathjax_autoNumber: false
+mathjax: true
+mathjax_autoNumber: true
 key: malware-detector
 ---
 
