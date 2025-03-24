@@ -58,11 +58,13 @@ hyperparameters:
 ```
 
 **Performance Metrics**:
+
 | Metric       | Score  |
 |--------------|--------|
 | Accuracy     | 97.1%  |
-| Recall       | 97%  |
+| Recall       | 97%    |
 | F1           | 96.9%  |
+
 
 ## **🤖 The Automation Magic**
 ### **GitHub Actions Workflow**
