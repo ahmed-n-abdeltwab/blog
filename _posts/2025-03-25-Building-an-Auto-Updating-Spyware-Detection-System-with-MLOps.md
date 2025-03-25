@@ -1,11 +1,12 @@
 ---
 layout: article
 title: "Automating Spyware Detection with Machine Learning & GitHub Actions"
-date: 2025-03-12
-modify_date: 2025-03-12
+date: 2025-03-25
+modify_date: 2025-03-25
 excerpt: "How we built a self-updating spyware detector that automatically retrains and deploys models using GitHub Actions, Docker, and Python ML pipelines."
 tags: ["MLOps", "Cybersecurity", "GitHubActions", "DevSecOps", "CI/CD"]
 mathjax: true
+mathjax_autoNumber: true
 key: spyware-detector-automation
 ---
 
