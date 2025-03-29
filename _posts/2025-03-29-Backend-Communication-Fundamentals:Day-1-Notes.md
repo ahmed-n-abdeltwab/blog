@@ -11,64 +11,53 @@ key: backend-communication-notes
 ---
 
 # **Backend Communication Fundamentals**
-### *Day 1: Introduction & Request-Response Model*
 
-## **🔹 Section 1: Introduction to Backend Communication**
+## **🔹 Section 1: Introduction**
 ### **📌 Key Vocabulary**
-- Multiplexing / Demultiplexing
-- HTTP, TCP, UDP, Multipath TCP, HTTP/2, HTTP/3
-- Browser Demultiplexer
-- STB (Set-Top Box)
-- Protocol (Rules & Properties)
-- OSI Model, OCI Model
-- gRPC, Reverse Proxy
-- UDP Datagrams
-- Handshake, Flow Control, Congestion Control
-- Reliable Communication
-- WebRTC, HTTPS, Zero Round Trip (0-RTT)
-- Kernel, Single Listener, Multiple Listeners
-- Single Process, Multi-process, Multi-threading
-- Latency, Performance
-- Proxies, Load Balancers, Layer 7, Reverse Proxy
+- Multiplexing, Demultiplexing, HTTP, TCP, Multipath TCP, HTTP/2
+- Browser Demultiplexer, STB, Protocol (Rules, Properties), UDP
+- OSI Model, gRPC, Reverse Proxy, UDP Datagrams
+- Handshake, Flow Control, Congestion Control, Reliable Communication
+- HTTP/3, WebRTC, HTTPS, Zero Round Trip, Kernel
+- Single Listener, Multiple Listeners, Multiple Threads, Single Process, Multiple Processes
+- Latency, Performance, Proxies, Load Balancers, Layer 7, Reverse Proxy
 
 ### **📒 Key Notes**
-#### **1️⃣ First Principles of Communication Patterns**
-- **Request-Response Model**: Client requests, server processes and responds.
-- **Push-Pull Model**: Data is pushed or pulled based on availability.
-- **Long Polling Model**: Client maintains connection until data is available.
-- **Publish-Subscribe Model**: Clients subscribe to events; updates are broadcasted.
+#### **1️⃣ First Principles of Backend Communication**
+- **Request-Response Model**: The client sends a request, the server processes it, and returns a response.
+- **Push-Pull Model**: The server pushes updates or the client pulls data as needed.
+- **Long Polling Model**: The client repeatedly requests updates at intervals.
+- **Publish-Subscribe Model**: Clients subscribe to topics and receive notifications when new data is available.
 
 ---
 
 ## **🔹 Section 2: Backend Communication Design Patterns**
 ### **📌 Key Vocabulary**
-- Protocol Buffer
-- RPC (Remote Procedure Call)
-- REST, SOAP, GraphQL
+- Protocol Buffer, RPC (Remote Procedure Call), REST, SOAP, GraphQL
 
 ### **📒 Key Notes**
 #### **1️⃣ Request-Response Model**
 📌 *How it works:*
-1. Client sends a request.
-2. Server parses the request.
-3. Server processes the request.
-4. Server sends a response.
-5. Client parses and consumes the response.
+1. The client sends a request.
+2. The server parses the request.
+3. The server processes the request.
+4. The server sends a response.
+5. The client parses and consumes the response.
 
 #### **2️⃣ Request Parsing & Processing**
-- **Parsing the request**: Identifying start and end.
-- **Processing the request**: Handling data formats (JSON, Form, HTML, etc.).
+- **Parsing the request**: Identifying the start and end of a message.
+- **Processing the request**: Handling various data formats (JSON, form data, HTML, etc.).
 
 #### **3️⃣ Where is it used?**
 - **Web protocols**: HTTP, DNS, SSH
 - **RPC communication**
 - **SQL & Database Protocols**
-- **API structures**: REST, SOAP, GraphQL
+- **API architectures**: REST, SOAP, GraphQL
 
 #### **4️⃣ Anatomy of a Request-Response**
-- A request is structured based on client-server agreements.
-- Defined by **protocol & message format**.
-- HTTP request example:
+- Each request is structured according to an agreed-upon format between the client and server.
+- Defined by **protocol & message structure**.
+- Example HTTP request:
   ```
   GET /resource HTTP/1.1
   Host: example.com
@@ -78,35 +67,36 @@ key: backend-communication-notes
 #### **5️⃣ Uploading an Image Using Request-Response**
 **Two Approaches:**
 1. **Single Large Request**: Upload the entire image in one request.
-2. **Chunked Upload**: Split image into chunks and send multiple requests.
-   - ✅ Can pause & resume.
-   - ❌ Not as simple as a single request.
+2. **Chunked Upload**: Split the image into chunks and send them separately.
+   - ✅ Allows pause & resume functionality.
+   - ❌ Adds complexity compared to a single request.
 
-#### **6️⃣ When Request-Response Fails**
-- **Doesn’t work well for:**
-  - Notification services
-  - Chat applications
+#### **6️⃣ Limitations of Request-Response**
+- **Not efficient for:**
+  - Real-time applications (e.g., chat, notifications)
   - Long-running requests
-  - Client disconnections
+  - Handling client disconnections
 
 #### **7️⃣ Understanding cURL Response Chunking**
-- When using `curl -v --trace out.txt`, the response body arrives in chunks.
-- Default chunk size: **1388 bytes**, but varies (e.g., last chunk = 820 bytes).
+- When using `curl -v --trace out.txt`, responses arrive in chunks due to TCP segmentation.
+- Typical chunk size: **1388 bytes** (based on TCP Maximum Segment Size ≈ 1460 bytes).
 - **Why 1388 bytes?**
-  - Standard TCP Maximum Segment Size (MSS) ≈ **1460 bytes**.
-  - Some bytes used for TCP headers/options, leaving **1388 bytes for data**.
+  - Standard TCP Maximum Segment Size (MSS) is **1460 bytes**.
+  - Some bytes are reserved for TCP headers, leaving **1388 bytes for data**.
 - **Who controls this?**
-  - OS TCP stack negotiates MSS during the handshake.
-  - Server may also influence chunk sizes based on network conditions.
+  - The OS’s TCP stack negotiates MSS during the handshake.
+  - The server may adjust chunk sizes based on network conditions.
 
-📌 *Key takeaway:* Chunk sizes in cURL are determined by TCP segmentation, not curl or the server directly.
+📌 *Key takeaway:* TCP segmentation determines chunk sizes, not cURL or the server directly.
 
 ---
+
 ### **🔮 Next Steps**
 - Explore **Synchronous vs. Asynchronous Workloads**.
 - Compare **alternative communication patterns** like WebSockets & gRPC.
-- Dive into **REST vs. GraphQL vs. RPC** comparison.
-- Implement **real-world examples** of different backend communication methods.
+- Dive into **REST vs. GraphQL vs. RPC** comparisons.
+- Implement **real-world examples** of backend communication patterns.
 
 📢 *Stay tuned for more insights as I continue this course!* 🚀
+
 
