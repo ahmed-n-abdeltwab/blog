@@ -34,7 +34,7 @@ key: backend-communication-protocols-day2
   
   **Example**: Debugging ICMP (Layer 3) with `tcpdump`:
   ```bash
-  sudo tcpdump -n -i eth0 icmp
+  sudo tcpdump -n -i wlp3s0 icmp and src host <your_ip>
   ```
   **Output**:
   ```
@@ -51,7 +51,9 @@ key: backend-communication-protocols-day2
 
   **Example**: Observing TCP Handshake (Layer 4):
   ```bash
-  sudo tcpdump -n -i eth0 'tcp port 80 and (tcp-syn or tcp-ack)'
+  sudo tcpdump -n -i wlp3s0 'tcp port 80 and 
+  (tcp[tcpflags] & (tcp-syn|tcp-ack) != 0) and 
+  not (tcp[tcpflags] & tcp-push != 0 or tcp[tcpflags] & tcp-fin != 0)'
   ```
   **Output**:
   ```
@@ -68,7 +70,8 @@ key: backend-communication-protocols-day2
 
   **Example**: TLS Handshake (Layer 5):
   ```bash
-  sudo tcpdump -n -i eth0 'tcp port 443 and (tcp[tcpflags] & (tcp-syn|tcp-ack) == tcp-syn|tcp-ack)'
+  sudo tcpdump -n -i wlp3s0 'tcp port 443 and 
+  ((tcp[tcpflags] & tcp-syn != 0) or (tcp[tcpflags] & tcp-ack != 0 and tcp[tcpflags] & tcp-syn != 0))'
   ```
   - Captures the initial TCP handshake for HTTPS, where the **Session Layer** later handles TLS negotiation.
 
@@ -82,17 +85,17 @@ key: backend-communication-protocols-day2
 
   **Example**: HTTP Traffic via Reverse Proxy (Layer 7):
   ```bash
-  sudo tcpdump -A -s0 'tcp port 80 and host 203.0.113.5'
+  sudo tcpdump -A -s0 -i wlp3s0 'tcp port 80 and host httpbin.org'
   ```
   **Output**:
   ```
-  GET /api/v1/data HTTP/1.1
-  Host: api.example.com
-  User-Agent: curl/7.68.0
+  GET / HTTP/1.1
+  Host: httpbin.org
+  User-Agent: curl/7.88.1
 
   HTTP/1.1 200 OK
-  Content-Type: application/json
-  {"status": "success", "data": [...]}
+  Date: Fri, 11 Apr 2025 06:31:03 GMT
+  Content-Type: text/html; charset=utf-8
   ```
   - Reverse proxies inspect **Layer 7** headers (e.g., `Host`) to route requests.
 
@@ -122,7 +125,7 @@ key: backend-communication-protocols-day2
 
     **Example**: Debugging a Firewall Blocking SSH (Layer 3/4):
     ```bash
-    sudo tcpdump -n -i eth0 'tcp port 22 and (host 192.168.1.100)'
+    sudo tcpdump -n -i wlp3s0 'tcp port 22 and host 192.168.1.1'
     ```
     - If SYN packets (`Flags [S]`) are sent but no SYN-ACK is received, the firewall is likely blocking traffic.
 
