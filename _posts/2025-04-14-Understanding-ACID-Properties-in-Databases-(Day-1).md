@@ -122,7 +122,7 @@ A **transaction** is a **collection of SQL queries treated as a single unit of w
 
 **Tables:**
 ```sql
-products(pid SERIAL PRIMARY KEY, name TEXT, price DOUBLE, inventory INTEGER)
+products(pid SERIAL PRIMARY KEY, name TEXT, price FLOAT, inventory INTEGER)
 sales(sale_id SERIAL PRIMARY KEY, pid INTEGER, price FLOAT, quantity INTEGER)
 ```
 
