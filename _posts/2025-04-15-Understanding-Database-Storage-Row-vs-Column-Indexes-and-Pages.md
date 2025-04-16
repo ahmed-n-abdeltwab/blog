@@ -1,8 +1,8 @@
 ---
 layout: article
 title: "Row vs Column Databases: How Your Data Storage Choices Make or Break Performance"
-date: 2023-10-25
-modify_date: 2023-10-25
+date: 2025-04-15
+modify_date: 2025-04-16
 excerpt: "Why do analytics queries crawl while transactions blaze? We break down row vs column storage, indexes, and the hidden world of database pages."
 tags: [Database Design, Storage Engines, Indexing, Performance Optimization]
 key: database-storage-deep-dive
