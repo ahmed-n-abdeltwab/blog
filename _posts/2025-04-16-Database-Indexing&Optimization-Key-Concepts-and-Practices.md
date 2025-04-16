@@ -35,7 +35,8 @@ These are my personal notes from Hussein's lecture series on database internals.
 - **Double-Linked Lists**: Pages at each level are linked for range scans
 
 ### B-Tree vs LSM Trees
-| Feature       | B-Tree                      | LSM Tree                 |
+
+| Feature      | B-Tree                     | LSM Tree                 |
 |--------------|----------------------------|--------------------------|
 | Writes       | In-place updates           | Append-only (SSTables)   |
 | Reads        | Faster (single seek)       | May need multiple merges |
