@@ -1,8 +1,8 @@
 ---
 layout: article
 title: "Comprehensive Database Indexing & Performance Notes"
-date: 2023-10-25
-modify_date: 2023-10-25
+date: 2025-04-16
+modify_date: 2025-04-16
 excerpt: "Detailed personal notes covering clustered/non-clustered indexes, composite indexes, UUID performance, bitmap scans, and billion-row table strategies."
 tags: [Database, PostgreSQL, Indexing, Optimization, B-Tree, LSM, BloomFilters, UUID, LectureNotes]
 mathjax: true
