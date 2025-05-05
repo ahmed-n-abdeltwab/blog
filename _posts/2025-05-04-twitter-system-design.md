@@ -24,14 +24,54 @@ key: twitter-system-design
 - **Reliability:** Introduce a **message queue** (e.g., Kafka) to decouple client requests from database writes.  
   > "If the database fails, the queue persists the tweet for later processing, ensuring no data loss."  
 
+
 ### 2. Following Users
-- **Database Design:**  
-  - **`profiles` table:** Stores user IDs, names, bios.  
-  - **`follows` table:** Maps relationships (`source_id` → `target_id`).  
-  - **Indexing:** Use multi-column indexes for fast lookups.  
-- **Query Challenges:**  
-  - Counting followers/following requires efficient `COUNT` operations.  
-  - Displaying follower names may involve costly joins or denormalization (storing names in the `follows` table).  
+
+* **Database Design:**
+
+  * **`profiles` table:** Stores user IDs, names, bios.
+  * **`follows` table:** Maps relationships (`source_id` → `target_id`).
+  * **Indexing:** Use multi-column indexes for fast lookups.
+
+* **Query Optimization & Trade-offs:**
+  The `follows` table enables two critical queries:
+
+  1. Who does user X follow? → `SELECT target_id FROM follows WHERE source_id = X`
+  2. Who follows user X? → `SELECT source_id FROM follows WHERE target_id = X`
+
+  Without indexes, both queries require full table scans (**O(n)** time complexity), which doesn't scale.
+  With indexes on `source_id` and `target_id`, the database uses **B-tree lookups** (**O(log n)**), greatly improving performance on large datasets.
+
+  ```sql
+  CREATE INDEX idx_source ON follows(source_id);
+  CREATE INDEX idx_target ON follows(target_id);
+  ```
+
+  To prevent duplicates (e.g., user X follows Y more than once), add a **composite unique constraint**:
+
+  ```sql
+  UNIQUE (source_id, target_id)
+  ```
+
+* **Hardware Considerations:**
+
+  | **Factor**   | **Impact**                                                                  |
+  | ------------ | --------------------------------------------------------------------------- |
+  | **RAM**      | Caching index pages speeds up queries dramatically.                         |
+  | **Disk I/O** | Full scans hurt performance on HDDs; SSDs mitigate this.                    |
+  | **CPU**      | Unindexed queries use more CPU for filtering and sorting.                   |
+  | **Storage**  | Indexes require additional space (\~20–30% of table size) but are worth it. |
+
+* **Scalability Tips:**
+
+  * Add foreign key constraints for data integrity:
+
+    ```sql
+    FOREIGN KEY (source_id) REFERENCES profiles(id),
+    FOREIGN KEY (target_id) REFERENCES profiles(id)
+    ```
+  * Consider **sharding or partitioning** by user ID when the table reaches tens of millions of rows.
+  * Use **Redis** to cache follower counts or frequently accessed relationships.
 
 ### 3. Timeline Generation
 - **Home Timeline:** Aggregates tweets from followed users.  
