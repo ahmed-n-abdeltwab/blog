@@ -18,13 +18,15 @@ The lecture focuses on two key areas: the purpose and benefits of read-only tran
 
 ## Core Concepts
 
-### Read-Only Transactions
+### What Are Read-Only Transactions?
+
 A **read-only transaction** is a database operation that only retrieves data without making any changes. This approach has two main benefits:
 
 - **Protection**: It prevents accidental modifications, ensuring data integrity, especially when running complex queries or calling methods that might unintentionally alter data.
 - **Performance**: Databases like PostgreSQL can optimize operations by skipping tasks like generating transaction IDs or acquiring write locks, which are unnecessary for read-only tasks.
 
 ### Primary Keys: Sequential IDs vs. UUIDs
+
 **Primary keys** uniquely identify records in a database table. The lecture compares two common types:
 
 - **Sequential IDs**: These are typically integers (e.g., 1, 2, 3) that increment sequentially. They are compact and efficient for certain operations but can cause issues in high-concurrency scenarios.
@@ -32,12 +34,12 @@ A **read-only transaction** is a database operation that only retrieves data wit
 
 ## Key Characteristics
 
-### Read-Only Transactions
+### Read-Only Transaction Characteristics
 
-- Can be explicitly set to read-only to block any write attempts, adding a layer of safety.
+- Can be explicitly set too read-only to block any write attempts, adding a layer of safety.
 - In databases like PostgreSQL, transactions are treated as read-only by default until a write operation is attempted, at which point they become read-write and require additional resources.
 
-### Primary Keys
+### Primary Key Characteristics
 
 - **Sequential IDs**:
   - Small size (e.g., 4 bytes for an integer).
