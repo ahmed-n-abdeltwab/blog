@@ -4,10 +4,20 @@ title: "Why Updates in PostgreSQL Affect All Indexes"
 date: 2025-06-03
 modify_date: 2025-06-03
 excerpt: "Exploring the reasons behind PostgreSQL's behavior of updating all indexes during row updates and how to optimize it."
-tags: ["Database", "PostgreSQL", "Performance", "Indexes"]
+tags:
+  [
+    "Database",
+    "PostgreSQL",
+    "Performance",
+    "Indexes",
+    "Q&A",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
-key: "postgres-index-updates"
+key: postgres-index-updates
 ---
 
 ## Understanding Why Postgres Updates Affect All Indexes
@@ -16,15 +26,15 @@ key: "postgres-index-updates"
 
 Have you ever wondered why updating a single row in your PostgreSQL database can sometimes feel like it’s taking forever? Or why it seems to affect the entire table’s performance? If you’ve ever worked with databases, you might have encountered this issue, and it’s not just a quirk of PostgreSQL—it’s a design choice that ensures data consistency but can come with a performance cost. In this lecture, we explored the internals of PostgreSQL to understand why updating a row doesn’t just update that row but also touches all the indexes associated with the table.
 
-For instance, companies like Uber have faced performance issues due to this behavior, where a single update triggers a cascade of index updates, leading to what’s known as *write amplification*. The core insight is that PostgreSQL’s approach to handling row updates and index maintenance prioritizes data consistency, but there are ways to optimize this process to improve performance.
+For instance, companies like Uber have faced performance issues due to this behavior, where a single update triggers a cascade of index updates, leading to what’s known as _write amplification_. The core insight is that PostgreSQL’s approach to handling row updates and index maintenance prioritizes data consistency, but there are ways to optimize this process to improve performance.
 
 ## Core Concepts/Overview
 
-To grasp why updates affect all indexes, let’s start with what an index is. Think of an index like the index in a book—it helps you find specific information quickly without scanning every page. In PostgreSQL, indexes work similarly, speeding up data retrieval by pointing to specific rows using a unique identifier called a *tuple ID*.
+To grasp why updates affect all indexes, let’s start with what an index is. Think of an index like the index in a book—it helps you find specific information quickly without scanning every page. In PostgreSQL, indexes work similarly, speeding up data retrieval by pointing to specific rows using a unique identifier called a _tuple ID_.
 
-When you update a row, PostgreSQL doesn’t modify the existing row directly. Instead, it creates a new version of the row, called a *tuple*, with a new tuple ID. To the user, it’s still the same row, but physically, it’s a new tuple. The challenge is that all indexes pointing to the old tuple ID must now point to the new tuple ID. This happens even if the update only changes a column that isn’t part of a particular index. Why? If an index still points to the old tuple ID, a query using that index might return outdated data, breaking data consistency.
+When you update a row, PostgreSQL doesn’t modify the existing row directly. Instead, it creates a new version of the row, called a _tuple_, with a new tuple ID. To the user, it’s still the same row, but physically, it’s a new tuple. The challenge is that all indexes pointing to the old tuple ID must now point to the new tuple ID. This happens even if the update only changes a column that isn’t part of a particular index. Why? If an index still points to the old tuple ID, a query using that index might return outdated data, breaking data consistency.
 
-As the [PostgreSQL Documentation](https://www.postgresql.org/docs/current/indexes-intro.html) explains: *"Once an index is created, no further intervention is required: the system will update the index when the table is modified..."* This ensures indexes remain consistent for efficient query performance but adds overhead to operations like updates.
+As the [PostgreSQL Documentation](https://www.postgresql.org/docs/current/indexes-intro.html) explains: _"Once an index is created, no further intervention is required: the system will update the index when the table is modified..."_ This ensures indexes remain consistent for efficient query performance but adds overhead to operations like updates.
 
 ## Key Characteristics
 
@@ -53,11 +63,11 @@ PostgreSQL offers optimizations to reduce the impact of updating all indexes. He
 
 ### Heap-Only Tuple (HOT)
 
-The *Heap-Only Tuple (HOT)* optimization can minimize index updates. If the new tuple can be stored on the same database page as the old tuple (due to available space), PostgreSQL adds a pointer from the old tuple ID to the new one in the heap table. This means indexes on unchanged columns may not need updating, reducing overhead. However, if the new tuple must go on a different page (e.g., due to lack of space), all indexes still need updating.
+The _Heap-Only Tuple (HOT)_ optimization can minimize index updates. If the new tuple can be stored on the same database page as the old tuple (due to available space), PostgreSQL adds a pointer from the old tuple ID to the new one in the heap table. This means indexes on unchanged columns may not need updating, reducing overhead. However, if the new tuple must go on a different page (e.g., due to lack of space), all indexes still need updating.
 
 ### Fill Factor
 
-The *fill factor* setting controls how full a database page can be, leaving space for future updates. A lower fill factor (e.g., 50%) reserves more space on each page, increasing the likelihood that a new tuple can stay on the same page and use HOT. This reduces the need for index updates and improves performance.
+The _fill factor_ setting controls how full a database page can be, leaving space for future updates. A lower fill factor (e.g., 50%) reserves more space on each page, increasing the likelihood that a new tuple can stay on the same page and use HOT. This reduces the need for index updates and improves performance.
 
 For example, if you have a table with columns A, B, and C, and only column A is updated, an index on column B still needs updating unless HOT is used. Setting a lower fill factor can help ensure there’s enough space for HOT to work effectively.
 
