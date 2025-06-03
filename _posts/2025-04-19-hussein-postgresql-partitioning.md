@@ -4,46 +4,59 @@ title: "PostgreSQL Partitioning – Real-World Lessons from Hussein's Database L
 date: 2025-04-19
 modify_date: 2025-04-19
 excerpt: "Detailed notes on horizontal partitioning from Hussein's lecture series. Includes real PostgreSQL examples, performance tips, automation scripts, and how partitions improve query speed."
-tags: [Partitioning, PostgreSQL, HusseinNasser, Database, LectureNotes, Performance, SQL]
+tags:
+  [
+    "Partitioning",
+    "PostgreSQL",
+    "Database",
+    "LectureNotes",
+    "Performance",
+    "SQL",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
 key: hussein-postgresql-partitioning
 ---
 
-# Introduction
+## Introduction
 
 These are my personal notes from **Hussein Nasser's lecture series on database fundamentals**. This lecture covered **horizontal partitioning in PostgreSQL**, how to use it, and when it helps.
 
 ---
 
-# Core Concepts / Overview
+## Core Concepts / Overview
 
 ### What is Partitioning?
 
 Partitioning splits one big table into smaller sub-tables (partitions). The database decides which partition to use at query time, depending on the `WHERE` clause.
 
-- Horizontal partitioning = split by rows  
-- Vertical partitioning = split by columns  
+- Horizontal partitioning = split by rows
+- Vertical partitioning = split by columns
 - Focus was mostly on **horizontal partitioning**
 
 ---
 
-# Key Characteristics
+## Key Characteristics
 
-## Partition Types:
+## Partition Types
+
 - **Range**: rows fall into partitions based on a numeric or date range
 - **List**: rows split by fixed values (e.g., states, zip codes)
 - **Hash**: rows assigned by hash result
 - **Vertical**: columns are split; useful for large blob/text fields
 
-## PostgreSQL Facts:
+## PostgreSQL Facts
+
 - Parent table is empty. It's just metadata.
 - Indexes created on the parent propagate to all partitions (Postgres 11+)
 - Partition pruning: planner ignores irrelevant partitions (must be enabled)
 
 ---
 
-# Practical Implementation
+## Practical Implementation
 
 ## Setup Postgres in Docker
 
@@ -119,24 +132,28 @@ SELECT COUNT(*) FROM grades_parts WHERE g = 30;
 
 ---
 
-# Automating Partition Creation with Node.js
+## Automating Partition Creation with Node.js
 
 Hussein used Node.js to generate 100 partitions programmatically:
 
 ```js
-import pkg from 'pg';
+import pkg from "pg";
 const { Client } = pkg;
 
 const TOTAL = 1_000_000_000;
 const STEP = 10_000_000;
 
 async function main() {
-  const client = new Client({ connectionString: 'postgres://postgres:secret@localhost:5432' });
+  const client = new Client({
+    connectionString: "postgres://postgres:secret@localhost:5432",
+  });
   await client.connect();
-  await client.query('CREATE DATABASE customers;');
+  await client.query("CREATE DATABASE customers;");
   await client.end();
 
-  const db = new Client({ connectionString: 'postgres://postgres:secret@localhost:5432/customers' });
+  const db = new Client({
+    connectionString: "postgres://postgres:secret@localhost:5432/customers",
+  });
   await db.connect();
   await db.query(`
     CREATE TABLE customers (
@@ -150,7 +167,9 @@ async function main() {
     const to = from + STEP;
     const name = `customers_${from}_${to}`;
     await db.query(`CREATE TABLE ${name} (LIKE customers INCLUDING ALL);`);
-    await db.query(`ALTER TABLE customers ATTACH PARTITION ${name} FOR VALUES FROM (${from}) TO (${to});`);
+    await db.query(
+      `ALTER TABLE customers ATTACH PARTITION ${name} FOR VALUES FROM (${from}) TO (${to});`
+    );
   }
 
   await db.end();
@@ -161,14 +180,13 @@ main();
 
 ---
 
-# Performance Notes
+## Performance Notes
 
 ## Partition vs Non-partition Index Size
 
-- Full table index (10M rows): ~69MB  
-- Smallest partition index: ~24MB  
-- Smaller indexes are faster to query  
-- Query time on full table: ~2–3 seconds  
+- Full table index (10M rows): ~69 MB
+- The Smallest partition index: ~24 MB
+- Smaller indexes are faster to query time on full table: ~2–3 seconds
 - Query time on partition: ~1 second or less
 
 ## Partition Pruning
@@ -181,7 +199,7 @@ If off, the planner hits **all** partitions, which defeats the purpose.
 
 ---
 
-# Advantages & Disadvantages
+## Advantages & Disadvantages
 
 ## Pros
 
@@ -198,9 +216,10 @@ If off, the planner hits **all** partitions, which defeats the purpose.
 
 ---
 
-# Conclusion
+## Conclusion
 
 Partitioning is one of the best techniques to handle large datasets, and Hussein’s examples made it super clear. You can see actual performance boosts only when the table is large enough and memory is limited (I/O-bound scenarios). For smaller tables or well-tuned memory, it may not show immediate speed gains.
 
-Biggest lesson:  
+Biggest lesson:
+
 > "The fastest way to query a table with a billion rows is to avoid querying a table with a billion rows." — Hussein

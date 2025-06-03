@@ -4,7 +4,18 @@ title: "Why Databases Read Pages Instead of Rows"
 date: 2025-05-30
 modify_date: 2025-05-30
 excerpt: "This lecture explains why databases fetch entire pages instead of individual rows when executing SQL queries, covering variable-sized rows, disk storage limits, and how indexes work."
-tags: [Database, SQL, Indexing, Storage, LectureNotes, QA]
+tags:
+  [
+    "Database",
+    "SQL",
+    "Indexing",
+    "Storage",
+    "LectureNotes",
+    "Q&A",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
 key: database-pages-vs-rows
@@ -26,11 +37,13 @@ This affects everything, even how **indexes** work, because they only guide the 
 ## Key Characteristics
 
 - **Variable-sized rows:**
+
   - Rows can be big or small depending on the data (like long strings or NULL values).
   - This means the database doesn’t know exactly where a row sits in a page—it has to scan the page to find it.
-  - *Fixed-size rows, like in MyISAM, solve this but waste space, so most databases avoid them.*
+  - _Fixed-size rows, like in MyISAM, solve this but waste space, so most databases avoid them._
 
 - **Disk storage limits:**
+
   - Disks (hard drives or SSDs) work with **blocks**, not bytes.
   - Even if the database knew a row’s location, it’d still fetch the whole block—usually 4KB or more.
 
@@ -41,6 +54,7 @@ This affects everything, even how **indexes** work, because they only guide the 
 ## Advantages & Disadvantages
 
 - **Advantages:**
+
   - Fetching pages matches how disks work, making data retrieval smooth when you need multiple rows from one page.
   - It’s efficient for the system’s design, keeping things simple.
 
@@ -52,5 +66,4 @@ This affects everything, even how **indexes** work, because they only guide the 
 
 This lecture showed why databases grab entire **pages** instead of single rows: **variable-sized rows** mess up exact locations, and **disk storage** forces block-level reads. Indexes help, but they still rely on fetching pages. It’s not perfect—sometimes it feels wasteful—but it’s how things work today.
 
-*Reflective thought:* Hussien pushed us to question this. Could future tech, like byte-addressable disks, let databases grab just the rows we need? That’d be a game-changer!
-
+_Reflective thought:_ Hussien pushed us to question this. Could future tech, like byte-addressable disks, let databases grab just the rows we need? That’d be a game-changer!

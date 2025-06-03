@@ -1,16 +1,28 @@
 ---
-layout: article  
-title: "Understanding Redis: Why It’s So Popular"  
-date: 2025-05-20  
-modify_date: 2025-05-20  
-excerpt: "This note explains why Redis became a top choice for caching, databases, and messaging, with its key features and a hands-on example using Docker."  
-tags: [Redis, NoSQL, In-Memory Database, Cache, Pub/Sub, Docker, LectureNotes]  
-mathjax: false  
-mathjax_autoNumber: false  
-key: redis-popularity-explained  
+layout: article
+title: "Understanding Redis: Why It’s So Popular"
+date: 2025-05-20
+modify_date: 2025-05-20
+excerpt: "This note explains why Redis became a top choice for caching, databases, and messaging, with its key features and a hands-on example using Docker."
+tags:
+  [
+    "Redis",
+    "NoSQL",
+    "In-Memory Database",
+    "Cache",
+    "Pub/Sub",
+    "Docker",
+    "LectureNotes",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
+mathjax: false
+mathjax_autoNumber: false
+key: redis-popularity-explained
 ---
 
-# Understanding Redis: Why It’s So Popular
+## Understanding Redis: Why It’s So Popular
 
 ## Introduction
 
@@ -48,26 +60,28 @@ Redis is a **NoSQL key-value store** that keeps data in memory, making it super 
 - **Expensive Memory:** Big datasets cost more since it’s all in memory.
 - **Cache Challenges:** Hard to manage when cached data gets old or invalid.
 
-> *“Caching is like cleaning spilled water instead of fixing the leak.”* Optimize your queries first, then use Redis!
+> _“Caching is like cleaning spilled water instead of fixing the leak.”_ Optimize your queries first, then use Redis!
 
 ## Practical Implementations/Examples
 
 The lecture showed how to use Redis with Docker. Here’s what we did:
 
 1. **Start a Redis Container:**
+
    ```bash
    docker run --name rdb -p 6379:6379 redis
    ```
 
 2. **Use the Redis CLI:**
-   - Set a key: `set name "Hussein"`  
-   - Get a key: `get name` (returns "Hussein")  
-   - Set with expiry: `set name_temp "Edmund" EX 10` (gone after 10 seconds)  
-   - Check existence: `exists name` (returns 1 if yes, 0 if no)  
+
+   - Set a key: `set name "Hussein"`
+   - Get a key: `get name` (returns "Hussein")
+   - Set with expiry: `set name_temp "Edmund" EX 10` (gone after 10 seconds)
+   - Check existence: `exists name` (returns 1 if yes, 0 if no)
    - Delete a key: `del name`
 
 3. **Pub/Sub Example:**
-   - Subscribe: `subscribe new_videos` (waits for messages)  
+   - Subscribe: `subscribe new_videos` (waits for messages)
    - Publish: `publish new_videos "Redis crash course is up"` (sends to subscribers)
 
 ## Conclusion

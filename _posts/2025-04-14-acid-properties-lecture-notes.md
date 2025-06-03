@@ -4,23 +4,36 @@ title: "Understanding ACID Properties in Databases"
 date: 2025-04-14
 modify_date: 2025-04-14
 excerpt: "This note summarizes the key concepts of ACID properties (Atomicity, Consistency, Isolation, Durability) in database transactions and the definition of a transaction itself."
-tags: ["Databases", "ACID", "Transactions", "Atomicity", "Consistency", "Isolation", "Durability", "LectureNotes"]
+tags:
+  [
+    "Databases",
+    "ACID",
+    "Transactions",
+    "Atomicity",
+    "Consistency",
+    "Isolation",
+    "Durability",
+    "LectureNotes",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
-key: "acid-properties-lecture-notes"
+key: acid-properties-lecture-notes
 ---
 
-
-# Overview of Database Transactions and ACID Properties
+## Overview of Database Transactions and ACID Properties
 
 ## Introduction
 
 This lecture series aims to provide a comprehensive understanding of **database transactions** and the fundamental **ACID** properties: **Atomicity, Consistency, Isolation, and Durability**. These properties are critical for building and using relational database systems effectively (e.g., **Postgres, MySQL, SQL Server, Oracle**), as well as being relevant to NoSQL and graph databases.
 
 The lectures will cover:
-- The definition of a transaction  
-- Detailed explanation of each ACID property  
-- Practical examples to illustrate these concepts  
+
+- The definition of a transaction
+- Detailed explanation of each ACID property
+- Practical examples to illustrate these concepts
 
 ---
 
@@ -32,8 +45,8 @@ A **transaction** is a **collection of SQL queries treated as a single unit of w
 
 - Begins with: `BEGIN`
 - Ends with:
-  - `COMMIT` → to save changes  
-  - `ROLLBACK` → to discard changes  
+  - `COMMIT` → to save changes
+  - `ROLLBACK` → to discard changes
 - On system failure: uncommitted changes are rolled back automatically
 - Even read-only operations can use transactions to get consistent snapshots
 - Single SQL statements outside explicit transactions are **implicitly** wrapped in a transaction by the database
@@ -60,7 +73,7 @@ A **transaction** is a **collection of SQL queries treated as a single unit of w
 
 **Brings the database from one valid state to another.**
 
-#### Two types of consistency:
+#### Two types of consistency
 
 - **Data Consistency:**
   - Ensures rules like foreign keys and constraints are upheld
@@ -78,24 +91,24 @@ A **transaction** is a **collection of SQL queries treated as a single unit of w
 
 **Ensures concurrent transactions do not interfere with each other.**
 
-#### Read Phenomena:
+#### Read Phenomena
 
-| Phenomenon            | Description |
-|------------------------|-------------|
-| **Dirty Reads**        | Reading uncommitted changes from another transaction |
-| **Non-Repeatable Reads** | Reading the same row twice returns different values |
-| **Phantom Reads**      | Range query returns different rows on repeated execution |
-| **Lost Updates**       | One transaction overwrites another’s changes |
+| Phenomenon               | Description                                              |
+| ------------------------ | -------------------------------------------------------- |
+| **Dirty Reads**          | Reading uncommitted changes from another transaction     |
+| **Non-Repeatable Reads** | Reading the same row twice returns different values      |
+| **Phantom Reads**        | Range query returns different rows on repeated execution |
+| **Lost Updates**         | One transaction overwrites another’s changes             |
 
-#### Isolation Levels:
+#### Isolation Levels
 
-| Level               | Description |
-|---------------------|-------------|
-| **Read Uncommitted** | Lowest isolation, allows dirty reads |
-| **Read Committed**   | Prevents dirty reads (common default) |
+| Level                | Description                                                         |
+| -------------------- | ------------------------------------------------------------------- |
+| **Read Uncommitted** | Lowest isolation, allows dirty reads                                |
+| **Read Committed**   | Prevents dirty reads (common default)                               |
 | **Repeatable Read**  | Prevents non-repeatable reads (Phantoms still possible in some DBs) |
-| **Snapshot**         | Each query sees a snapshot from the start of the transaction |
-| **Serializable**     | Highest isolation, fully prevents all read phenomena |
+| **Snapshot**         | Each query sees a snapshot from the start of the transaction        |
+| **Serializable**     | Highest isolation, fully prevents all read phenomena                |
 
 - **Concurrency control mechanisms**:
   - **Pessimistic** (locks)
@@ -120,13 +133,15 @@ A **transaction** is a **collection of SQL queries treated as a single unit of w
 
 ### Atomicity & Consistency
 
-**Tables:**
+#### **Tables:**
+
 ```sql
 products(pid SERIAL PRIMARY KEY, name TEXT, price FLOAT, inventory INTEGER)
 sales(sale_id SERIAL PRIMARY KEY, pid INTEGER, price FLOAT, quantity INTEGER)
 ```
 
-**Scenario: Selling 10 phones**
+#### **Scenario: Selling 10 phones**
+
 ```sql
 BEGIN;
 UPDATE products SET inventory = inventory - 10 WHERE pid = 1;
@@ -142,22 +157,25 @@ COMMIT;
 
 ### Isolation
 
-**Scenario: Report generation vs concurrent sales**
+#### **Scenario: Report generation vs concurrent sales**
 
 - With **READ COMMITTED**, report might see inconsistent data
 - With **REPEATABLE READ**:
+
 ```sql
 BEGIN TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 -- run reporting queries
 COMMIT;
 ```
+
 - The report sees a consistent snapshot, unaffected by concurrent transactions
 
 ---
 
 ### Durability
 
-**Scenario: Insert a product and crash**
+#### **Scenario: Insert a product and crash**
+
 ```sql
 BEGIN;
 INSERT INTO products (name, price, inventory) VALUES ('TV', 3000, 10);
@@ -174,10 +192,9 @@ docker stop pg_acid
 
 Understanding **transactions** and **ACID** properties is fundamental for building **reliable** and **consistent** database applications:
 
-- **Atomicity** → Prevents partial updates  
-- **Consistency** → Ensures data integrity  
-- **Isolation** → Controls concurrent access  
-- **Durability** → Guarantees data persistence  
+- **Atomicity** → Prevents partial updates
+- **Consistency** → Ensures data integrity
+- **Isolation** → Controls concurrent access
+- **Durability** → Guarantees data persistence
 
 Together, these properties ensure **data accuracy**, **fault tolerance**, and **safe concurrency** in any serious database system.
-

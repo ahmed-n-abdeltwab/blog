@@ -4,18 +4,27 @@ title: "Understanding Relationships in SQL Databases"
 date: 2025-06-02
 modify_date: 2025-06-02
 excerpt: "This lecture explores working with multiple tables in relational databases, covering relationships, keys, Entity Relationship Diagrams (ERDs), and advanced SQL queries in SQLite."
-tags: ["Database", "SQL", "LectureNotes", "CS50"]
+tags:
+  [
+    "Database",
+    "SQL",
+    "LectureNotes",
+    "CS50",
+    "Introduction to Databases with SQL",
+    "Carter Zenke",
+    "Querying",
+  ]
 mathjax: false
 key: "sql-multiple-tables"
 ---
 
 ## Introduction
 
-Have you ever tried to keep track of information that’s spread across different lists, like books and their authors, and found it tricky to connect everything? This lecture from *CS50's Introduction to Databases with SQL* dives into the world of relational databases, showing how to manage data across multiple tables. It’s like learning to organize a library where books, authors, and publishers are all neatly linked.
+Have you ever tried to keep track of information that’s spread across different lists, like books and their authors, and found it tricky to connect everything? This lecture from _CS50's Introduction to Databases with SQL_ dives into the world of relational databases, showing how to manage data across multiple tables. It’s like learning to organize a library where books, authors, and publishers are all neatly linked.
 
 The lecture uses engaging real-world examples, such as the International Booker Prize book database and tracking sea lion migrations, to make complex concepts feel approachable. We learn how to move beyond single-table databases to handle multiple tables, exploring key ideas like **primary keys**, **foreign keys**, and relationships (one-to-one, one-to-many, and many-to-many). It also introduces **Entity Relationship Diagrams (ERDs)** to visualize these connections and practical SQL commands in SQLite, like JOINs and subqueries, to query data effectively.
 
-*My key insight from this lecture is that understanding how to model and query relationships between tables is crucial for managing complex data sets efficiently.* It’s like solving a puzzle where every piece fits perfectly when you know how to connect them.
+_My key insight from this lecture is that understanding how to model and query relationships between tables is crucial for managing complex data sets efficiently._ It’s like solving a puzzle where every piece fits perfectly when you know how to connect them.
 
 ## Core Concepts
 
@@ -40,11 +49,12 @@ A **relational database** is a system that stores data in multiple tables, with 
 ### Entity Relationship Diagrams (ERDs)
 
 **ERDs** are visual tools that map out the structure of a database, showing tables as boxes and relationships as lines with annotations. In the lecture, an ERD for the book database shows:
+
 - **Authors to Books**: A line with a bar (one) on the author side and a crow’s foot (many) on the books side, indicating one author can write many books.
 - **Books to Translators**: A line with a circle (zero) and crow’s foot (many) on the translators side, showing a book might have zero or many translators.
 - **Notation**: Circles mean "zero," bars mean "one," arrows mean "at least one," and crow’s feet mean "many."
 
-*This visual representation really helped me understand how tables connect, making database design less abstract.*
+_This visual representation really helped me understand how tables connect, making database design less abstract._
 
 ### Querying Multiple Tables
 
@@ -66,11 +76,10 @@ The lecture provides hands-on examples to illustrate these concepts. One standou
 SELECT * FROM "sea_lions" JOIN "migrations" ON "migrations"."id" = "sea_lions"."id";
 ```
 
-This **INNER JOIN** links the `sea_lions` table (with columns like name and ID) to the `migrations` table (with distance and days). The `ON` clause ensures rows are matched where the IDs are the same, producing a result that shows each sea lion’s name alongside their migration details, like how far Spot or Tiger traveled. *This example made JOINs click for me, showing how to pull together related data seamlessly.*
+This **INNER JOIN** links the `sea_lions` table (with columns like name and ID) to the `migrations` table (with distance and days). The `ON` clause ensures rows are matched where the IDs are the same, producing a result that shows each sea lion’s name alongside their migration details, like how far Spot or Tiger traveled. _This example made JOINs click for me, showing how to pull together related data seamlessly._
 
 Another example involves the book database, where the lecture uses the International Booker Prize data to demonstrate relationships. For instance, querying books and their authors might involve a JOIN to connect the `books` and `authors` tables, or using INTERSECT to find individuals like Ngugi who are both authors and translators.
 
 ## Conclusion
 
-This lecture opened my eyes to the power of relational databases. By learning about **primary keys**, **foreign keys**, and relationships, I now understand how to structure data across multiple tables to keep it organized and efficient. The querying techniques, like JOINs and set operations, feel like tools I can use to solve real-world problems, from managing a library’s catalog to tracking wildlife migrations. The real-world examples, especially the book database and the librarian role-play, made these concepts relatable and easier to grasp. *I’m excited to apply these ideas in my own projects, and I feel more confident about designing databases that can handle complex data relationships.*
-
+This lecture opened my eyes to the power of relational databases. By learning about **primary keys**, **foreign keys**, and relationships, I now understand how to structure data across multiple tables to keep it organized and efficient. The querying techniques, like JOINs and set operations, feel like tools I can use to solve real-world problems, from managing a library’s catalog to tracking wildlife migrations. The real-world examples, especially the book database and the librarian role-play, made these concepts relatable and easier to grasp. _I’m excited to apply these ideas in my own projects, and I feel more confident about designing databases that can handle complex data relationships._

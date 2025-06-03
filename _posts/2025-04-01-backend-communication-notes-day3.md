@@ -1,24 +1,35 @@
 ---
-layout: article  
-key: backend-communication-notes-day3  
+layout: article
+key: backend-communication-notes-day3
 title: "Backend Communication Fundamentals: Day 4"
-modify_date: 2025-03-31  
+modify_date: 2025-03-31
 date: 2025-03-31
 excerpt: "Exploring Pub/Sub, Stateful vs Stateless Systems, Multiplexing, and the Sidecar Pattern."
 author: "Ahmed Nasser"
 categories: ["Backend Communication"]
-tags: ["Pub/Sub", "Stateful vs Stateless", "Multiplexing", "Sidecar Pattern"]
+tags:
+  [
+    "Pub/Sub",
+    "Stateful vs Stateless",
+    "Multiplexing",
+    "Sidecar Pattern",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Backend Engineering",
+  ]
 draft: false
-mathjax: true  
-mathjax_autoNumber: true  
+mathjax: true
+mathjax_autoNumber: true
 ---
 
-# Day 4: Backend Communication Fundamentals
+## Day 4: Backend Communication Fundamentals
 
 Today, we covered important topics in backend communication. This post summarizes key concepts in an easy-to-follow way for future reference.
 
 ## 1. Publish-Subscribe (Pub/Sub) Pattern
+
 ### 🔑 Key Terms
+
 - **Publisher**: Sends messages to a broker (e.g., Kafka, RabbitMQ).
 - **Subscriber**: Listens for messages from the broker.
 - **Broker/Queue**: Middleman that handles message delivery.
@@ -27,18 +38,22 @@ Today, we covered important topics in backend communication. This post summarize
 - **Long Polling**: Clients periodically check for new messages.
 
 ### 🏗 How It Works
+
 Imagine YouTube’s video processing:
+
 1. **Uploader Service** ➝ Publishes raw video.
 2. **Compression Service** ➝ Subscribes & compresses video.
 3. **Format Service** ➝ Converts video to multiple resolutions.
 4. **Notification Service** ➝ Sends alerts to users.
 
 ### ✅ Pros
+
 - Services work independently (decoupling).
 - Scales well with demand.
 - Handles failures better (fault tolerance).
 
 ### ❌ Cons
+
 - Duplicate messages possible.
 - More network traffic.
 - Broker failure affects the system.
@@ -46,13 +61,16 @@ Imagine YouTube’s video processing:
 ---
 
 ## 2. Stateful vs Stateless Systems
+
 ### 🔑 Key Terms
+
 - **Stateful**: Stores session info (e.g., shopping cart saved on a server).
 - **Stateless**: No stored session; each request is independent (e.g., APIs using JWT).
 - **Sticky Sessions**: Users stay on the same server.
 - **JWT (JSON Web Token)**: Stores user data in a token.
 
 ### 🔄 How They Work
+
 - **Stateful Example**: A web app that stores user sessions on the server.
   - Problem: If the server restarts, sessions are lost.
 - **Stateless Example**: API using JWT, where the token is sent with each request.
@@ -60,35 +78,41 @@ Imagine YouTube’s video processing:
 
 ### ✅ Pros & Cons
 
-| Feature | Stateful | Stateless |
-|---------|---------|-----------|
-| Scaling | Harder | Easier |
-| Performance | Faster | Can be slower |
+| Feature     | Stateful                     | Stateless         |
+| ----------- | ---------------------------- | ----------------- |
+| Scaling     | Harder                       | Easier            |
+| Performance | Faster                       | Can be slower     |
 | Reliability | Server crash = lost sessions | Survives restarts |
 
 ---
 
 ## 3. Multiplexing vs Demultiplexing
+
 ### 🔑 Key Terms
+
 - **Multiplexing**: Combining multiple data streams in one connection (e.g., HTTP/2).
 - **Demultiplexing**: Splitting one connection into multiple streams.
 - **Connection Pooling**: Reusing open connections.
 
 ### 🌍 Real-Life Examples
-- **Web Browsers**: 
+
+- **Web Browsers**:
   - HTTP/1.1 opens 6 connections per site.
   - HTTP/2 multiplexes multiple requests over a single connection (faster!).
 - **Databases**:
   - PostgreSQL v14 supports query pipelining, reducing delays.
-  
+
 ### ✅ Pros & Cons
+
 - **Multiplexing**: Uses fewer connections, reduces network load, but requires CPU power.
 - **Demultiplexing**: Avoids blocking, but needs good resource management.
 
 ---
 
 ## 4. Sidecar Pattern
+
 ### 🔑 Key Terms
+
 - **Sidecar Proxy**: A helper process managing networking (e.g., Envoy, Linkerd).
 - **Service Mesh**: A network of sidecars managing traffic (e.g., Istio).
 - **Layer 7 Proxy**: Understands application-level protocols (e.g., HTTP).
@@ -96,22 +120,26 @@ Imagine YouTube’s video processing:
 - **Polyglot Architecture**: Allows different languages to communicate via sidecars.
 
 ### 🌍 Real-Life Example
+
 - **Twitter’s Evolution**:
   - Started with one big application.
   - Moved to microservices with a service mesh.
   - Sidecars helped different services communicate efficiently.
 
 ### ✅ Pros
+
 - Upgrades without changing apps (e.g., adding HTTP/3 support).
 - Better security and monitoring.
 
 ### ❌ Cons
+
 - Extra latency due to additional hops.
 - More complexity in setup and debugging.
 
 ---
 
 ## 🔗 Key Takeaways Across All Lectures
+
 1. **Trade-Offs Exist**:
    - Pub/Sub improves scalability but increases network load.
    - Stateful systems are faster but harder to scale.
@@ -124,4 +152,3 @@ Imagine YouTube’s video processing:
    - Twitter adapted its stack over time for efficiency.
 
 This concludes Day 4! Next, I'll compile everything into a weekly recap. 🚀
-
