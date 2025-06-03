@@ -4,7 +4,19 @@ title: "Understanding Serializable Isolation Level and SELECT FOR UPDATE in Data
 date: 2025-06-02
 modify_date: 2025-06-02
 excerpt: "This lecture note explains the serializable isolation level in database transactions and compares it with the use of SELECT FOR UPDATE for concurrency control."
-tags: [ACID, Transactions, Database, IsolationLevels, ConcurrencyControl, LectureNotes, QA]
+tags:
+  [
+    "ACID",
+    "Transactions",
+    "Database",
+    "IsolationLevels",
+    "ConcurrencyControl",
+    "LectureNotes",
+    "Q&A",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 key: database-transactions-isolation-levels
 ---
 
@@ -63,4 +75,3 @@ The **serializable isolation level** is the strictest rule. It makes sure that e
 ## Conclusion
 
 This lecture showed me that **serializable isolation** keeps data safe by making transactions look like they run one by one, while **SELECT FOR UPDATE** does it by locking stuff. Locks are simple but can make things slow, and serializable is faster but might fail sometimes. It all depends on what your app needs—how many people use it and how often they clash.
-
