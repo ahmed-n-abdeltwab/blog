@@ -78,7 +78,3 @@ This example highlighted how the database’s query planner weighs different str
 ## Conclusion
 
 Learning about bitmap index scans has given me a deeper appreciation for the magic behind database query optimization. It’s amazing how databases like PostgreSQL balance different techniques to get the best performance. _Bitmap index scans are powerful for queries with multiple conditions, as they reduce disk reads by focusing on pages, but they’re not a one-size-fits-all solution._ Understanding when they’re used—and when they’re not—will help me write better queries and design more efficient database schemas.
-
-In my own projects, I’ve struggled with slow queries on large datasets. Now, I’m eager to experiment with multiple indexes and see if I can leverage bitmap index scans to speed things up. To ensure my notes are accurate, I cross-checked the lecture content with reputable sources, including the [PostgreSQL documentation on combining multiple indexes](https://www.postgresql.org/docs/current/indexes-bitmap-scans.html) and [pg analyzes explanation of bitmap index scans](https://pganalyze.com/docs/explain/scan-nodes/bitmap-index-scan). These confirmed the lecture’s insights and added details, like the need for extra sorting with ORDER BY clauses.
-
-I’m looking forward to diving deeper into database optimization and applying these concepts in real-world projects!
