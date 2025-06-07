@@ -10,6 +10,7 @@ tags:
     "PostgreSQL",
     "Performance",
     "Indexes",
+    "LectureNotes",
     "Q&A",
     "Hussein",
     "Software Engineering",
@@ -74,5 +75,3 @@ For example, if you have a table with columns A, B, and C, and only column A is 
 ## Conclusion
 
 Understanding why PostgreSQL updates touch all indexes is key to optimizing database performance. This behavior, while ensuring data consistency, can lead to performance challenges, especially in tables with many indexes. Techniques like HOT and adjusting the fill factor offer practical ways to mitigate this overhead. As a developer or database administrator, knowing these internals helps you design more efficient schemas and queries.
-
-Personally, this lecture was eye-opening because it revealed the inner workings of PostgreSQL. It’s fascinating to see how design choices prioritize consistency but can impact performance, and how optimizations like HOT balance these trade-offs. This knowledge will make me more mindful of index usage and table design in my future database work.
