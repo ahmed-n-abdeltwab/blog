@@ -1,8 +1,8 @@
 ---
 layout: article
 title: "Shopify's Switch from UUID to ULID for Database Optimization"
-date: 2025-06-11
-modify_date: 2025-06-11
+date: 2025-06-10
+modify_date: 2025-06-10
 excerpt: "Exploring Shopify's transition from UUID to ULID for idempotency keys to boost database performance in payment systems."
 tags:
   [
