@@ -11,7 +11,7 @@ key: markdown-guide
 ---
 
 
-# Welcome to My Blog!
+## Welcome to My Blog
 
 Welcome to my first blog post! In this post, I'll introduce you to **Markdown**, a simple and powerful way to format text for the web. If you're new to Markdown, this guide will help you get started.
 
@@ -64,7 +64,7 @@ You can make text **bold**, *italic*, or even ***bold and italic*** using the fo
 
 ### Lists
 
-#### Unordered List:
+#### Unordered List
 
 ```markdown
 - Item 1
@@ -73,7 +73,7 @@ You can make text **bold**, *italic*, or even ***bold and italic*** using the fo
   - Sub-item 2
 ```
 
-#### Ordered List:
+#### Ordered List
 
 ```markdown
 1. First item
@@ -132,11 +132,11 @@ You can add inline code using backticks: `console.log("Hello, world!");`
 For multi-line code blocks:
 
 ```markdown
-```javascript
-function hello() {
-    console.log("Hello, Markdown!");
-}
-```
+    ```javascript
+    function hello() {
+        console.log("Hello, Markdown!");
+    }
+    ```
 ```
 
 ### Blockquotes

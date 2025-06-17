@@ -4,21 +4,33 @@ title: "Understanding Homomorphic Encryption: A Future for Secure Data"
 date: 2025-05-27
 modify_date: 2025-05-27
 excerpt: "This note covers homomorphic encryption from a lecture, explaining what it is, how it lets us work with encrypted data, its pros and cons, and a demo showing it in action."
-tags: [encryption, homomorphic, database, security, IBM, privacy, LectureNotes]
+tags:
+  [
+    "encryption",
+    "homomorphic",
+    "database",
+    "security",
+    "IBM",
+    "privacy",
+    "LectureNotes",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
 key: homomorphic-encryption-lecture
 ---
 
-# Understanding Homomorphic Encryption: A Future for Secure Data
+## Understanding Homomorphic Encryption: A Future for Secure Data
 
 ## Introduction
 
-What if you could keep your data locked but still use it? That’s the big problem with normal encryption: you have to unlock it to do anything, and that’s risky. This lecture was all about **homomorphic encryption**, a new way to solve this. It explains what it is, why it’s exciting, and what’s holding it back. The goal was to show how it could change databases, proxies, and apps by letting us work with encrypted data *without* unlocking it. No real-world failure story here—just a look at a future tech. The key idea? You can process data while it stays secret.
+What if you could keep your data locked but still use it? That’s the big problem with normal encryption: you have to unlock it to do anything, and that’s risky. This lecture was all about **homomorphic encryption**, a new way to solve this. It explains what it is, why it’s exciting, and what’s holding it back. The goal was to show how it could change databases, proxies, and apps by letting us work with encrypted data _without_ unlocking it. No real-world failure story here—just a look at a future tech. The key idea? You can process data while it stays secret.
 
 ## Core Concepts/Overview
 
-**Homomorphic encryption** is a special kind of encryption. Normally, encryption locks data with a key, and you need to decrypt it to use it—like searching a database or routing traffic. That means the data gets exposed. Homomorphic encryption is different: it lets you do math or searches *on encrypted data* without opening it. This is huge because it keeps things private even while you work with them.
+**Homomorphic encryption** is a special kind of encryption. Normally, encryption locks data with a key, and you need to decrypt it to use it—like searching a database or routing traffic. That means the data gets exposed. Homomorphic encryption is different: it lets you do math or searches _on encrypted data_ without opening it. This is huge because it keeps things private even while you work with them.
 
 ### What’s Normal Encryption?
 

@@ -4,17 +4,28 @@ title: "Why Databases Might Ignore Indexes: A Lesson from Karate’s Question"
 date: 2025-05-29
 modify_date: 2025-05-29
 excerpt: "A look at why PostgreSQL skips indexes for small tables and how outdated statistics can slow down queries after big data inserts."
-tags: ["Database", "Query Optimization", "Indexes", "PostgreSQL", "LectureNotes", "QA"]
+tags:
+  [
+    "Database",
+    "Query Optimization",
+    "Indexes",
+    "PostgreSQL",
+    "LectureNotes",
+    "Q&A",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
 key: database-index-vs-sequential-scan
 ---
 
-# Why Databases Might Ignore Indexes: A Lesson from Karate’s Question
+## Why Databases Might Ignore Indexes: A Lesson from Karate’s Question
 
 ## Introduction
 
-It’s annoying when you set up an index to speed up your database queries, but the database ignores it and scans the whole table instead. That’s the pain point Karate, a student, brought up in this lecture. He asked: *Why is PostgreSQL using a sequential scan instead of my index?* This session explains why that happens and how to avoid slow queries.
+It’s annoying when you set up an index to speed up your database queries, but the database ignores it and scans the whole table instead. That’s the pain point Karate, a student, brought up in this lecture. He asked: _Why is PostgreSQL using a sequential scan instead of my index?_ This session explains why that happens and how to avoid slow queries.
 
 The lecture’s goal is to show how databases decide between **index scans** and **sequential scans**, especially for small tables. It also covers a real-world failure: the lecturer’s own story of slow queries after adding millions of rows. The key revelation? Sometimes, skipping the index is faster, but you need to watch out for outdated stats.
 
@@ -62,6 +73,7 @@ Why? The table is tiny—just 7 rows, fitting in one 8KB page. The planner knows
 ### Real-World Example: 3 Million Rows Mess
 
 The lecturer shared a story:
+
 - He had a small table and queried it—sequential scans worked fine.
 - Then he added 3 million rows but didn’t update the stats.
 - Queries got super slow because the planner still thought the table was small and kept doing sequential scans over thousands of pages.
@@ -78,6 +90,7 @@ The lecturer shared a story:
 ## Conclusion
 
 This lecture was eye-opening. Key takeaways:
+
 - Small tables (like Karate’s 7 rows) don’t need indexes—sequential scans are faster.
 - After big data inserts, update stats or the planner might pick the wrong plan, slowing things down.
 - Always check query plans to see what the database is really doing.

@@ -4,13 +4,24 @@ title: "Understanding Database Consistency in Transactions Day 2"
 date: 2025-04-15
 modify_date: 2025-04-15
 excerpt: "This note summarizes a lecture on consistency in database systems, covering types of consistency, eventual consistency in distributed systems, and isolation levels that help maintain reliable data states."
-tags: ["Database", "ACID", "Transactions", "Consistency", "Isolation", "LectureNotes"]
+tags:
+  [
+    "Database",
+    "ACID",
+    "Transactions",
+    "Consistency",
+    "Isolation",
+    "LectureNotes",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Database Engineering",
+  ]
 mathjax: false
 mathjax_autoNumber: false
-key: "database-consistency-lecture-notes"
+key: database-consistency-lecture-notes
 ---
 
-# Understanding Database Consistency in Transactions
+## Understanding Database Consistency in Transactions
 
 ## Introduction
 
@@ -125,4 +136,3 @@ Consistency is key to building reliable and predictable systems. Here's what to 
 - **Isolation levels** like `REPEATABLE READ` and `SERIALIZABLE` help protect data when multiple users interact at once.
 
 Understanding how consistency works helps you write safer transactions and build better database applications.
-

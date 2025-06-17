@@ -4,27 +4,40 @@ title: "Automating Spyware Detection with Machine Learning & GitHub Actions"
 date: 2025-03-25
 modify_date: 2025-03-25
 excerpt: "How we built a self-updating spyware detector that automatically retrains and deploys models using GitHub Actions, Docker, and Python ML pipelines."
-tags: ["MLOps", "Cybersecurity", "GitHubActions", "DevSecOps", "CI/CD"]
+tags:
+  [
+    "MLOps",
+    "Cybersecurity",
+    "GitHubActions",
+    "DevSecOps",
+    "CI/CD",
+    "Project",
+    "Github",
+    "Thesis",
+  ]
 mathjax: true
 mathjax_autoNumber: true
 key: spyware-detector-automation
 ---
 
-# **🛡️ Building an Auto-Updating Spyware Detection System**  
-### *How GitHub Actions Powers Our ML Defense*
+## **🛡️ Building an Auto-Updating Spyware Detection System**
+
+### _How GitHub Actions Powers Our ML Defense_
 
 [![GitHub Release](https://img.shields.io/github/v/release/ahmed-n-abdeltwab/spyware-detector-training?include_prereleases&style=for-the-badge)](https://github.com/ahmed-n-abdeltwab/spyware-detector-training/releases)
 
 ## **🔍 The Spyware Challenge**
+
 Modern spyware adapts **every 37 seconds**. Our solution? A GitHub-powered pipeline that:
 
 ✅ **Auto-retrains** when data changes  
 ✅ **Validates models** before release  
-✅ **Deploys securely** via versioned Docker images  
+✅ **Deploys securely** via versioned Docker images
 
 > "Traditional AV misses 42% of zero-day spyware" - Verizon DBIR 2024
 
 ## **⚙️ Pipeline Architecture**
+
 ```mermaid
 graph TD
     A[Code/Dataset Push] --> B{Trigger}
@@ -37,7 +50,9 @@ graph TD
 ```
 
 ## **🧠 ML Pipeline Core**
+
 ### **Feature Extraction**
+
 ```python
 def extract_features(executable):
     return {
@@ -46,31 +61,36 @@ def extract_features(executable):
         "registry_changes": count_registry_ops(executable)
     }
 ```
-*Extracts 53 behavioral features including:*  
-- API call sequences  
-- Memory allocation patterns  
-- Network beaconing behavior  
+
+_Extracts 53 behavioral features including:_
+
+- API call sequences
+- Memory allocation patterns
+- Network beaconing behavior
 
 ### **Model Training**
+
 **Optimized RandomForest** with:
+
 ```yaml
 hyperparameters:
   n_estimators: [100, 200]
-  max_depth: [10, 20] 
+  max_depth: [10, 20]
   scoring: "f1_weighted"
 ```
 
 **Performance Metrics**:
 
-| Metric       | Score  |
-|--------------|--------|
-| Accuracy     | 97.1%  |
-| Recall       | 97%    | 
-| F1           | 96.9%  |
-
+| Metric   | Score |
+| -------- | ----- |
+| Accuracy | 97.1% |
+| Recall   | 97%   |
+| F1       | 96.9% |
 
 ## **⚡ The Automation Engine**
+
 ### **GitHub Actions Workflow**
+
 ```yaml
 name: Spyware Detector CI/CD
 
@@ -84,10 +104,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Train Model
         run: docker run -v ./data:/app/data spyware-detector
-        
+
       - name: Verify Artifacts
         run: |
           required_files=("model.pkl" "metrics.json")
@@ -102,27 +122,38 @@ jobs:
 ```
 
 ### **Key Automation Features**
-1. **Smart Triggers**  
-   - Code changes → retrain  
-   - New tag → release  
+
+1. **Smart Triggers**
+
+   - Code changes → retrain
+   - New tag → release
 
 2. **Immutable Releases**  
    Each includes:
-   - Model bundle (`*.tar.gz`)  
-   - SHA256 checksum  
-   - Training metadata  
+
+   - Model bundle (`*.tar.gz`)
+   - SHA256 checksum
+   - Training metadata
 
 3. **Self-Documenting**  
    Release notes auto-populate with:
-   ```markdown
+
+   ````markdown
    ## 📊 Metrics
+
    ```json
-   {"accuracy": 0.942, "recall": 0.961}
+   { "accuracy": 0.942, "recall": 0.961 }
    ```
+   ````
+
+   ```
+
    ```
 
 ## **🚀 Deployment Options**
+
 ### **As a Docker Service**
+
 ```bash
 docker run -d \
   -e MODEL_URL="https://github.com/.../latest/download/model.pkl" \
@@ -130,6 +161,7 @@ docker run -d \
 ```
 
 ### **In Python Applications**
+
 ```python
 from spyware_detector import load_latest_model
 
@@ -138,16 +170,18 @@ is_malicious = model.detect(file_buffer)
 ```
 
 ## **🔮 Future Roadmap**
-- [ ] **Real-time API** with FastAPI  
-- [ ] **Adversarial training** against evasion  
-- [ ] **Kubernetes operator** for scaling  
+
+- [ ] **Real-time API** with FastAPI
+- [ ] **Adversarial training** against evasion
+- [ ] **Kubernetes operator** for scaling
 
 [![Try Now](https://img.shields.io/badge/TRY%20IT-GitHub-blue?style=for-the-badge)](https://github.com/ahmed-n-abdeltwab/spyware-detector-training)
 
 ---
 
-### **💬 Discussion**  
-*How could this pipeline enhance your security stack?*  
-*What features would make it more useful for your team?*  
+### **💬 Discussion**
 
-*Let's discuss in the comments!* 👇
+_How could this pipeline enhance your security stack?_  
+_What features would make it more useful for your team?_
+
+_Let's discuss in the comments!_ 👇

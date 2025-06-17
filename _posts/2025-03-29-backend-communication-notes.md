@@ -4,16 +4,26 @@ title: "Backend Communication Fundamentals: Day 1 Notes"
 date: 2025-03-29
 modify_date: 2025-03-29
 excerpt: "Understanding the foundational concepts of backend communication patterns, protocols, and request-response mechanisms."
-tags: ["Backend", "Networking", "Protocols", "API"]
+tags: [
+    "Backend",
+    "Networking",
+    "Protocols",
+    "API",
+    "Hussein",
+    "Software Engineering",
+    "Fundamentals of Backend Engineering",
+  ]
 mathjax: true
 mathjax_autoNumber: true
 key: backend-communication-notes
 ---
 
-# **Backend Communication Fundamentals**
+## **Backend Communication Fundamentals**
 
 ## **🔹 Section 1: Introduction**
+
 ### **📌 Key Vocabulary**
+
 - Multiplexing, Demultiplexing, HTTP, TCP, Multipath TCP, HTTP/2
 - Browser Demultiplexer, STB, Protocol (Rules, Properties), UDP
 - OSI Model, gRPC, Reverse Proxy, UDP Datagrams
@@ -23,7 +33,9 @@ key: backend-communication-notes
 - Latency, Performance, Proxies, Load Balancers, Layer 7, Reverse Proxy
 
 ### **📒 Key Notes**
+
 #### **1️⃣ First Principles of Backend Communication**
+
 - **Request-Response Model**: The client sends a request, the server processes it, and returns a response.
 - **Push-Pull Model**: The server pushes updates or the client pulls data as needed.
 - **Long Polling Model**: The client repeatedly requests updates at intervals.
@@ -32,12 +44,17 @@ key: backend-communication-notes
 ---
 
 ## **🔹 Section 2: Backend Communication Design Patterns**
+
 ### **📌 Key Vocabulary**
+
 - Protocol Buffer, RPC (Remote Procedure Call), REST, SOAP, GraphQL
 
 ### **📒 Key Notes**
+
 #### **1️⃣ Request-Response Model**
-📌 *How it works:*
+
+📌 _How it works:_
+
 1. The client sends a request.
 2. The server parses the request.
 3. The server processes the request.
@@ -45,19 +62,23 @@ key: backend-communication-notes
 5. The client parses and consumes the response.
 
 #### **2️⃣ Request Parsing & Processing**
+
 - **Parsing the request**: Identifying the start and end of a message.
 - **Processing the request**: Handling various data formats (JSON, form data, HTML, etc.).
 
 #### **3️⃣ Where is it used?**
+
 - **Web protocols**: HTTP, DNS, SSH
 - **RPC communication**
 - **SQL & Database Protocols**
 - **API architectures**: REST, SOAP, GraphQL
 
 #### **4️⃣ Anatomy of a Request-Response**
+
 - Each request is structured according to an agreed-upon format between the client and server.
 - Defined by **protocol & message structure**.
 - Example HTTP request:
+
   ```
   GET /resource HTTP/1.1
   Host: example.com
@@ -65,19 +86,23 @@ key: backend-communication-notes
   ```
 
 #### **5️⃣ Uploading an Image Using Request-Response**
+
 **Two Approaches:**
+
 1. **Single Large Request**: Upload the entire image in one request.
 2. **Chunked Upload**: Split the image into chunks and send them separately.
    - ✅ Allows pause & resume functionality.
    - ❌ Adds complexity compared to a single request.
 
 #### **6️⃣ Limitations of Request-Response**
+
 - **Not efficient for:**
   - Real-time applications (e.g., chat, notifications)
   - Long-running requests
   - Handling client disconnections
 
 #### **7️⃣ Understanding cURL Response Chunking**
+
 - When using `curl -v --trace out.txt`, responses arrive in chunks due to TCP segmentation.
 - Typical chunk size: **1388 bytes** (based on TCP Maximum Segment Size ≈ 1460 bytes).
 - **Why 1388 bytes?**
@@ -87,16 +112,15 @@ key: backend-communication-notes
   - The OS’s TCP stack negotiates MSS during the handshake.
   - The server may adjust chunk sizes based on network conditions.
 
-📌 *Key takeaway:* TCP segmentation determines chunk sizes, not cURL or the server directly.
+📌 _Key takeaway:_ TCP segmentation determines chunk sizes, not cURL or the server directly.
 
 ---
 
 ### **🔮 Next Steps**
+
 - Explore **Synchronous vs. Asynchronous Workloads**.
 - Compare **alternative communication patterns** like WebSockets & gRPC.
 - Dive into **REST vs. GraphQL vs. RPC** comparisons.
 - Implement **real-world examples** of backend communication patterns.
 
-📢 *Stay tuned for more insights as I continue this course!* 🚀
-
-
+📢 _Stay tuned for more insights as I continue this course!_ 🚀
