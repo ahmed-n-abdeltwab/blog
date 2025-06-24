@@ -51,7 +51,7 @@ Uber listed five main issues with Postgres that pushed them toward MySQL. Hussei
 
 ### 1. Inefficient Architecture for Writes
 
-Postgres uses **Multiversion Concurrency Control (MVCC)**, which creates new versions of rows for updates. When a row changes, Postgres updates *all* indexes (primary and secondary), leading to **write amplification**—a single update triggers multiple physical writes. Uber had *lots* of indexes (Hussein mentions 700 in some cases!), which made this worse, especially on SSDs, where excessive writes shorten drive lifespan and slow performance.
+Postgres uses **Multiversion Concurrency Control (MVCC)**, which creates new versions of rows for updates. When a row changes, Postgres updates _all_ indexes (primary and secondary), leading to **write amplification**—a single update triggers multiple physical writes. Uber had _lots_ of indexes (Hussein mentions 700 in some cases!), which made this worse, especially on SSDs, where excessive writes shorten drive lifespan and slow performance.
 
 Hussein questions Uber’s heavy index usage:
 
@@ -89,13 +89,13 @@ This operational headache was a big factor in Uber’s decision.
 
 Here’s a table summarizing the pain points and Hussein’s take:
 
-| **Pain Point**                     | **Description**                                                                 | **Hussein’s Critique**                                                                 |
-|------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| Inefficient Writes                 | Write amplification due to MVCC and heavy indexing slowed performance.          | Questions Uber’s excessive indexes; suggests better design could help.                |
-| Inefficient Replication            | Large WAL files made cross-data-center replication costly.                      | Valid issue, tied to write amplification and Uber’s scale.                            |
-| Table Corruption                   | Bug in Postgres 9.2 caused replica inconsistencies.                            | Calls this a weak reason; bugs are fixable and not unique to Postgres.                |
-| Poor Replica MVCC Support          | Replication interrupted replica queries, causing failures.                     | Legitimate limitation for Uber’s needs but a design choice in Postgres.               |
-| Difficulty Upgrading               | Complex upgrades often required rebuilding databases.                          | Agrees fully; shares personal experience of painful upgrades.                         |
+| **Pain Point**            | **Description**                                                        | **Hussein’s Critique**                                                  |
+| ------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| Inefficient Writes        | Write amplification due to MVCC and heavy indexing slowed performance. | Questions Uber’s excessive indexes; suggests better design could help.  |
+| Inefficient Replication   | Large WAL files made cross-data-center replication costly.             | Valid issue, tied to write amplification and Uber’s scale.              |
+| Table Corruption          | Bug in Postgres 9.2 caused replica inconsistencies.                    | Calls this a weak reason; bugs are fixable and not unique to Postgres.  |
+| Poor Replica MVCC Support | Replication interrupted replica queries, causing failures.             | Legitimate limitation for Uber’s needs but a design choice in Postgres. |
+| Difficulty Upgrading      | Complex upgrades often required rebuilding databases.                  | Agrees fully; shares personal experience of painful upgrades.           |
 
 ## How MySQL Addressed These Issues
 
