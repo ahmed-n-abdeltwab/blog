@@ -16,7 +16,7 @@ tags:
   ]
 mathjax: false
 mathjax_autoNumber: false
-key: "optimistic-vs-pessimistic-concurrency"
+key: optimistic-vs-pessimistic-concurrency
 ---
 
 ## Optimistic vs Pessimistic Concurrency Control in Databases

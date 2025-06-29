@@ -1,4 +1,5 @@
 ---
+layout: article
 title: "Why SELECT * Can Slow Down Your Database"
 date: 2025-06-25
 modify_date: 2025-06-25
