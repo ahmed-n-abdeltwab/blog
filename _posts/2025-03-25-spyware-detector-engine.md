@@ -88,7 +88,7 @@ USER appuser
 # Fetch latest model from GitHub Releases
 MODEL_URL = os.getenv(
     "MODEL_URL",
-    "https://github.com/.../releases/latest/download/model_release.tar.gz"
+    "https://github.com/<your-github-username>/<your-repo-name>/releases/latest/download/model_release.tar.gz"
 )
 ```
 

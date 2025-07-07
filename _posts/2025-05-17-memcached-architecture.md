@@ -20,6 +20,8 @@ mathjax_autoNumber: false
 key: memcached-architecture
 ---
 
+> **Note:** This is an older version of this post. For the most up-to-date and complete information, please see the newer version: [Understanding Memcached Architecture](/2025/05/18/memcached-architecture.html).
+
 ## Understanding Memcached: Architecture and Key Concepts
 
 **Introduction**  

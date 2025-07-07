@@ -37,8 +37,8 @@ A memory-efficient, probabilistic data structure for checking element existence.
 ### Key Characteristics
 
 - **Guarantees**:
-  - **No false negatives**: If a bit is unset, the element is definitely absent.
-  - **Possible false positives**: If a bit is set, the element _might_ exist.
+    - **No false negatives**: If a bit is unset, the element is definitely absent.
+    - **Possible false positives**: If a bit is set, the element _might_ exist.
 - **Use Cases**:
   - Avoid expensive DB checks (e.g., "Does username exist?").
   - Used in Cassandra for consistent hashing.

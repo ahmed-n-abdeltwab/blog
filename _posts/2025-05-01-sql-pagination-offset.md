@@ -105,7 +105,7 @@ ORDER BY id DESC LIMIT 10;
 - **Use Keyset Pagination:** Leverage indexed columns for instant navigation.
 - _Trade-off:_ Requires client-side tracking of the last seen record (e.g., via API tokens).
 
-> **Lecture Highlight:**  
+> > **Lecture Highlight:**  
 > _"`OFFSET` is like reading a 1000-page book to find page 10. Keyset pagination is flipping directly to it."_
 
 **Further Reading:** Explore [Use The Index, Luke](https://use-the-index-luke.com/) for advanced database optimization techniques.

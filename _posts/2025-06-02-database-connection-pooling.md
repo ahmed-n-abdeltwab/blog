@@ -63,4 +63,4 @@ This keeps everything smooth and organized.
 
 **Connection pooling** is a must for multi-client database setups. It fixes delays from concurrency and stops response mix-ups with TCP. The lecturer warned:
 
-> "You are basically playing with fire."
+> > "You are basically playing with fire."

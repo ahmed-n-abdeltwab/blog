@@ -28,6 +28,8 @@ mathjax_autoNumber: true
 key: spyware-detector-automation
 ---
 
+> **Note:** This is an older version of this post. For the most up-to-date and complete information, please see the newer version: [Automating Spyware Detection with Machine Learning & GitHub Actions](/2025/03/25/spyware-detector-automation.html).
+
 ## **Automating Spyware Detection with Machine Learning & GitHub Actions**
 
 ## **🔍 Introduction**

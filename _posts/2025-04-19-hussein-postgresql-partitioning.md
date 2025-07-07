@@ -184,9 +184,10 @@ main();
 
 ## Partition vs Non-partition Index Size
 
-- Full table index (10M rows): ~69 MB
-- The Smallest partition index: ~24 MB
-- Smaller indexes are faster to query time on full table: ~2–3 seconds
+- Full table index (10M rows): ~69 MB
+- The Smallest partition index: ~24 MB
+- Smaller indexes are faster to query
+- Query time on full table: ~2–3 seconds
 - Query time on partition: ~1 second or less
 
 ## Partition Pruning

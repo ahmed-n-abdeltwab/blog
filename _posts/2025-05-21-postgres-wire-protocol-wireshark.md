@@ -22,7 +22,7 @@ key: postgres-wire-protocol-wireshark
 
 ## Introduction
 
-Have you ever struggled to figure out why your database connection fails? This lecture, led by Hassan, dives into the **Postgres wire protocol** using **Wireshark** to uncover what happens when a Node.js client connects to a Postgres database. The goal is to understand the steps of connecting, authenticating, querying, and closing the connection by looking at network packets. We’ll cover setting up the environment, capturing packets, and analyzing key stages like the TCP handshake and error handling. The big revelation? Seeing exactly how the client and server talk—and why encryption matters!
+Have you ever struggled to figure out why your database connection fails? This lecture, led by Hussein, dives into the **Postgres wire protocol** using **Wireshark** to uncover what happens when a Node.js client connects to a Postgres database. The goal is to understand the steps of connecting, authenticating, querying, and closing the connection by looking at network packets. We’ll cover setting up the environment, capturing packets, and analyzing key stages like the TCP handshake and error handling. The big revelation? Seeing exactly how the client and server talk—and why encryption matters!
 
 ## Core Concepts/Overview
 

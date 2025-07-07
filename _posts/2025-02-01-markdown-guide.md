@@ -131,13 +131,13 @@ You can add inline code using backticks: `console.log("Hello, world!");`
 
 For multi-line code blocks:
 
-```markdown
-    ```javascript
-    function hello() {
-        console.log("Hello, Markdown!");
-    }
-    ```
+````markdown
+```javascript
+function hello() {
+    console.log("Hello, Markdown!");
+}
 ```
+````
 
 ### Blockquotes
 

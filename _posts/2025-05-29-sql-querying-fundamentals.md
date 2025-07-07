@@ -83,7 +83,7 @@ WHERE (year = 2022 OR year = 2023)
 AND format != 'hardcover';
 ```
 
-> **Pro tip**: `LIKE` supports `_` for single-character wildcards (e.g., `P_re` matches "Pyre").
+> > **Pro tip**: `LIKE` supports `_` for single-character wildcards (e.g., `P_re` matches "Pyre").
 
 ### 3. Handling Missing Data
 

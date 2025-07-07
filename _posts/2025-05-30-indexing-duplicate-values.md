@@ -52,7 +52,7 @@ The lecture gave some real examples:
 2. **Project Code**: Now picture a "project code" column with 10 codes (code 0 to code 9). Each code repeats across rows. Indexing it might help if the codes are evenly spread and you’re searching for one code.
 3. **Combining Indexes**: Pairing a low-selectivity column (like gender) with another column can make the index more useful.
 
-> "If you’re indexing something with a lot of duplicates, really think about it hard. Test it!" – Hessien
+> "If you’re indexing something with a lot of duplicates, really think about it hard. Test it!" – Hussein
 
 ## Conclusion
 

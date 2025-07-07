@@ -23,7 +23,7 @@ key: database-engineering-qa
 
 ## Introduction
 
-As I dive deeper into database engineering, I’m realizing how crucial it is to understand the inner workings of databases to optimize performance and ensure data reliability. Recently, I reviewed a Q&A session from an _Introduction to Database Engineering_ course, where the instructor, Hossein, tackled some thought-provoking student questions. The session covered topics like indexing and query optimization in PostgreSQL, durability in Redis, lock management in transactions, and different indexing strategies. In these notes, I’ll summarize the key takeaways from the lecture, reflecting on how these concepts enhance my understanding of databases and their real-world applications.
+As I dive deeper into database engineering, I’m realizing how crucial it is to understand the inner workings of databases to optimize performance and ensure data reliability. Recently, I reviewed a Q&A session from an _Introduction to Database Engineering_ course, where the instructor, Hussein, tackled some thought-provoking student questions. The session covered topics like indexing and query optimization in PostgreSQL, durability in Redis, lock management in transactions, and different indexing strategies. In these notes, I’ll summarize the key takeaways from the lecture, reflecting on how these concepts enhance my understanding of databases and their real-world applications.
 
 ## Question 1: Understanding Explain Analyze and Heap Fetches in PostgreSQL
 

@@ -12,7 +12,7 @@ tags:
     "Redo Logs",
     "Undo Logs",
     "Database Discussions",
-    "Hussein",
+    "Hussein Nasser",
     "Software Engineering",
     "Fundamentals of Database Engineering",
   ]

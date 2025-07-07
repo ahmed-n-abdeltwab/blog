@@ -66,7 +66,7 @@ Place your database and backend in the **same subnet** to avoid router congestio
 
 An IP packet has two parts:
 
-1. **Header** (20–60 bytes): Contains metadata like source/destination IP, Time-to-Live (TTL), and protocol type.
+1. **Header** (20 bytes, up to 60 bytes with options): Contains metadata like source/destination IP, Time-to-Live (TTL), and protocol type.
 2. **Data** (up to 65KB): The actual payload (e.g., HTTP request).
 
 ### **Critical Header Fields**

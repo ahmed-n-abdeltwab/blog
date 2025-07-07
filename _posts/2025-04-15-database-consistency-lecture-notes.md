@@ -88,21 +88,17 @@ This lecture focused on **consistency in database systems**, which is one of the
 
 ### 4. Read Phenomena (Issues in Concurrent Transactions)
 
-#### Phantom Reads
+When multiple transactions run concurrently, they can encounter various "read phenomena" that lead to inconsistent data views:
 
-- Happens when new rows are added by another transaction while one is running.
-- Re-running the same query may return new results.
-- Can lead to inconsistent reports.
+-   **Dirty Reads**: A transaction reads data written by another concurrent transaction that has not yet been committed. If the other transaction rolls back, the read data becomes invalid.
+-   **Non-Repeatable Reads**: A transaction reads the same row multiple times and gets different values each time because another committed transaction modified that row between the reads.
+-   **Phantom Reads**: A transaction re-executes a query returning a set of rows and finds that the set of rows has changed (new rows have been added or existing rows have been deleted by another committed transaction).
 
-#### Repeatable Read
+#### How Isolation Levels Address These Phenomena
 
-- Guarantees the same values for already-read rows.
-- May still allow phantom reads in some databases (not PostgreSQL).
-
-#### Non-Repeatable Reads (Read Committed)
-
-- A transaction sees updated values if another transaction changes a row after it’s been read.
-- Results can change between two reads.
+-   **Read Committed**: Prevents dirty reads. However, non-repeatable reads and phantom reads are still possible.
+-   **Repeatable Read**: Prevents dirty reads and non-repeatable reads. However, phantom reads may still be possible in some database implementations (e.g., MySQL's default Repeatable Read allows phantom reads unless specific locking is used). PostgreSQL's Repeatable Read, due to its MVCC implementation, effectively prevents phantom reads.
+-   **Serializable**: Prevents all read phenomena (dirty reads, non-repeatable reads, and phantom reads) by ensuring transactions execute as if they were run sequentially.
 
 ---
 

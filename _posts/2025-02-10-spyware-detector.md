@@ -34,7 +34,7 @@ key: spyware-detector
 
 Over the past few weeks, I have been working on refactoring and improving a **spyware detection system** written in Node.js. The goal was to enhance **performance, security, and maintainability** while making the project more scalable and easier to contribute to. This blog details what I’ve done so far, key takeaways, and what’s next for the project.
 
-🔗 **GitHub Repository**: [Repo Link](https://github.com/ahmed-n-abdeltwab/spyware-detector)
+🔗 **GitHub Repository**: [spyware-detector](https://github.com/ahmed-n-abdeltwab/spyware-detector)
 
 ---
 
@@ -105,9 +105,3 @@ Over the past few weeks, I have been working on refactoring and improving a **sp
 ## **Conclusion**
 
 Refactoring this project has been a rewarding journey, improving my understanding of **backend development, security, and performance optimization**. Moving forward, I’ll focus on **enhancing the spyware detection capabilities and making the system more user-friendly**. If you’re interested in contributing, check out the **[GitHub repository](https://github.com/ahmed-n-abdeltwab/spyware-detector)**! 🚀
-
-### **🔖 Tags:**
-
-`#BackendDevelopment` `#NodeJS` `#CyberSecurity` `#ThreatDetection` `#Logging` `#Docker` `#FileScanning` `#Refactoring` `#SoftwareEngineering` `#OpenSource`
-
----

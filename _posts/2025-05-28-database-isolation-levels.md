@@ -114,3 +114,7 @@ key: database-isolation-levels
 - For critical scenarios (e.g., ensuring at least one doctor on shift), use **Serializable** or explicit **SELECT FOR UPDATE**.
 - Reflect on your application’s needs and choose the level that balances safety, simplicity, and speed.
 - _Keeping it practical_ helps avoid theoretical pitfalls and build reliable systems.
+
+---
+
+> **For a deeper dive into the differences between Repeatable Read and Snapshot Isolation, see this post:** [Understanding Repeatable Read vs. Snapshot Isolation in Database Transactions](/2025/05/29/database-isolation-levels.html).

@@ -97,9 +97,3 @@ The frontend of any application plays a crucial role in delivering a smooth user
 ## **Conclusion**
 
 This frontend revamp brings **better UI/UX, improved code quality, and enhanced API integration**. The next step is to **polish the design, optimize performance, and test thoroughly**. If you're interested in contributing or following the progress, stay tuned! 🚀
-
-### **🔖 Tags:**
-
-`#FrontendDevelopment` `#ReactJS` `#WebDesign` `#FileUpload` `#UI/UX` `#APIs` `#JavaScript` `#OpenSource`
-
----

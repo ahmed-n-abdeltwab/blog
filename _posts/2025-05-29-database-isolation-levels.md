@@ -104,4 +104,8 @@ _My takeaway?_ If I need rock-solid consistency, Snapshot Isolation is the way t
 
 ---
 
+> **For a general overview of database isolation levels, see this post:** [Clarifying Database Isolation Levels](/2025/05/28/database-isolation-levels.html).
+
+---
+
 _These are my personal notes from the lecture—super useful for revisiting later!_

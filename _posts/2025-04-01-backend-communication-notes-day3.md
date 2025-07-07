@@ -1,10 +1,10 @@
 ---
 layout: article
-key: backend-communication-notes-day3
-title: "Backend Communication Fundamentals: Day 4"
-modify_date: 2025-03-31
-date: 2025-03-31
-excerpt: "Exploring Pub/Sub, Stateful vs Stateless Systems, Multiplexing, and the Sidecar Pattern."
+key: backend-communication-notes-week1-recap
+title: "Backend Communication Fundamentals: Week 1 Recap"
+modify_date: 2025-04-01
+date: 2025-04-01
+excerpt: "A recap of the first week of backend communication fundamentals, covering Pub/Sub, Stateful vs Stateless Systems, Multiplexing, and the Sidecar Pattern."
 author: "Ahmed Nasser"
 categories: ["Backend Communication"]
 tags:
@@ -22,7 +22,9 @@ mathjax: true
 mathjax_autoNumber: true
 ---
 
-## Day 4: Backend Communication Fundamentals
+> **Note:** This is an older version of this post. For the most up-to-date and complete information, please see the newer version: [Backend Communication Fundamentals: Week 1 Recap](/2025/04/03/backend-communication-week1.html).
+
+## Week 1 Recap: Backend Communication Fundamentals
 
 Today, we covered important topics in backend communication. This post summarizes key concepts in an easy-to-follow way for future reference.
 

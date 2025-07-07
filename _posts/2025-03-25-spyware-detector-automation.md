@@ -146,17 +146,13 @@ jobs:
    ```
    ````
 
-   ```
-
-   ```
-
 ## **🚀 Deployment Options**
 
 ### **As a Docker Service**
 
 ```bash
 docker run -d \
-  -e MODEL_URL="https://github.com/.../latest/download/model.pkl" \
+  -e MODEL_URL="https://github.com/<your-github-username>/<your-repo-name>/releases/latest/download/model.pkl" \
   ghcr.io/ahmed-n-abdeltwab/spyware-detector
 ```
 
