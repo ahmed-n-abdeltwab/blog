@@ -3,7 +3,7 @@ layout: article
 title: "How the Backend Accepts TCP Connections"
 date: 2025-07-23
 modify_date: 2025-07-23
-excerpt: "A detailed yet plain-English explanation of how backend applications accept TCP connections, from the network interface to kernel queues to the process layer."
+excerpt: "An explanation of how backend applications accept TCP connections, from the network interface to kernel queues to the process layer."
 tags:
   [
     "Backend",
