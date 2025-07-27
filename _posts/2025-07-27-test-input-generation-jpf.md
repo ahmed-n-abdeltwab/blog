@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: article
 title: "Test Input Generation with Java PathFinder"
 date: 2025-07-27
 modify_date: 2025-07-27
