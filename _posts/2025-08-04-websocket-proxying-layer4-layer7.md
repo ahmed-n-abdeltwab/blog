@@ -26,8 +26,6 @@ mathjax_autoNumber: true
 key: websocket-proxying-layer4-layer7
 ---
 
-# Understanding Layer 4 vs Layer 7 WebSocket Proxying
-
 ## Introduction
 
 Have you ever wondered how a WebSocket connection is handled behind a proxy? In a recent lecture, I learned that proxies can operate at different OSI layers, and this choice changes how WebSocket traffic is processed. We focused on **Layer 4** (transport/TCP) versus **Layer 7** (application/HTTP) proxying. This matters in real-world apps (like chat or streaming services) because it affects encryption, routing, and performance. The main goal was to understand these differences and see examples (e.g., NGINX configs) to know when to use each approach.
