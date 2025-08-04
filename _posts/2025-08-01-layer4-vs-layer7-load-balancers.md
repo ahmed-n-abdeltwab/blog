@@ -10,10 +10,14 @@ tags:
     "Networking",
     "LoadBalancing",
     "LectureNotes",
+    "Layer 4",
+    "Layer 7",
+    "nginx",
     "Hussein",
     "Protocols",
     "Software Engineering",
     "Fundamentals of Backend Engineering",
+    "Proxy",
   ]
 mathjax: false
 mathjax_autoNumber: false
