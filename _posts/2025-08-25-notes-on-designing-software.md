@@ -21,10 +21,6 @@ mathjax_autoNumber: false
 key: notes-on-designing-software
 ---
 
-# Notes on "How I Design Software"
-
----
-
 ## Overview
 
 I came across a blog titled **“How I Design Software”**. The author shared their personal method for approaching software design.
