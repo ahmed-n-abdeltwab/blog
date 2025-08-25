@@ -19,13 +19,13 @@ tags:
 key: chatgpt-sse-architecture
 ---
 
-# Introduction
+## Introduction
 
 In this lecture summary, I dive into how ChatGPT’s web client and backend communicate using **Server-Sent Events (SSE)**. The presenter walked through the low-level details: how HTTP/2 (and even HTTP/3) is used for efficient streaming, how the access tokens work, and how conversations and messages are managed via unique IDs. I’ll try to capture the main insights in a clear way, as if explaining to my future self.
 
 The core idea is that when you ask ChatGPT a question in the browser, the answer is streamed back token-by-token over an SSE connection. _Instead of waiting for the whole answer, the UI receives chunks in real time._ Under the hood, this uses an HTTP POST to the ChatGPT API (with `Content-Type: text/event-stream`), and the client reads the streaming response. Interestingly, ChatGPT doesn’t use the standard browser `EventSource` API for SSE – it has its own lightweight solution. We’ll see what that means in practice.
 
-# Core Concepts / Overview
+## Core Concepts / Overview
 
 **Server-Sent Events (SSE)** is a one-way streaming protocol over HTTP: the server sends updates, the client receives them. In ChatGPT’s case, after authenticating, the UI sends a POST to the ChatGPT conversation endpoint (something like `/backend-api/conversation`) with the user’s message and relevant headers. The server replies with a streaming response (`text/event-stream`) that contains the generated tokens. As the lecturer noted:
 
@@ -65,7 +65,7 @@ _Insight:_ ChatGPT’s streaming is basically "sending a request and just readin
 
 The “conversations” endpoint returns a list of all conversations. Titles are auto-generated (ChatGPT names them itself!).
 
-# Key Characteristics
+## Key Characteristics
 
 - **HTTP Version:** Uses **HTTP/2** (multiplexing on one TCP connection). Cloudflare front-end also advertises HTTP/3.
 - **Token Handling:** Refresh token (cookie) + short-lived access token (bearer). Expiry can break UX.
@@ -75,7 +75,7 @@ The “conversations” endpoint returns a list of all conversations. Titles are
 - **Frontend Interaction:** Endpoints include `/session`, `/conversations`, `/conversation`, `/message_feedback`.
 - **SSE Handling:** Uses `fetch` + `ReadableStream` instead of EventSource. More control, but DevTools doesn’t show events.
 
-# Advantages & Disadvantages
+## Advantages & Disadvantages
 
 **Advantages**
 
@@ -94,7 +94,7 @@ The “conversations” endpoint returns a list of all conversations. Titles are
 - SSE is one-way only.
 - Same-origin cookie reliance for automation.
 
-# Practical Implementations / Examples
+## Practical Implementations / Examples
 
 **Streaming via fetch:**
 
@@ -136,7 +136,7 @@ The lecturer wrote a script that opened two ChatGPT iframes and let them pass an
 
 It often went into loops but sometimes produced fun exchanges (enzymes, states of matter, etc.). The main insight was that because of same-origin cookies, this had to run inside the openai.com domain.
 
-# Conclusion
+## Conclusion
 
 This lecture gave me a clear peek under the hood of ChatGPT’s web stack.
 
