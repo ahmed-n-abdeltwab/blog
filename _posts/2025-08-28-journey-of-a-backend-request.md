@@ -100,5 +100,5 @@ Future me, keep this in mind when thinking about bottlenecks. Some systems put a
 
 ## Resources
 
-- [📄 The Journey of a Request to the Backend (PDF)](https://att-c.udemycdn.com/2023-07-21_16-53-40-377cf3d4ef3e2740b4e9422ebab3723f/original.pdf)
-- [🎥 journey-request.mp4](https://att-c.udemycdn.com/2024-02-12_17-43-13-789637ca09a60a51817956e55e968bf7/original.mp4)
+- [📄 The Journey of a Request to the Backend (PDF)](https://medium.com/@hnasr/the-journey-of-a-request-to-the-backend-c3de704de223)
+- [🎥 journey-request.mp4](https://www.youtube.com/watch?v=K2qV6VpfR7I)
