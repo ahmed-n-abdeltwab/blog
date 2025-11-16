@@ -213,8 +213,7 @@ So naturally, I wanted to bring that same engineering taste into my own project.
 
 ### Turning Swagger into a “source of truth”
 
-After finishing the Nest app and adding Swagger, I discovered that the generated document is just a JavaScript object.  
-That was my “wait a second…” moment.
+After finishing the Nest app and adding Swagger, I discovered that the generated document from the nest is just a JavaScript object. That was my “wait a second…” moment.
 
 So I wrote a script that reads the Swagger JSON and creates a TypeScript file inside the `libs` folder.  
 That file defines one interface — **Endpoints** — which becomes the single source of truth for all routes, methods, request types, and response types.
