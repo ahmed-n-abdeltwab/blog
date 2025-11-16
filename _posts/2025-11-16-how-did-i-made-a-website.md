@@ -117,8 +117,6 @@ coach-platform/
 │       └── src/app/            # Components, pages, contexts, services
 │
 ├── libs/                       # Shared libraries
-│   ├── routes-helpers/         # Route utilities
-│   └── utils/                  # Shared utility functions
 │
 ├── docs/                       # Documentation & diagrams
 ├── .github/                    # CI/CD workflows
