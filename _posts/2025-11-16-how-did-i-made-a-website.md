@@ -70,9 +70,7 @@ For CI/CD:
 - GitHub Actions — running tests before deploying.
 
 For cloud hosting:  
-I considered AWS, since I’m familiar with it, but decided to choose the provider later depending on cost and performance.
-
-This was my battlefield — now it was time to start fighting.
+I considered AWS, since I’m familiar with it, but decided to choose the provider later depending on cost and performance. and how much my brother was willing to pay.
 
 ---
 
