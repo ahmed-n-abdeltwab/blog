@@ -183,6 +183,10 @@ Each module had a clear responsibility.
 
 After finishing the first version of all modules, I moved to Swagger. It was fast — NestJS makes documentation easy.
 
+<div align="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/posts-img/coach-platform/swagger%20ui.gif?raw=true" width="60%" class="center">
+    <p>Record 1: the swagger ui page</p>
+</div>
 
 ### And here’s the part I didn’t want you to miss — the Rocket.Chat influence.
 
@@ -193,6 +197,12 @@ That idea didn’t come from nowhere.
 
 It came from my previous work on **Rocket.Chat**, the open-source platform with more than 12 million users — basically an alternative to Slack and Microsoft Teams.  
 While contributing there, especially on their core APIs and Swagger integration, I saw how they used advanced TypeScript techniques with utility types to sync API definitions with the client code.  
+
+<div align="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/posts-img/coach-platform/Rocket.chat's%20client%20code.gif?raw=true" width="60%" class="center">
+    <p>Record 2: Rocket.Chat’s client code used to be synced manually with the API specification. My project automated this process and generated the TypeScript types automatically. This removed guessing, outdated documentation, and mismatched request/response shapes. Now Rocket.Chat has a reliable and consistent API.</p>
+</div>
+
 That experience hit me hard.  
 It showed me how powerful TypeScript becomes when you let it drive the architecture instead of just using it for autocomplete. I'm proud of myself because I contributed there and gained valuable experience. Here’s the PR I contributed: [my merged PR](https://github.com/RocketChat/Rocket.Chat/pull/36246)
 
