@@ -184,7 +184,7 @@ Each module had a clear responsibility.
 After finishing the first version of all modules, I moved to Swagger. It was fast — NestJS makes documentation easy.
 
 <div align="center">
-    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/posts-img/coach-platform/swagger%20ui.gif?raw=true" width="60%" class="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/posts-img/coach-platform/swagger%20ui.gif?raw=true" width="80%" height="100%" class="center">
     <p>Record 1: the swagger ui page</p>
 </div>
 
