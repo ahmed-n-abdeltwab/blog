@@ -36,7 +36,7 @@ Honestly… I was as clueless as anyone else starting a big project for the firs
 So I did what any engineer would do:  
 **I researched. Or rather… I Googled. A lot.**
 
-I went down rabbit holes — articles, blogs, research papers, YouTube videos, you name it. And from all that chaos, one piece of advice stood out:
+I went down rabbit holes — articles, blogs, research papers, YouTube videos, you name it. And from all that chaos, these are the advice stood out for me:
 
 **Before writing a single line of code, gather requirements and create UML diagrams.**
 
@@ -194,8 +194,7 @@ That idea didn’t come from nowhere.
 It came from my previous work on **Rocket.Chat**, the open-source platform with more than 12 million users — basically an alternative to Slack and Microsoft Teams.  
 While contributing there, especially on their core APIs and Swagger integration, I saw how they used advanced TypeScript techniques with utility types to sync API definitions with the client code.  
 That experience hit me hard.  
-It showed me how powerful TypeScript becomes when you let it drive the architecture instead of just using it for autocomplete.  
-(Here’s the PR I contributed: [my merged PR](https://github.com/RocketChat/Rocket.Chat/pull/36246))
+It showed me how powerful TypeScript becomes when you let it drive the architecture instead of just using it for autocomplete. I'm proud of myself because I contributed there and gained valuable experience. Here’s the PR I contributed: [my merged PR](https://github.com/RocketChat/Rocket.Chat/pull/36246)
 
 So naturally, I wanted to bring that same engineering taste into my own project.
 
