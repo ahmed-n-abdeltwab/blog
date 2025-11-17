@@ -98,6 +98,11 @@ You can use this: [Accepted Organizations – GSoC 2025](https://summerofcode.wi
 Don’t wait for the new year’s accepted organizations.  
 If you want to get into open source early — and let the community know who you are — you must **start before everyone else**.
 
+<div align="center">
+    <img src="https://unsplash.com/photos/assorted-umbrellas-hanging-on-ceiling-qhfxY3X6JV0" width="80%" height="100%" class="center">
+    <p>Photo by <a href="https://unsplash.com/@noahdavis">Noah Näf</a> on <a href="https://unsplash.com/">Unsplash</a></p>
+</div>
+
 Most organizations that join GSoC usually return the next year because the program helps them grow. Some even use a part of their budget specifically for GSoC.  
 Still, feel free to ask in their chat or Slack if they plan to join again in 2026.
 
