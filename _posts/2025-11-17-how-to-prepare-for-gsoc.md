@@ -99,7 +99,7 @@ Don’t wait for the new year’s accepted organizations.
 If you want to get into open source early — and let the community know who you are — you must **start before everyone else**.
 
 <div align="center">
-    <img src="https://unsplash.com/photos/assorted-umbrellas-hanging-on-ceiling-qhfxY3X6JV0" width="80%" height="100%" class="center">
+    <img src="https://images.unsplash.com/photo-1519576122146-ccfda6b8693f" width="80%" height="100%" class="center">
     <p>Photo by <a href="https://unsplash.com/@noahdavis">Noah Näf</a> on <a href="https://unsplash.com/">Unsplash</a></p>
 </div>
 
