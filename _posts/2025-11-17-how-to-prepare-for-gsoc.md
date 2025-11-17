@@ -21,8 +21,38 @@ I believe selection is a mix of **skill and luck**. You’ll meet people who are
 
 But aside from luck — which is in Allah’s hands — this blog will focus on **what you *can* control**, and how you can increase your chances of being selected.
 
+---
 
-### Who Is This Blog For?
+## What is Google Summer of Code (GSoC)?
+
+### [![Google Summer of Code 2024](https://github.com/Sing-Li/bbug/raw/master/images/gsoclogo.jpg)](https://summerofcode.withgoogle.com)
+
+Google Summer of Code, or GSoC, is a global program where contributors get to work with **real open-source organizations**.
+It’s a chance to contribute to software projects that people actually use — and get guidance from experienced developers along the way. Oh, and Google gives you a stipend if you complete your project successfully.
+
+Here’s what you should know:
+
+* **Duration:** About 3 months in the summer (usually June to August).
+* **Organizations:** Hundreds of open-source orgs participate each year.
+* **Mentors:** Each project has mentors who guide you and answer your questions.
+* **Stipend:** Yes, Google pays you for your work once you finish the project.
+* **Skills you’ll learn:** Coding, documentation, problem solving, communication, teamwork, and project management.
+
+Why join GSoC?
+
+* You work on real projects used by thousands of people.
+* You get mentorship from experienced developers.
+* You build your CV with recognized open-source contributions — “Google” on your resume looks really good!
+* You learn to manage your time, communicate professionally, and work independently.
+* You become part of a global community of developers who love open source.
+
+GSoC is more than just writing code — it’s about **learning, growing, and contributing**.
+Even if you feel like a beginner, you can succeed if you’re motivated, curious, and willing to learn.
+
+
+---
+
+## Who Is This Blog For?
 
 * **You already know how to program.**
   You understand how things work, and you can solve easy to medium-level problems solving.
@@ -31,7 +61,7 @@ But aside from luck — which is in Allah’s hands — this blog will focus on 
   I assume you can read English since this blog is written in English.
   But if you are using a translator, please don’t rely on it. Go and learn English — it’s one of the most important skills for communication in Github.
 
-* **You are a student or a junior developer who wants the word “Google” on your CV.**
+* **You are a student or a developer who wants the word “Google” on your CV.**
 
 
 ---
