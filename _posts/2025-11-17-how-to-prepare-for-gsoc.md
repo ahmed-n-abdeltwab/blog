@@ -25,7 +25,9 @@ But aside from luck — which is in Allah’s hands — this blog will focus on 
 
 ## What is Google Summer of Code (GSoC)?
 
+
 ### [![Google Summer of Code 2024](https://github.com/Sing-Li/bbug/raw/master/images/gsoclogo.jpg)](https://summerofcode.withgoogle.com)
+
 
 Google Summer of Code, or GSoC, is a global program where contributors get to work with **real open-source organizations**.
 It’s a chance to contribute to software projects that people actually use — and get guidance from experienced developers along the way. Oh, and Google gives you a stipend if you complete your project successfully.
