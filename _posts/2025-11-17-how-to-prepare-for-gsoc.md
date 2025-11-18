@@ -2,7 +2,7 @@
 layout: article
 title: "How I Prepare for Google Summer of Code"
 date: 2025-11-17
-modify_date: 2025-11-17
+modify_date: 2025-11-18
 excerpt: "My tips and advice for anyone who wants to get into Google Summer of Code."
 tags:
   [
