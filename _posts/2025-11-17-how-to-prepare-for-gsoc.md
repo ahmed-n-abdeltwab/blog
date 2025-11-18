@@ -98,10 +98,10 @@ You can use this: [Accepted Organizations – GSoC 2025](https://summerofcode.wi
 Don’t wait for the new year’s accepted organizations.  
 If you want to get into open source early — and let the community know who you are — you must **start before everyone else**.
 
-<div align="center">
+<!-- <div align="center">
     <img src="https://images.unsplash.com/photo-1519576122146-ccfda6b8693f" width="80%" height="100%" class="center">
     <p>Photo by <a href="https://unsplash.com/@noahdavis">Noah Näf</a> on <a href="https://unsplash.com/">Unsplash</a></p>
-</div>
+</div> -->
 
 Most organizations that join GSoC usually return the next year because the program helps them grow. Some even use a part of their budget specifically for GSoC.  
 Still, feel free to ask in their chat or Slack if they plan to join again in 2026.
@@ -191,17 +191,22 @@ But you can watch any resource you like — the important part is to master Git 
 ---
 
 ### 2. Read the Project Documentation
-Before writing any code, read the documentation.  
-Clone the project, install the dependencies, and set up the development environment.
 
-Look for important files like:
+Before writing any code, **read the documentation**. This is a very important step, but many people ignore it.
+Sometimes we spend hours trying to understand a task, while the answer is already written in the docs.
+Reading documentation saves you time — you benefit from the time others already spent writing it.
+So don’t skip this skill.
 
-- `CONTRIBUTING.md`
-- `README.md`
-- Developer setup guides  
-- Architecture or technical docs  
+Start by cloning the project, installing the dependencies, and setting up the development environment.
 
-Your ability to install and run a project locally is a real skill.  
+Look for important files such as:
+
+* `CONTRIBUTING.md`
+* `README.md`
+* Developer setup guides
+* Architecture or technical documents
+
+Being able to install and run a project locally is a real skill.
 The faster you understand the setup, the faster you can contribute.
 
 ---
