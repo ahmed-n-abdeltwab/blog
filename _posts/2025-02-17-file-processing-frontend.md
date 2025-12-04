@@ -17,12 +17,12 @@ tags:
     "Github",
     "Thesis",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: file-processing-frontend
 ---
 
-## **🎨 Revamping the Frontend: A Modern UI for File Processing**
+## **Revamping the Frontend: A Modern UI for File Processing**
 
 ## **Introduction**
 
@@ -30,27 +30,27 @@ The frontend of any application plays a crucial role in delivering a smooth user
 
 ---
 
-## **1️⃣ What I Did: Designing the New Frontend**
+## **What I Did: Designing the New Frontend**
 
-### **📌 Modern UI & Improved Code Structure**
+### **Modern UI & Improved Code Structure**
 
 - Replaced the old frontend with a clean **ReactJS** architecture.
 - Implemented **TailwindCSS** for rapid, responsive styling.
 - Structured the project using a **modular component-based approach**.
 
-### **🚀 File Upload & Processing System**
+### **File Upload & Processing System**
 
 - Implemented a **drag-and-drop** file uploader with a progress indicator.
 - Integrated backend APIs (`/upload`, `/status/:fileId`, `/result/:fileId`).
 - Added error handling for unsupported file types and failed uploads.
 
-### **📊 Real-time Status & Result Display**
+### **Real-time Status & Result Display**
 
 - **Polling mechanism** for file processing status updates.
 - Displaying results in **JSON format, formatted text, or visual representations**.
 - Implemented **copy-to-clipboard** and download options for results.
 
-### **💡 User Experience Enhancements**
+### **User Experience Enhancements**
 
 - Dark mode toggle for better accessibility.
 - Improved responsiveness for **mobile and desktop users**.
@@ -58,7 +58,7 @@ The frontend of any application plays a crucial role in delivering a smooth user
 
 ---
 
-## **2️⃣ Challenges & Solutions**
+## **Challenges & Solutions**
 
 | Challenge                                     | Solution                                                     |
 | --------------------------------------------- | ------------------------------------------------------------ |
@@ -70,9 +70,9 @@ The frontend of any application plays a crucial role in delivering a smooth user
 
 ---
 
-## **3️⃣ Key Takeaways & Lessons Learned**
+## **Key Takeaways & Lessons Learned**
 
-### **🔑 Major Insights**
+### **Major Insights**
 
 1. **Component-based frontend development** ensures cleaner, reusable code.
 2. **User experience (UX) matters!** Small details like animations improve usability.
@@ -82,15 +82,15 @@ The frontend of any application plays a crucial role in delivering a smooth user
 
 ---
 
-## **4️⃣ What’s Next?**
+## **What’s Next?**
 
-### **📌 To-Do List for Further Improvements**
+### **To-Do List for Further Improvements**
 
-✅ Implement **drag-and-drop improvements with visual feedback**.  
-✅ Optimize file upload with **chunked uploads for large files**.  
-✅ Improve **loading state animations** for a smoother experience.  
-✅ Enhance **result visualization options** (graphs, tables, etc.).  
-✅ Add **unit tests with Jest & React Testing Library**.
+* Implement **drag-and-drop improvements with visual feedback**.  
+* Optimize file upload with **chunked uploads for large files**.  
+* Improve **loading state animations** for a smoother experience.  
+* Enhance **result visualization options** (graphs, tables, etc.).  
+* Add **unit tests with Jest & React Testing Library**.
 
 ---
 

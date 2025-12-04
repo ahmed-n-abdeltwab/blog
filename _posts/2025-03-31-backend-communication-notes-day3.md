@@ -15,16 +15,16 @@ tags:
     "Software Engineering",
     "Fundamentals of Backend Engineering",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: backend-communication-notes-day3
 ---
 
 ## **Backend Communication Fundamentals: Day 3**
 
-## **🔹 Section 1: Real-Time Communication Models**
+## **Section 1: Real-Time Communication Models**
 
-### **📌 Key Vocabulary**
+### **Key Vocabulary**
 
 1. **Push Model**: Server proactively sends data to clients without explicit requests.
 2. **Short Polling**: Client repeatedly sends requests to check for updates.
@@ -37,11 +37,11 @@ key: backend-communication-notes-day3
 
 ---
 
-## **🔹 Section 2: Core Communication Strategies**
+## **Section 2: Core Communication Strategies**
 
-### **📌 Key Concepts**
+### **Key Concepts**
 
-#### **1️⃣ Push Model (WebSocket)**
+#### **Push Model (WebSocket)**
 
 ```javascript
 // WebSocket client implementation
@@ -55,7 +55,7 @@ socket.onmessage = (event) => {
 - **Cons**: Requires persistent connection, complex scaling.
 - **Use Case**: Multiplayer games, collaborative editing tools.
 
-#### **2️⃣ Server-Sent Events (SSE)**
+#### **Server-Sent Events (SSE)**
 
 ```javascript
 // Client-side SSE implementation
@@ -68,7 +68,7 @@ eventSource.onmessage = (e) => {
 - **Flow Control**: Automatically handled by HTTP/2 multiplexing.
 - **Limitation**: Unidirectional; clients can't send data.
 
-#### **3️⃣ Polling Tradeoffs**
+#### **Polling Tradeoffs**
 
 - **Short Polling**:
 
@@ -81,7 +81,7 @@ eventSource.onmessage = (e) => {
 
 ---
 
-## **🔹 Section 3: Technical Comparisons**
+## **Section 3: Technical Comparisons**
 
 | **Feature**           | **WebSocket**         | **SSE**         | **Long Polling**        |
 | --------------------- | --------------------- | --------------- | ----------------------- |
@@ -92,34 +92,25 @@ eventSource.onmessage = (e) => {
 
 ---
 
-## **🔹 Section 4: Implementation Challenges**
+## **Section 4: Implementation Challenges**
 
-### **📌 Flow Control in Push Systems**
+### **Flow Control in Push Systems**
 
 - **Problem**: A fast server can overwhelm clients with data.
 - **Solutions**:
   1. Back pressure mechanisms (e.g., HTTP/2 window sizing).
   2. Acknowledgment-based delivery (e.g., MQTT QoS levels).
 
-### **📌 Connection Pooling & Limits**
+### **Connection Pooling & Limits**
 
 - Browsers allow only **6 concurrent connections** to a single domain.
 - **Workaround**: Use subdomains or HTTP/2 multiplexing.
 
 ---
 
-## **🔹 Section 5: Key Takeaways**
+## **Section 5: Key Takeaways**
 
-- 🚀 **WebSocket** is ideal for chat apps but requires stateful infrastructure.
-- 📡 **SSE** outperforms polling for stock tickers/news feeds with HTTP simplicity.
-- ⚠️ **Avoid short polling** for frequent updates – wastes 95% of bandwidth on empty responses.
-- 🔄 **Long polling** bridges the gap between real-time needs and HTTP limitations.
-
----
-
-## **🔮 Next Steps**
-
-- **Deep dive into Pub/Sub**: How Redis and Kafka implement publish-subscribe patterns.
-- **Multiplexing vs Demultiplexing**: HTTP/2 proxies vs traditional connection pooling.
-- **Stateful vs Stateless**: Trade offs in session management and horizontal scaling.
-- **Sidecar Pattern**: Decoupling infrastructure concerns in microservices.
+- **WebSocket** is ideal for chat apps but requires stateful infrastructure.
+- **SSE** outperforms polling for stock tickers/news feeds with HTTP simplicity.
+- **Avoid short polling** for frequent updates – wastes 95% of bandwidth on empty responses.
+- **Long polling** bridges the gap between real-time needs and HTTP limitations.

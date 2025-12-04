@@ -18,14 +18,14 @@ tags:
     "Github",
     "Thesis",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: spyware-detector-engine
 ---
 
 ## **Building a Real-Time Spyware Detection Engine**
 
-## **🔍 Introduction**
+## **Introduction**
 
 Modern spyware evolves rapidly, requiring detection systems that combine static analysis with machine learning. This project implements a **production-grade spyware scanner** with:
 
@@ -59,7 +59,7 @@ Modern spyware evolves rapidly, requiring detection systems that combine static 
    - Scan endpoint (`POST /scan`)
    - Model management (`GET /model/status`)
 
-## **🔐 Security Hardening**
+## **Security Hardening**
 
 ### **Docker Best Practices**
 
@@ -80,7 +80,7 @@ USER appuser
 | High Entropy    | Shannon entropy >7.5  | 3x          |
 | Hidden Registry | `RegSetValueEx` calls | 4x          |
 
-## **⚙️ Automated Model Updates**
+## **Automated Model Updates**
 
 ### **GitHub Integration**
 
@@ -105,7 +105,7 @@ MODEL_URL = os.getenv(
 }
 ```
 
-## **📊 Detection Workflow**
+## **Detection Workflow**
 
 1. **File Upload**
 
@@ -128,7 +128,7 @@ MODEL_URL = os.getenv(
        }
    ```
 
-## **🚀 Performance Benchmarks**
+## **Performance Benchmarks**
 
 | Metric             | Value      |
 | ------------------ | ---------- |
@@ -136,14 +136,4 @@ MODEL_URL = os.getenv(
 | Model Refresh      | Hourly     |
 | API Throughput     | 50 req/sec |
 
-## **🔮 Future Roadmap**
 
-- **Live Memory Analysis** - Detect runtime injection
-- **YARA Rule Integration** - Hybrid detection
-- **Cloud-Native Deployment** - Kubernetes scaling
-
-## **💡 Key Takeaways**
-
-1. **Security-First Containerization** matters for malware scanners
-2. **Heuristic weighting** improves detection of novel threats
-3. **Automated model updates** ensure continuous protection

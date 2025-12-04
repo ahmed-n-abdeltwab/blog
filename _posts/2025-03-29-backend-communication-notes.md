@@ -13,16 +13,16 @@ tags: [
     "Software Engineering",
     "Fundamentals of Backend Engineering",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: backend-communication-notes
 ---
 
 ## **Backend Communication Fundamentals**
 
-## **🔹 Section 1: Introduction**
+## **Section 1: Introduction**
 
-### **📌 Key Vocabulary**
+### **Key Vocabulary**
 
 - Multiplexing, Demultiplexing, HTTP, TCP, Multipath TCP, HTTP/2
 - Browser Demultiplexer, STB, Protocol (Rules, Properties), UDP
@@ -32,9 +32,9 @@ key: backend-communication-notes
 - Single Listener, Multiple Listeners, Multiple Threads, Single Process, Multiple Processes
 - Latency, Performance, Proxies, Load Balancers, Layer 7, Reverse Proxy
 
-### **📒 Key Notes**
+### **Key Notes**
 
-#### **1️⃣ First Principles of Backend Communication**
+#### **First Principles of Backend Communication**
 
 - **Request-Response Model**: The client sends a request, the server processes it, and returns a response.
 - **Push-Pull Model**: The server pushes updates or the client pulls data as needed.
@@ -43,17 +43,17 @@ key: backend-communication-notes
 
 ---
 
-## **🔹 Section 2: Backend Communication Design Patterns**
+## **Section 2: Backend Communication Design Patterns**
 
-### **📌 Key Vocabulary**
+### **Key Vocabulary**
 
 - Protocol Buffer, RPC (Remote Procedure Call), REST, SOAP, GraphQL
 
-### **📒 Key Notes**
+### **Key Notes**
 
-#### **1️⃣ Request-Response Model**
+#### **Request-Response Model**
 
-📌 _How it works:_
+  _How it works:_
 
 1. The client sends a request.
 2. The server parses the request.
@@ -61,19 +61,19 @@ key: backend-communication-notes
 4. The server sends a response.
 5. The client parses and consumes the response.
 
-#### **2️⃣ Request Parsing & Processing**
+#### **Request Parsing & Processing**
 
 - **Parsing the request**: Identifying the start and end of a message.
 - **Processing the request**: Handling various data formats (JSON, form data, HTML, etc.).
 
-#### **3️⃣ Where is it used?**
+#### **Where is it used?**
 
 - **Web protocols**: HTTP, DNS, SSH
 - **RPC communication**
 - **SQL & Database Protocols**
 - **API architectures**: REST, SOAP, GraphQL
 
-#### **4️⃣ Anatomy of a Request-Response**
+#### **Anatomy of a Request-Response**
 
 - Each request is structured according to an agreed-upon format between the client and server.
 - Defined by **protocol & message structure**.
@@ -85,7 +85,7 @@ key: backend-communication-notes
   Content-Type: application/json
   ```
 
-#### **5️⃣ Uploading an Image Using Request-Response**
+#### **Uploading an Image Using Request-Response**
 
 **Two Approaches:**
 
@@ -94,14 +94,14 @@ key: backend-communication-notes
    - ✅ Allows pause & resume functionality.
    - ❌ Adds complexity compared to a single request.
 
-#### **6️⃣ Limitations of Request-Response**
+#### **Limitations of Request-Response**
 
 - **Not efficient for:**
   - Real-time applications (e.g., chat, notifications)
   - Long-running requests
   - Handling client disconnections
 
-#### **7️⃣ Understanding cURL Response Chunking**
+#### **Understanding cURL Response Chunking**
 
 - When using `curl -v --trace out.txt`, responses arrive in chunks due to TCP segmentation.
 - Typical chunk size: **1388 bytes** (based on TCP Maximum Segment Size ≈ 1460 bytes).
@@ -112,15 +112,4 @@ key: backend-communication-notes
   - The OS’s TCP stack negotiates MSS during the handshake.
   - The server may adjust chunk sizes based on network conditions.
 
-📌 _Key takeaway:_ TCP segmentation determines chunk sizes, not cURL or the server directly.
-
----
-
-### **🔮 Next Steps**
-
-- Explore **Synchronous vs. Asynchronous Workloads**.
-- Compare **alternative communication patterns** like WebSockets & gRPC.
-- Dive into **REST vs. GraphQL vs. RPC** comparisons.
-- Implement **real-world examples** of backend communication patterns.
-
-📢 _Stay tuned for more insights as I continue this course!_ 🚀
+  _Key takeaway:_ TCP segmentation determines chunk sizes, not cURL or the server directly.

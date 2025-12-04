@@ -15,28 +15,28 @@ tags:
     "Github",
     "Thesis",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: spyware-detector-automation
 ---
 
-## **🛡️ Building an Auto-Updating Spyware Detection System**
+## **Building an Auto-Updating Spyware Detection System**
 
 ### _How GitHub Actions Powers Our ML Defense_
 
 [![GitHub Release](https://img.shields.io/github/v/release/ahmed-n-abdeltwab/spyware-detector-training?include_prereleases&style=for-the-badge)](https://github.com/ahmed-n-abdeltwab/spyware-detector-training/releases)
 
-## **🔍 The Spyware Challenge**
+## **The Spyware Challenge**
 
 Modern spyware adapts **every 37 seconds**. Our solution? A GitHub-powered pipeline that:
 
-✅ **Auto-retrains** when data changes  
-✅ **Validates models** before release  
-✅ **Deploys securely** via versioned Docker images
+* **Auto-retrains** when data changes  
+* **Validates models** before release  
+* **Deploys securely** via versioned Docker images
 
 > "Traditional AV misses 42% of zero-day spyware" - Verizon DBIR 2024
 
-## **⚙️ Pipeline Architecture**
+## **Pipeline Architecture**
 
 ```mermaid
 graph TD
@@ -49,7 +49,7 @@ graph TD
     G --> H[Production Systems]
 ```
 
-## **🧠 ML Pipeline Core**
+## **ML Pipeline Core**
 
 ### **Feature Extraction**
 
@@ -165,19 +165,11 @@ model = load_latest_model()
 is_malicious = model.detect(file_buffer)
 ```
 
-## **🔮 Future Roadmap**
+## **Future Roadmap**
 
-- [ ] **Real-time API** with FastAPI
-- [ ] **Adversarial training** against evasion
-- [ ] **Kubernetes operator** for scaling
+- [ ] **Real-time API**
+- [ ] **Adversarial training**
+- [ ] **Kubernetes operator**
 
 [![Try Now](https://img.shields.io/badge/TRY%20IT-GitHub-blue?style=for-the-badge)](https://github.com/ahmed-n-abdeltwab/spyware-detector-training)
 
----
-
-### **💬 Discussion**
-
-_How could this pipeline enhance your security stack?_  
-_What features would make it more useful for your team?_
-
-_Let's discuss in the comments!_ 👇

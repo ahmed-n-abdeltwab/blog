@@ -13,25 +13,25 @@ tags: [
     "Software Engineering",
     "Fundamentals of Backend Engineering",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: backend-communication-notes-day2
 ---
 
 ## **Backend Communication Fundamentals: Day 2**
 
-## **🔹 Section 1: Synchronous vs. Asynchronous Programming**
+## **Section 1: Synchronous vs. Asynchronous Programming**
 
-### **📌 Key Concepts**
+### **Key Concepts**
 
-#### **1️⃣ Synchronous Execution**
+#### **Synchronous Execution**
 
 - Definition: A process is blocked while waiting for a response.
 - The caller sends a request and cannot proceed until it gets a response.
 - Comparable to a sine wave where client and server are "in sync".
 - **Example:** A program requests the OS to read from disk → it gets removed from the CPU → resumes when data is ready.
 
-#### **2️⃣ Asynchronous Execution**
+#### **Asynchronous Execution**
 
 - Definition: The caller can continue execution while waiting for a response.
 - The request initiates an operation, and execution proceeds without blocking.
@@ -42,9 +42,9 @@ key: backend-communication-notes-day2
 
 ---
 
-## **🔹 Section 2: Real-Life Analogies**
+## **Section 2: Real-Life Analogies**
 
-### **📌 Comparing Synchronous and Asynchronous Workflows**
+### **Comparing Synchronous and Asynchronous Workflows**
 
 | Scenario          | Synchronous                              | Asynchronous                                  |
 | ----------------- | ---------------------------------------- | --------------------------------------------- |
@@ -53,11 +53,11 @@ key: backend-communication-notes-day2
 
 ---
 
-## **🔹 Section 3: Implementation in Node.js**
+## **Section 3: Implementation in Node.js**
 
-### **📌 Asynchronous Patterns in Node.js**
+### **Asynchronous Patterns in Node.js**
 
-#### **1️⃣ Callbacks**
+#### **Callbacks**
 
 ```javascript
 readFile("large.dat", function onReadFinished(file) {
@@ -66,7 +66,7 @@ readFile("large.dat", function onReadFinished(file) {
 doWork(); // Execution continues immediately
 ```
 
-#### **2️⃣ Promises**
+#### **Promises**
 
 ```javascript
 readFile("large.dat").then(function (file) {
@@ -74,7 +74,7 @@ readFile("large.dat").then(function (file) {
 });
 ```
 
-#### **3️⃣ Async/Await**
+#### **Async/Await**
 
 ```javascript
 const file = await readFile("large.dat");
@@ -83,15 +83,15 @@ const file = await readFile("large.dat");
 
 ---
 
-## **🔹 Section 4: Asynchronous Processing in Backend Systems**
+## **Section 4: Asynchronous Processing in Backend Systems**
 
-### **📌 Queue-Based Processing**
+### **Queue-Based Processing**
 
 - Backend servers often use **message queues** to handle asynchronous tasks.
 - A **client request** can immediately return a job ID while processing continues in the background.
 - The client can check status later or get notified when processing is complete.
 
-### **📌 Methods for Checking Completion**
+### **Methods for Checking Completion**
 
 1. **Polling** - Client repeatedly checks for updates.
 2. **Push notifications** - Server notifies the client when done.
@@ -100,23 +100,23 @@ const file = await readFile("large.dat");
 
 ---
 
-## **🔹 Section 5: Database-Specific Asynchronous Operations**
+## **Section 5: Database-Specific Asynchronous Operations**
 
-### **📌 Asynchronous Commits (PostgreSQL)**
+### **Asynchronous Commits (PostgreSQL)**
 
 - **Synchronous Commit:** Waits until data is written to disk (ensures durability).
 - **Asynchronous Commit:** Returns success before the data is committed (faster but riskier).
 
-### **📌 Asynchronous Replication**
+### **Asynchronous Replication**
 
 - **Synchronous Replication:** Primary server waits for replicas to confirm before committing.
 - **Asynchronous Replication:** Primary commits instantly, and replicas update later (higher performance, lower consistency).
 
 ---
 
-## **🔹 Section 6: OS-Level Considerations**
+## **Section 6: OS-Level Considerations**
 
-### **📌 File System Operations**
+### **File System Operations**
 
 - OS often caches writes and flushes them asynchronously for performance.
 - **Databases override this behavior** using `fsync` to ensure durability.
@@ -126,7 +126,7 @@ const file = await readFile("large.dat");
 
 ---
 
-## **🔹 Section 7: Key Vocabulary**
+## **Section 7: Key Vocabulary**
 
 - **Context Switching**: Moving processes in/out of CPU execution.
 - **Blocking**: Execution pauses until an operation completes.
@@ -139,13 +139,3 @@ const file = await readFile("large.dat");
 - **Promises**: Objects representing eventual completion of async operations.
 - **Queues**: Data structures for managing background workloads.
 
----
-
-## **🔮 Next Steps**
-
-- **Explore Push, Pull, and Long Polling** in backend communication.
-- **Understand real-time data delivery models** and when to use each approach.
-- **Compare WebSockets vs. Long Polling vs. Server-Sent Events (SSE).**
-- **Implement a real-world API** using different communication strategies.
-
-📢 _Stay tuned for more insights as I continue this course!_ 🚀

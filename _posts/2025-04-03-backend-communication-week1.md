@@ -20,8 +20,8 @@ tags:
     "Software Engineering",
     "Fundamentals of Backend Engineering",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: backend-communication-week1
 ---
 

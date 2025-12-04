@@ -18,8 +18,8 @@ tags:
     "Fundamentals of Backend Engineering",
   ]
 draft: false
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 ---
 
 > **Note:** This is an older version of this post. For the most up-to-date and complete information, please see the newer version: [Backend Communication Fundamentals: Week 1 Recap](/2025/04/03/backend-communication-week1.html).
@@ -30,7 +30,7 @@ Today, we covered important topics in backend communication. This post summarize
 
 ## 1. Publish-Subscribe (Pub/Sub) Pattern
 
-### 🔑 Key Terms
+### Key Terms
 
 - **Publisher**: Sends messages to a broker (e.g., Kafka, RabbitMQ).
 - **Subscriber**: Listens for messages from the broker.
@@ -39,7 +39,7 @@ Today, we covered important topics in backend communication. This post summarize
 - **At-Least-Once Delivery**: Ensures messages are delivered at least once.
 - **Long Polling**: Clients periodically check for new messages.
 
-### 🏗 How It Works
+### How It Works
 
 Imagine YouTube’s video processing:
 
@@ -48,13 +48,13 @@ Imagine YouTube’s video processing:
 3. **Format Service** ➝ Converts video to multiple resolutions.
 4. **Notification Service** ➝ Sends alerts to users.
 
-### ✅ Pros
+### Pros
 
 - Services work independently (decoupling).
 - Scales well with demand.
 - Handles failures better (fault tolerance).
 
-### ❌ Cons
+### Cons
 
 - Duplicate messages possible.
 - More network traffic.
@@ -64,21 +64,21 @@ Imagine YouTube’s video processing:
 
 ## 2. Stateful vs Stateless Systems
 
-### 🔑 Key Terms
+### Key Terms
 
 - **Stateful**: Stores session info (e.g., shopping cart saved on a server).
 - **Stateless**: No stored session; each request is independent (e.g., APIs using JWT).
 - **Sticky Sessions**: Users stay on the same server.
 - **JWT (JSON Web Token)**: Stores user data in a token.
 
-### 🔄 How They Work
+### How They Work
 
 - **Stateful Example**: A web app that stores user sessions on the server.
   - Problem: If the server restarts, sessions are lost.
 - **Stateless Example**: API using JWT, where the token is sent with each request.
   - Advantage: Works across multiple servers.
 
-### ✅ Pros & Cons
+### Pros & Cons
 
 | Feature     | Stateful                     | Stateless         |
 | ----------- | ---------------------------- | ----------------- |
@@ -90,13 +90,13 @@ Imagine YouTube’s video processing:
 
 ## 3. Multiplexing vs Demultiplexing
 
-### 🔑 Key Terms
+### Key Terms
 
 - **Multiplexing**: Combining multiple data streams in one connection (e.g., HTTP/2).
 - **Demultiplexing**: Splitting one connection into multiple streams.
 - **Connection Pooling**: Reusing open connections.
 
-### 🌍 Real-Life Examples
+### Real-Life Examples
 
 - **Web Browsers**:
   - HTTP/1.1 opens 6 connections per site.
@@ -104,7 +104,7 @@ Imagine YouTube’s video processing:
 - **Databases**:
   - PostgreSQL v14 supports query pipelining, reducing delays.
 
-### ✅ Pros & Cons
+### Pros & Cons
 
 - **Multiplexing**: Uses fewer connections, reduces network load, but requires CPU power.
 - **Demultiplexing**: Avoids blocking, but needs good resource management.
@@ -113,7 +113,7 @@ Imagine YouTube’s video processing:
 
 ## 4. Sidecar Pattern
 
-### 🔑 Key Terms
+### Key Terms
 
 - **Sidecar Proxy**: A helper process managing networking (e.g., Envoy, Linkerd).
 - **Service Mesh**: A network of sidecars managing traffic (e.g., Istio).
@@ -121,19 +121,19 @@ Imagine YouTube’s video processing:
 - **Layer 4 Proxy**: Works at the transport level (e.g., TCP, UDP).
 - **Polyglot Architecture**: Allows different languages to communicate via sidecars.
 
-### 🌍 Real-Life Example
+### Real-Life Example
 
 - **Twitter’s Evolution**:
   - Started with one big application.
   - Moved to microservices with a service mesh.
   - Sidecars helped different services communicate efficiently.
 
-### ✅ Pros
+### Pros
 
 - Upgrades without changing apps (e.g., adding HTTP/3 support).
 - Better security and monitoring.
 
-### ❌ Cons
+### Cons
 
 - Extra latency due to additional hops.
 - More complexity in setup and debugging.

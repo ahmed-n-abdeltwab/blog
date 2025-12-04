@@ -23,12 +23,12 @@ tags:
     "Github",
     "Thesis",
   ]
-mathjax: true
-mathjax_autoNumber: true
+mathjax: false
+mathjax_autoNumber: false
 key: spyware-detector
 ---
 
-## **🚀 Building a Spyware Detection System: Refactoring & Lessons Learned**
+## **Building a Spyware Detection System: Refactoring & Lessons Learned**
 
 ## **Introduction**
 
@@ -38,27 +38,27 @@ Over the past few weeks, I have been working on refactoring and improving a **sp
 
 ---
 
-## **1️⃣ What I Did: Refactoring & Enhancements**
+## **What I Did: Refactoring & Enhancements**
 
-### **📌 Code Restructuring & Cleanup**
+### **Code Restructuring & Cleanup**
 
 - Reorganized the project structure for better maintainability.
 - Separated concerns using a **modular design** (services, controllers, and routes).
 - Improved **error handling** and added centralized logging with **Winston**.
 
-### **🛡️ Security & Performance Improvements**
+### **Security & Performance Improvements**
 
 - Enhanced input validation with **Express Validator** to prevent malicious inputs.
 - Strengthened API security by implementing **JWT authentication**.
 - Optimized file handling using **streaming and buffering techniques** for better performance.
 
-### **🐳 Docker & Deployment Enhancements**
+### **Docker & Deployment Enhancements**
 
 - Improved **Dockerfile** for optimized image sizes.
 - Configured **Docker Compose** for seamless local development and deployment.
 - Ensured **environment variable management** using **Dotenv**.
 
-### **🔍 Logging & Monitoring**
+### **Logging & Monitoring**
 
 - Set up **structured logging** with Winston for better debugging.
 - Added request logging with **Morgan**.
@@ -66,7 +66,7 @@ Over the past few weeks, I have been working on refactoring and improving a **sp
 
 ---
 
-## **2️⃣ Challenges & How I Solved Them**
+## **Challenges & How I Solved Them**
 
 | Challenge                       | Solution                                                           |
 | ------------------------------- | ------------------------------------------------------------------ |
@@ -78,9 +78,9 @@ Over the past few weeks, I have been working on refactoring and improving a **sp
 
 ---
 
-## **3️⃣ Key Takeaways & Lessons Learned**
+## **Key Takeaways & Lessons Learned**
 
-### **🔑 Major Insights**
+### **Major Insights**
 
 1. **A modular codebase** makes debugging and adding new features much easier.
 2. **Security-first development** is crucial for applications handling file uploads.
@@ -90,15 +90,15 @@ Over the past few weeks, I have been working on refactoring and improving a **sp
 
 ---
 
-## **4️⃣ What’s Next?**
+## **What’s Next?**
 
-### **📌 To-Do List for Further Improvements**
+### **To-Do List for Further Improvements**
 
-✅ Implement **advanced spyware detection algorithms**.  
-✅ Improve **threat intelligence integration** (real-time updates).  
-✅ Optimize **database performance** for faster log retrieval.  
-✅ Enhance **documentation** to help new contributors onboard easily.  
-✅ Develop a **frontend interface** for easier user interaction.
+* Implement **advanced spyware detection algorithms**.  
+* Improve **threat intelligence integration** (real-time updates).  
+* Optimize **database performance** for faster log retrieval.  
+* Enhance **documentation** to help new contributors onboard easily.  
+* Develop a **frontend interface** for easier user interaction.
 
 ---
 
