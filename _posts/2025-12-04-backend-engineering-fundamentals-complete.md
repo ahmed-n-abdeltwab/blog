@@ -175,7 +175,7 @@ The seven layers are:
 
 <div align="center">
     <img src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png" alt="The seven layers of The Open Systems Interconnection (OSI) model" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights<a href="https://www.fs.com" >FS</a></p>
+    <p> &copy; Copyrights <a href="https://www.fs.com" >FS</a></p>
 </div>
 
 The beauty of this layered approach is **abstraction**—applications don't need separate versions for WiFi, Ethernet, or LTE because lower layers handle the conversion. Each layer can be updated independently, making networks more maintainable and extensible.
@@ -364,11 +364,11 @@ Content-Length: 1234
 <html>...</html>
 ```
 
-Aand the visualization: 
+And the visualization: 
 
 <div align="center">
     <img src="https://www.oreilly.com/openbook/webclient/wcp_0301.gif" alt="The Structure of HTTP transactions" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights<a href="https://www.oreilly.com" >oreilly</a></p>
+    <p> &copy; Copyrights <a href="https://www.oreilly.com" >oreilly</a></p>
 </div>
 
 **Key Features:**
@@ -473,10 +473,9 @@ Before diving into [HTTP/3](#http-3-quic), we need to understand [HTTPS](#https-
 
 - **Symmetric Encryption**: Uses the same key for encryption and decryption. It's much faster than asymmetric encryption, making it ideal for encrypting large amounts of data. Algorithms like AES and ChaCha20 are widely used.
 
-<div align="center">
+<!-- <div align="center">
     <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/tls-(A)symmetric.gif?raw=true" alt="Asymmetric vs Symmetric Encryption" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://www.wallarm.com" >wallarm</a></p>
-</div>
+</div> -->
 
 The [TLS](#tls-ssl-security) handshake combines both: asymmetric encryption securely establishes a shared symmetric key, which is then used for the actual data transfer. This gives you the security of asymmetric encryption with the performance of symmetric encryption.
 
@@ -532,7 +531,7 @@ Modern best practices include:
 
 However, the security benefits far outweigh these costs, and optimizations like session resumption and 0-RTT minimize the impact.
 
-#### 3.4. HTTP/3 and QUIC (/kwɪk/): The UDP Revolution {#http-3-quic}
+#### 3.4. HTTP/3 and QUIC `(/kwɪk/)`: The UDP Revolution {#http-3-quic}
 
 [HTTP/3](#http-3-quic) represents a radical departure from its predecessors: it abandons [TCP](#network-layer-protocols) entirely in favor of [QUIC](#http-3-quic) (Quick [UDP](#network-layer-protocols) Internet Connections), a new protocol built on [UDP](#network-layer-protocols). This might seem counterintuitive—didn't we just learn that [TCP is reliable](#network-layer-protocols) and [UDP is unreliable](#network-layer-protocols)? The key insight is that [QUIC](#http-3-quic) implements reliability at the application layer, giving it flexibility [TCP](#network-layer-protocols) lacks.
 
