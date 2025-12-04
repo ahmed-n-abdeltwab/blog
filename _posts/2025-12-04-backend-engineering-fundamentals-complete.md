@@ -506,7 +506,7 @@ Your browser trusts certificates signed by CAs in its certificate store (like Le
 
 **Key Exchange Algorithms:**
 
-- **RSA**: The client encrypts the symmetric key with the server's public key. Simple but lacks forward secrecy—if the private key is compromised later, past sessions can be decrypted.
+- (**RSA**)[https://en.wikipedia.org/wiki/RSA_cryptosystem]: The client encrypts the symmetric key with the server's public key. Simple but lacks forward secrecy—if the private key is compromised later, past sessions can be decrypted.
 
 - **[Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) (DH)**: Both parties generate private numbers and use modular arithmetic to derive the same symmetric key without ever sending it. This provides forward secrecy because each session uses a unique key. Even if the server's private key is compromised, past sessions remain secure.
 
@@ -531,7 +531,7 @@ Modern best practices include:
 
 However, the security benefits far outweigh these costs, and optimizations like session resumption and 0-RTT minimize the impact.
 
-#### 3.4. HTTP/3 and QUIC `(/kwɪk/)`: The UDP Revolution {#http-3-quic}
+#### 3.4. HTTP/3 and QUIC (`/kwɪk/`): The UDP Revolution {#http-3-quic}
 
 [HTTP/3](#http-3-quic) represents a radical departure from its predecessors: it abandons [TCP](#network-layer-protocols) entirely in favor of [QUIC](#http-3-quic) (Quick [UDP](#network-layer-protocols) Internet Connections), a new protocol built on [UDP](#network-layer-protocols). This might seem counterintuitive—didn't we just learn that [TCP is reliable](#network-layer-protocols) and [UDP is unreliable](#network-layer-protocols)? The key insight is that [QUIC](#http-3-quic) implements reliability at the application layer, giving it flexibility [TCP](#network-layer-protocols) lacks.
 
@@ -575,7 +575,7 @@ However, the security benefits far outweigh these costs, and optimizations like 
 
 - **Higher CPU Usage**: [QUIC](#http-3-quic) handles tasks like stream management and encryption in user space rather than kernel space, requiring more CPU than [TCP](#network-layer-protocols).
 
-- **Complex Header Compression**: [HTTP/3](#http-3-quic) uses QPACK instead of [HPACK](https://httpwg.org/specs/rfc7541.html), which is more complex to handle out-of-order delivery.
+- **Complex Header Compression**: [HTTP/3](#http-3-quic) uses [QPACK](https://datatracker.ietf.org/doc/rfc9204) instead of [HPACK](https://datatracker.ietf.org/doc/rfc7541), which is more complex to handle out-of-order delivery.
 
 - **Security Concerns**: Connection IDs are sent in plaintext, potentially allowing connection hijacking attacks. This is an active area of research.
 
@@ -863,7 +863,7 @@ Sec-WebSocket-Protocol: chat
 
 3. **Bidirectional Communication**: After the handshake, the connection becomes a [WebSocket](#websockets) connection. Both parties can now send messages in real-time without further HTTP overhead.
 
-This handshake process is elegant—it uses HTTP to establish a secure connection before switching to a more efficient protocol. The `Sec-[WebSocket](#websockets)-Key` and `Sec-[WebSocket](#websockets)-Accept` headers provide security by preventing cross-protocol attacks.
+This handshake process is elegant—it uses HTTP to establish a secure connection before switching to a more efficient protocol. The `Sec-WebSocket-Key` and `Sec-WebSocket-Accept` headers provide security by preventing cross-protocol attacks.
 
 **Key Characteristics:**
 
@@ -1169,7 +1169,7 @@ Here's a practical comparison to help you choose:
 
 In practice, many applications use a combination of these technologies:
 
-- **WebSockets** for the main real-time features (chat, live updates)
+- **[WebSocket](#websockets)** for the main real-time features (chat, live updates)
 - **[SSE](#server-sent-events)** for server-initiated notifications and streaming responses
 - **Long polling** as a fallback when WebSockets aren't available
 - **Regular HTTP** for traditional request-response interactions
@@ -1352,7 +1352,7 @@ The comparison between [gRPC](#grpc) and REST is one of the most common question
 
 - **Simplicity**: REST is simpler to understand and debug. You can test REST APIs with curl or a browser; [gRPC](#grpc) requires specialized tools.
 
-- **Browser Support**: REST works natively in browsers; [gRPC](#grpc) requires a [proxy](#proxies-reverse-proxies) ([gRPC](#grpc)-Web) to work in browsers, adding complexity.
+- **Browser Support**: REST works natively in browsers; [gRPC](#grpc) requires a [proxy](#proxies-reverse-proxies) (gRPC-Web) to work in browsers, adding complexity.
 
 - **Flexibility**: REST with JSON is schema-less, allowing rapid iteration without recompiling. [gRPC](#grpc) requires updating the `.proto` file and regenerating code.
 
@@ -1392,7 +1392,7 @@ The comparison between [gRPC](#grpc) and REST is one of the most common question
 
 **Real-World Example: Spotify's Switch to [gRPC](#grpc)**
 
-Spotify provides a fascinating case study. They initially built their own custom protocol called Hermes for internal service communication. However, they eventually switched to [gRPC](#grpc) due to its widespread adoption and strong community support.
+Spotify provides a fascinating [case study](https://www.cncf.io/case-studies/spotify). They initially built their own custom protocol called Hermes for internal service communication. However, they eventually switched to [gRPC](#grpc) due to its widespread adoption and strong community support.
 
 The lesson? Building custom protocols is expensive. Unless you have very specific requirements that existing protocols can't meet, adopting a well-established protocol like [gRPC](#grpc) saves time and leverages community-driven improvements. Spotify's experience shows the value of choosing battle-tested solutions over reinventing the wheel.
 
@@ -1435,8 +1435,8 @@ The official documentation at [grpc.io](https://grpc.io) provides excellent tuto
 
 [gRPC](#grpc) continues to evolve. Recent developments include:
 
-- **[gRPC](#grpc)-Web**: Improved browser support through a JavaScript library and [proxy](#proxies-reverse-proxies)
-- **[gRPC](#grpc)-Gateway**: Automatic REST API generation from [gRPC](#grpc) services
+- **gRPC-Web**: Improved browser support through a JavaScript library and [proxy](#proxies-reverse-proxies)
+- **gRPC-Gateway**: Automatic REST API generation from [gRPC](#grpc) services
 - **Better Observability**: Integration with tracing and monitoring tools like OpenTelemetry
 - **Performance Improvements**: Ongoing optimizations to reduce latency and resource usage
 
@@ -1828,7 +1828,7 @@ Chunked uploads add complexity but enable pause-and-resume functionality. YouTub
 
 When you use tools like `curl` to make requests, you might notice responses arrive in chunks. This isn't the server deliberately chunking data—it's [TCP](#network-layer-protocols) segmentation at work.
 
-[TCP](#network-layer-protocols) has a Maximum Segment Size (MSS), typically around 1460 bytes. After accounting for TCP headers, you get roughly 1388 bytes of actual data per segment. The operating system's TCP stack negotiates this during the connection handshake and automatically splits large responses into segments.
+[TCP](#network-layer-protocols) has a [Maximum Segment Size](https://en.wikipedia.org/wiki/Maximum_segment_size) (MSS), typically around 1460 bytes. After accounting for TCP headers, you get roughly 1388 bytes of actual data per segment. The operating system's TCP stack negotiates this during the connection handshake and automatically splits large responses into segments.
 
 This is why when you download a large file, it doesn't arrive all at once—[TCP](#network-layer-protocols) breaks it into manageable pieces for transmission. Understanding this helps debug network issues and optimize performance.
 
@@ -1851,7 +1851,7 @@ The push-pull pattern offers more flexibility than request-response by allowing 
 
 In the push model, the server proactively sends data to clients without waiting for requests. This is perfect for scenarios where the server knows when new data is available and wants to notify clients immediately.
 
-[Server-Sent Events](#server-sent-events) ([SSE](#server-sent-events))](#server-sent-events) is a classic example of the push model. The server maintains an open connection and pushes updates as they occur:
+[Server-Sent Events](#server-sent-events) (SSE) is a classic example of the push model. The server maintains an open connection and pushes updates as they occur:
 
 ```javascript
 // Server pushes updates to client
@@ -3632,7 +3632,7 @@ I once faced a puzzling problem: my client application was working correctly, bu
 
 Nagle's Algorithm is an old [TCP](#network-layer-protocols) feature designed to save bandwidth in the early days of the Internet, specifically during the Telnet era. Back then, every TCP packet carried about a 40-byte header (20 bytes for IP + 20 bytes for [TCP](#network-layer-protocols)). If you were typing in a Telnet session and each keystroke was sent immediately, you'd be sending a 1-byte payload with a 40-byte header—a 4000% overhead! That's incredibly wasteful.
 
-Nagle's Algorithm was created to solve this problem by **waiting until the outgoing data buffer can fill a full packet** before actually sending it. The Maximum Segment Size (MSS) is typically 1460 bytes on Ethernet networks. So instead of sending many tiny packets, Nagle's Algorithm holds back small writes until they can fill a packet, or until all previously sent data has been acknowledged.
+Nagle's Algorithm was created to solve this problem by **waiting until the outgoing data buffer can fill a full packet** before actually sending it. The [Maximum Segment Size](https://en.wikipedia.org/wiki/Maximum_segment_size) (MSS) is typically 1460 bytes on Ethernet networks. So instead of sending many tiny packets, Nagle's Algorithm holds back small writes until they can fill a packet, or until all previously sent data has been acknowledged.
 
 As one instructor put it: _"Combine the small segments and send them into one segment, fill the segment and then send it"_.
 
@@ -4309,9 +4309,9 @@ The most common approach to idempotency is using **idempotency keys**—unique i
 
 ```pseudo
 function handleRequest(req) {
-  let id = req.idempotencyKey; // unique per request
+  let id = req.idempotencyKey;        // unique per request
   if (database.hasProcessed(id)) {
-    return; // already done, skip
+    return;                           // already done, skip
   }
   // Process the request
   database.markProcessed(id);
