@@ -174,7 +174,7 @@ The seven layers are:
 7. **Application Layer**: End-user protocols (HTTP, FTP, [gRPC](#grpc))
 
 <div align="center">
-    <img src="https://images.unsplash.com/photo-1519576122146-ccfda6b8693f" alt="The seven layers of The Open Systems Interconnection (OSI) model" width="80%" height="100%" class="center">
+    <img src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png" alt="The seven layers of The Open Systems Interconnection (OSI) model" width="80%" height="100%" class="center">
     <p> &copy; Copyrights<a href="https://www.fs.com" >FS</a></p>
 </div>
 
