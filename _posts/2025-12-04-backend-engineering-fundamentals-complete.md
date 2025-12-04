@@ -141,7 +141,7 @@ Every communication protocol is designed to solve specific problems, and underst
 
 **Why Protocols Matter:**
 
-Protocols aren't arbitrary—they're carefully designed with specific trade-offs. [TCP](#network-layer-protocols), for instance, was created in the 1960s for low-bandwidth networks. Today's data centers push [TCP](#network-layer-protocols) to its limits, leading to newer protocols like Homa (2022) that optimize for modern hardware. The key insight is that **every protocol makes deliberate choices** about reliability, performance, and complexity.
+Protocols aren't arbitrary—they're carefully designed with specific trade-offs. [TCP](#network-layer-protocols), for instance, was created in the 1960s for low-bandwidth networks. Today's data centers push [TCP](#network-layer-protocols) to its limits, leading to newer protocols like [Homa (2022)](https://github.com/PlatformLab/HomaModule) that optimize for modern hardware. The key insight is that **every protocol makes deliberate choices** about reliability, performance, and complexity.
 
 **Key Protocol Properties:**
 
@@ -172,6 +172,11 @@ The seven layers are:
 5. **Session Layer**: Connection establishment and state management
 6. **Presentation Layer**: Data serialization and encoding
 7. **Application Layer**: End-user protocols (HTTP, FTP, [gRPC](#grpc))
+
+<div align="center">
+    <img src="https://images.unsplash.com/photo-1519576122146-ccfda6b8693f" alt="The seven layers of The Open Systems Interconnection (OSI) model" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights<a href="https://www.fs.com" >FS</a></p>
+</div>
 
 The beauty of this layered approach is **abstraction**—applications don't need separate versions for WiFi, Ethernet, or LTE because lower layers handle the conversion. Each layer can be updated independently, making networks more maintainable and extensible.
 
@@ -206,6 +211,10 @@ The three-way handshake is fundamental to [TCP](#network-layer-protocols). When 
 1. Client sends SYN (synchronize) to the server
 2. Server responds with SYN-ACK (synchronize-acknowledge)
 3. Client sends ACK (acknowledge)
+
+<div align="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/three-way-handshake.gif?raw=true" alt="The three-way handshake" width="80%" height="100%" class="center">
+</div>
 
 This handshake ensures both sides agree on initial sequence numbers and are ready to communicate. Behind the scenes, the OS kernel manages two queues:
 
@@ -303,7 +312,7 @@ The choice depends on your requirements:
 - **Use [TCP](#network-layer-protocols) when**: You need guaranteed delivery, ordered data, or can't tolerate loss (web browsing, file transfers, databases, email)
 - **Use [UDP](#network-layer-protocols) when**: Speed is critical, occasional loss is acceptable, or you're implementing custom reliability (streaming, gaming, DNS, VoIP)
 
-Many modern protocols like [QUIC](#http-3-quic) (used in [HTTP/3](#http-3-quic)) actually build reliability on top of [UDP](#network-layer-protocols), getting the best of both worlds—[UDP](#network-layer-protocols)'s speed with application-layer reliability mechanisms. We'll explore this more when we discuss [HTTP/3](#http-3-quic) and QUIC](#http-3-quic).
+Many modern protocols like [QUIC](#http-3-quic) (used in [HTTP/3](#http-3-quic)) actually build reliability on top of [UDP](#network-layer-protocols), getting the best of both worlds—[UDP](#network-layer-protocols)'s speed with application-layer reliability mechanisms. We'll explore this more when we discuss [HTTP/3](#http-3-quic) and [QUIC](#http-3-quic).
 
 Understanding [TCP](#network-layer-protocols) and [UDP](#network-layer-protocols) is fundamental because almost every network application uses one or the other. They represent different philosophies: [TCP](#network-layer-protocols)'s "make sure everything arrives perfectly" versus [UDP](#network-layer-protocols)'s "send it fast and move on." Both have their place in the backend engineer's toolkit.
 
@@ -355,6 +364,13 @@ Content-Length: 1234
 <html>...</html>
 ```
 
+Aand the visualization: 
+
+<div align="center">
+    <img src="https://www.oreilly.com/openbook/webclient/wcp_0301.gif" alt="The Structure of HTTP transactions" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights<a href="https://www.oreilly.com" >oreilly</a></p>
+</div>
+
 **Key Features:**
 
 - **Persistent Connections**: Unlike HTTP/1.0, which closed connections after each request, [HTTP/1.1](#http-1-1) introduced the "Keep-Alive" header to reuse TCP connections for multiple requests. This was a huge improvement—establishing TCP connections is expensive (three-way handshake, slow start), so reusing them reduces latency significantly.
@@ -397,11 +413,11 @@ Each stream has a unique ID (odd numbers for client requests, even for server re
 
 - **Binary Protocol**: Unlike [HTTP/1.1](#http-1-1)'s text format, [HTTP/2](#http-2) uses binary framing. This is more efficient for machines to parse but less human-readable. Each frame includes metadata like stream ID, frame type, and flags.
 
-- **Header Compression**: [HTTP/2](#http-2) uses HPACK compression to reduce header overhead. Since many headers repeat across requests (like cookies and user agents), compression can save significant bandwidth.
+- **Header Compression**: [HTTP/2](#http-2) uses [HPACK](https://httpwg.org/specs/rfc7541.html) compression to reduce header overhead. Since many headers repeat across requests (like cookies and user agents), compression can save significant bandwidth.
 
 - **Stream Prioritization**: Clients can assign priorities to streams, helping servers decide which resources to send first. For example, CSS might be prioritized over images to render the page faster.
 
-- **Server Push** (Deprecated): [HTTP/2](#http-2) initially allowed servers to proactively push resources to clients. However, this was abandoned because servers often pushed resources the client already had cached, wasting bandwidth. It's been replaced by "early hints" (HTTP 103 status code) that suggest resources without sending them.
+- **[Server Push](https://en.wikipedia.org/wiki/HTTP/2_Server_Push)** (Deprecated): [HTTP/2](#http-2) initially allowed servers to proactively push resources to clients. However, this was abandoned because servers often pushed resources the client already had cached, wasting bandwidth. It's been replaced by "early hints" (HTTP 103 status code) that suggest resources without sending them.
 
 **Performance Comparison:**
 
@@ -409,6 +425,11 @@ The lecture included a practical test loading 100 images on a webpage, comparing
 
 - **[HTTP/1.1](#http-1-1)**: Limited to 6 concurrent connections, images loaded in batches with noticeable delays between batches.
 - **[HTTP/2](#http-2)**: All images loaded concurrently over a single connection, completing "way faster" with no artificial connection limits.
+
+<div align="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/http-1.1vshttp-2.png?raw=true" alt="HTTP/1.1 vs HTTP/2" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights <a href="https://www.wallarm.com" >wallarm</a></p>
+</div>
 
 This test highlights [HTTP/2](#http-2)'s strength for modern web applications with many resources.
 
@@ -452,6 +473,11 @@ Before diving into [HTTP/3](#http-3-quic), we need to understand [HTTPS](#https-
 
 - **Symmetric Encryption**: Uses the same key for encryption and decryption. It's much faster than asymmetric encryption, making it ideal for encrypting large amounts of data. Algorithms like AES and ChaCha20 are widely used.
 
+<div align="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/tls-(A)symmetric.gif?raw=true" alt="Asymmetric vs Symmetric Encryption" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights <a href="https://www.wallarm.com" >wallarm</a></p>
+</div>
+
 The [TLS](#tls-ssl-security) handshake combines both: asymmetric encryption securely establishes a shared symmetric key, which is then used for the actual data transfer. This gives you the security of asymmetric encryption with the performance of symmetric encryption.
 
 **The [TLS](#tls-ssl-security) Handshake:**
@@ -460,8 +486,13 @@ When you connect to an [HTTPS](#https-tls) website, here's what happens:
 
 1. **Client Hello**: Your browser proposes encryption algorithms and sends a random number
 2. **Server Hello**: The server responds with its certificate (containing its public key), chooses encryption algorithms, and sends its own random number
-3. **Key Exchange**: Using algorithms like Diffie-Hellman or RSA, both parties derive a shared symmetric key without ever sending it across the network
+3. **Key Exchange**: Using algorithms like [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) or RSA, both parties derive a shared symmetric key without ever sending it across the network
 4. **Finished**: Both sides verify the handshake succeeded and begin encrypted communication
+
+<div align="center">
+    <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/tls13handshakeestablishpsk.png?raw=true" alt="The TLS Handshake" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights <a href="https://docs.oracle.com" >oracle docs</a></p>
+</div>
 
 In TLS 1.2, this takes two round trips. TLS 1.3 optimizes it to one round trip, and for repeat connections, 0-RTT (zero round-trip time) allows sending encrypted data immediately using a pre-shared key.
 
@@ -478,17 +509,17 @@ Your browser trusts certificates signed by CAs in its certificate store (like Le
 
 - **RSA**: The client encrypts the symmetric key with the server's public key. Simple but lacks forward secrecy—if the private key is compromised later, past sessions can be decrypted.
 
-- **Diffie-Hellman (DH)**: Both parties generate private numbers and use modular arithmetic to derive the same symmetric key without ever sending it. This provides forward secrecy because each session uses a unique key. Even if the server's private key is compromised, past sessions remain secure.
+- **[Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) (DH)**: Both parties generate private numbers and use modular arithmetic to derive the same symmetric key without ever sending it. This provides forward secrecy because each session uses a unique key. Even if the server's private key is compromised, past sessions remain secure.
 
-TLS 1.3 mandates Diffie-Hellman, eliminating RSA's forward secrecy problem.
+TLS 1.3 mandates [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange), eliminating RSA's forward secrecy problem.
 
 **Real-World Security:**
 
-The Heartbleed bug (2014) was a devastating vulnerability in OpenSSL that allowed attackers to read server memory, potentially exposing private keys. This highlighted the importance of forward secrecy—with RSA, attackers could decrypt all past recorded sessions. With Diffie-Hellman, past sessions remained secure.
+[The Heartbleed bug](https://www.heartbleed.com) (2014) was a devastating vulnerability in OpenSSL that allowed attackers to read server memory, potentially exposing private keys. This highlighted the importance of forward secrecy—with RSA, attackers could decrypt all past recorded sessions. With [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange), past sessions remained secure.
 
 Modern best practices include:
 - Using TLS 1.3 (or at minimum TLS 1.2)
-- Preferring Diffie-Hellman for forward secrecy
+- Preferring [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) for forward secrecy
 - Using short-lived certificates (weeks to months, not years)
 - Enabling HTTP Strict Transport Security (HSTS) to force [HTTPS](#https-tls)
 
@@ -501,7 +532,7 @@ Modern best practices include:
 
 However, the security benefits far outweigh these costs, and optimizations like session resumption and 0-RTT minimize the impact.
 
-#### 3.4. HTTP/3 and QUIC: The UDP Revolution {#http-3-quic}
+#### 3.4. HTTP/3 and QUIC (/kwɪk/): The UDP Revolution {#http-3-quic}
 
 [HTTP/3](#http-3-quic) represents a radical departure from its predecessors: it abandons [TCP](#network-layer-protocols) entirely in favor of [QUIC](#http-3-quic) (Quick [UDP](#network-layer-protocols) Internet Connections), a new protocol built on [UDP](#network-layer-protocols). This might seem counterintuitive—didn't we just learn that [TCP is reliable](#network-layer-protocols) and [UDP is unreliable](#network-layer-protocols)? The key insight is that [QUIC](#http-3-quic) implements reliability at the application layer, giving it flexibility [TCP](#network-layer-protocols) lacks.
 
@@ -515,6 +546,11 @@ However, the security benefits far outweigh these costs, and optimizations like 
 
 [QUIC](#http-3-quic) is a transport protocol that combines features of [TCP](#network-layer-protocols), [TLS](#tls-ssl-security), and [HTTP/2](#http-2) into a single layer. It runs over [UDP](#network-layer-protocols) but implements its own reliability, congestion control, and encryption. Think of it as "[TCP](#network-layer-protocols) done right for the modern internet."
 
+<div align="center">
+    <img src="https://assets.gcore.pro/site-media/uploads-staging/what_is_http_3_1_03a5e87723.png?raw=true" alt="HTTP/2 vs. HTTP/3" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights <a href="https://gcore.com" >gcore</a></p>
+</div>
+
 **Key Features of [HTTP/3](#http-3-quic):**
 
 - **Independent Stream Management**: Each [QUIC](#http-3-quic) stream is independent. Lost packets only delay their own stream, eliminating head-of-line blocking entirely.
@@ -527,6 +563,11 @@ However, the security benefits far outweigh these costs, and optimizations like 
 
 - **Improved Congestion Control**: [QUIC](#http-3-quic)'s congestion control is more sophisticated than [TCP](#network-layer-protocols)'s, adapting better to modern networks.
 
+<div align="center">
+    <img src="https://assets.gcore.pro/site-media/uploads-staging/what_is_http_3_2_80d7d29307.png?raw=true" alt="HTTP/2 vs HTTP/3 layers" width="80%" height="100%" class="center">
+    <p> &copy; Copyrights <a href="https://gcore.com" >gcore</a></p>
+</div>
+
 **The Trade-offs:**
 
 [HTTP/3](#http-3-quic) isn't without challenges:
@@ -535,7 +576,7 @@ However, the security benefits far outweigh these costs, and optimizations like 
 
 - **Higher CPU Usage**: [QUIC](#http-3-quic) handles tasks like stream management and encryption in user space rather than kernel space, requiring more CPU than [TCP](#network-layer-protocols).
 
-- **Complex Header Compression**: [HTTP/3](#http-3-quic) uses QPACK instead of HPACK, which is more complex to handle out-of-order delivery.
+- **Complex Header Compression**: [HTTP/3](#http-3-quic) uses QPACK instead of [HPACK](https://httpwg.org/specs/rfc7541.html), which is more complex to handle out-of-order delivery.
 
 - **Security Concerns**: Connection IDs are sent in plaintext, potentially allowing connection hijacking attacks. This is an active area of research.
 
@@ -609,7 +650,7 @@ The [TLS](#tls-ssl-security) handshake is where the magic happens. It's the proc
 
 1. **Client Hello**: Your browser sends a message proposing encryption algorithms (cipher suites) and a random number
 2. **Server Hello**: The server responds with its certificate (containing its public key), chooses encryption algorithms, and sends its own random number
-3. **Key Exchange**: Using algorithms like RSA or Diffie-Hellman, both parties derive a shared symmetric key
+3. **Key Exchange**: Using algorithms like RSA or [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange), both parties derive a shared symmetric key
 4. **Finished**: Both sides verify the handshake succeeded and begin encrypted communication
 
 This process takes two round trips—two complete back-and-forth exchanges between client and server. On high-latency connections, this delay is noticeable.
@@ -624,7 +665,7 @@ TLS 1.3 streamlines this process dramatically:
 
 By including key exchange parameters upfront, TLS 1.3 cuts the handshake to one round trip, significantly reducing latency. For repeat connections, TLS 1.3 even supports **0-RTT (Zero Round-Trip Time)**, where the client can send encrypted data immediately using a pre-shared key from a previous session.
 
-**Key Exchange Algorithms: RSA vs Diffie-Hellman**
+**Key Exchange Algorithms: RSA vs [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)**
 
 The choice of key exchange algorithm has significant security implications:
 
@@ -634,9 +675,9 @@ In RSA, the client generates a random "pre-master secret," encrypts it with the 
 
 The problem? If the server's private key is ever compromised—say, through a vulnerability like Heartbleed—an attacker who recorded past encrypted sessions can decrypt them all. RSA lacks **forward secrecy**.
 
-**Diffie-Hellman Key Exchange:**
+**[Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) Key Exchange:**
 
-Diffie-Hellman takes a different approach. Both parties generate private numbers (let's call them X and Y) and a shared public number (G). Using modular arithmetic, they compute:
+[Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) takes a different approach. Both parties generate private numbers (let's call them X and Y) and a shared public number (G). Using modular arithmetic, they compute:
 
 - Client calculates: G^X mod N and sends it
 - Server calculates: G^Y mod N and sends it
@@ -644,9 +685,9 @@ Diffie-Hellman takes a different approach. Both parties generate private numbers
 
 The beautiful part? The symmetric key is never transmitted across the network. Even if someone intercepts all the messages, they can't derive the key without knowing X or Y.
 
-More importantly, Diffie-Hellman provides **forward secrecy**. Each session uses unique, ephemeral keys that are discarded after use. Even if the server's private key is compromised later, past sessions remain secure because the session keys no longer exist.
+More importantly, [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) provides **forward secrecy**. Each session uses unique, ephemeral keys that are discarded after use. Even if the server's private key is compromised later, past sessions remain secure because the session keys no longer exist.
 
-**Elliptic Curve Diffie-Hellman (ECDH)** is a more efficient variant using elliptic curve mathematics, providing the same security with smaller keys and less computation.
+**Elliptic Curve [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) (ECDH)** is a more efficient variant using elliptic curve mathematics, providing the same security with smaller keys and less computation.
 
 **Certificates and the Chain of Trust**
 
@@ -665,9 +706,9 @@ This creates a **chain of trust**: you trust the CA, the CA vouches for the webs
 
 **The Heartbleed Lesson**
 
-The Heartbleed bug (2014) was a devastating vulnerability in OpenSSL that allowed attackers to read server memory, potentially exposing private keys, session keys, and user data. It highlighted two critical lessons:
+[The Heartbleed bug](https://www.heartbleed.com) (2014) was a devastating vulnerability in OpenSSL that allowed attackers to read server memory, potentially exposing private keys, session keys, and user data. It highlighted two critical lessons:
 
-1. **Forward secrecy matters**: With RSA, compromised private keys meant all past recorded sessions could be decrypted. With Diffie-Hellman, past sessions remained secure.
+1. **Forward secrecy matters**: With RSA, compromised private keys meant all past recorded sessions could be decrypted. With [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange), past sessions remained secure.
 
 2. **Certificate lifetime matters**: Modern best practices use short-lived certificates (weeks to months, not years). Cloudflare, for example, uses certificates that expire in 2 weeks to 3 months. If a key is compromised, the window of vulnerability is limited.
 
@@ -677,7 +718,7 @@ The Heartbleed bug (2014) was a devastating vulnerability in OpenSSL that allowe
 |---------|--------|--------------|----------------|
 | TLS 1.0, 1.1 | Deprecated | Early standards | Vulnerable, not recommended |
 | TLS 1.2 | Widely used | Two-roundtrip handshake, supports RSA | Lacks forward secrecy with RSA |
-| TLS 1.3 | Modern standard | One-roundtrip handshake, mandates Diffie-Hellman | Enhanced security, forward secrecy, 0-RTT support |
+| TLS 1.3 | Modern standard | One-roundtrip handshake, mandates [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) | Enhanced security, forward secrecy, 0-RTT support |
 
 TLS 1.3 represents a significant leap forward. It removes insecure cipher suites, mandates forward secrecy, and improves performance. As of 2024, over 95% of major browsers support TLS 1.3, and adoption is growing rapidly.
 
@@ -746,7 +787,7 @@ https.createServer(options, (req, res) => {
 Modern [TLS](#tls-ssl-security) deployment should follow these guidelines:
 
 - **Use TLS 1.3** (or at minimum TLS 1.2) and disable older versions
-- **Prefer Diffie-Hellman** key exchange for forward secrecy
+- **Prefer [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)** key exchange for forward secrecy
 - **Use short-lived certificates** (90 days or less) to limit exposure
 - **Enable HSTS** to prevent downgrade attacks
 - **Implement certificate pinning** for high-security applications
@@ -772,7 +813,7 @@ Understanding [TLS](#tls-ssl-security) isn't just academic—it's essential for 
 - Evaluate security requirements
 - Choose between protocols
 
-...you're making decisions that depend on understanding how [TLS](#tls-ssl-security) works. The difference between RSA and Diffie-Hellman isn't just theoretical—it determines whether your users' past communications remain secure if your server is compromised.
+...you're making decisions that depend on understanding how [TLS](#tls-ssl-security) works. The difference between RSA and [Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) isn't just theoretical—it determines whether your users' past communications remain secure if your server is compromised.
 
 [TLS](#tls-ssl-security) is the foundation of internet security. It protects everything from your online banking to your private messages. As backend engineers, we're responsible for implementing it correctly, and that starts with understanding how it works under the hood.
 
