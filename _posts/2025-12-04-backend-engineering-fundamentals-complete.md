@@ -175,7 +175,7 @@ The seven layers are:
 
 <div align="center">
     <img src="https://media.fs.com/images/community/upload/kindEditor/202107/29/original-seven-layers-of-osi-model-1627523878-JYjV8oybcC.png" alt="The seven layers of The Open Systems Interconnection (OSI) model" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://www.fs.com" >FS</a></p>
+    <p> Copyrights &copy; <a href="https://www.fs.com" >FS</a></p>
 </div>
 
 The beauty of this layered approach is **abstraction**—applications don't need separate versions for WiFi, Ethernet, or LTE because lower layers handle the conversion. Each layer can be updated independently, making networks more maintainable and extensible.
@@ -368,7 +368,7 @@ And the visualization:
 
 <div align="center">
     <img src="https://www.oreilly.com/openbook/webclient/wcp_0301.gif" alt="The Structure of HTTP transactions" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://www.oreilly.com" >oreilly</a></p>
+    <p> Copyrights &copy; <a href="https://www.oreilly.com" >oreilly</a></p>
 </div>
 
 **Key Features:**
@@ -428,7 +428,7 @@ The lecture included a practical test loading 100 images on a webpage, comparing
 
 <div align="center">
     <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/http-1.1vshttp-2.png?raw=true" alt="HTTP/1.1 vs HTTP/2" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://www.wallarm.com" >wallarm</a></p>
+    <p> Copyrights &copy; <a href="https://www.wallarm.com" >wallarm</a></p>
 </div>
 
 This test highlights [HTTP/2](#http-2)'s strength for modern web applications with many resources.
@@ -471,7 +471,7 @@ Before diving into [HTTP/3](#http-3-quic), we need to understand [HTTPS](#https-
 
 - **Asymmetric Encryption**: Uses a public key (anyone can encrypt) and a private key (only the owner can decrypt). This is used during the [TLS](#tls-ssl-security) handshake to securely exchange keys and authenticate the server. Algorithms like RSA and Elliptic Curve Cryptography (ECC) are common, but they're computationally expensive.
 
-- **Symmetric Encryption**: Uses the same key for encryption and decryption. It's much faster than asymmetric encryption, making it ideal for encrypting large amounts of data. Algorithms like AES and ChaCha20 are widely used.
+- **Symmetric Encryption**: Uses the same key for encryption and decryption. It's much faster than asymmetric encryption, making it ideal for encrypting large amounts of data. Algorithms like [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) and [ChaCha20](https://en.wikipedia.org/wiki/ChaCha20-Poly1305) are widely used.
 
 <!-- <div align="center">
     <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/tls-(A)symmetric.gif?raw=true" alt="Asymmetric vs Symmetric Encryption" width="80%" height="100%" class="center">
@@ -490,7 +490,7 @@ When you connect to an [HTTPS](#https-tls) website, here's what happens:
 
 <div align="center">
     <img src="https://github.com/ahmed-n-abdeltwab/blog/blob/master/assets/images/backend-fund/tls13handshakeestablishpsk.png?raw=true" alt="The TLS Handshake" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://docs.oracle.com" >oracle docs</a></p>
+    <p> Copyrights &copy; <a href="https://docs.oracle.com" >oracle docs</a></p>
 </div>
 
 In TLS 1.2, this takes two round trips. TLS 1.3 optimizes it to one round trip, and for repeat connections, 0-RTT (zero round-trip time) allows sending encrypted data immediately using a pre-shared key.
@@ -506,7 +506,7 @@ Your browser trusts certificates signed by CAs in its certificate store (like Le
 
 **Key Exchange Algorithms:**
 
-- (**RSA**)[https://en.wikipedia.org/wiki/RSA_cryptosystem]: The client encrypts the symmetric key with the server's public key. Simple but lacks forward secrecy—if the private key is compromised later, past sessions can be decrypted.
+- **[RSA](https://en.wikipedia.org/wiki/RSA_cryptosystem)**: The client encrypts the symmetric key with the server's public key. Simple but lacks forward secrecy—if the private key is compromised later, past sessions can be decrypted.
 
 - **[Diffie-Hellman](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange) (DH)**: Both parties generate private numbers and use modular arithmetic to derive the same symmetric key without ever sending it. This provides forward secrecy because each session uses a unique key. Even if the server's private key is compromised, past sessions remain secure.
 
@@ -547,7 +547,7 @@ However, the security benefits far outweigh these costs, and optimizations like 
 
 <div align="center">
     <img src="https://assets.gcore.pro/site-media/uploads-staging/what_is_http_3_1_03a5e87723.png?raw=true" alt="HTTP/2 vs. HTTP/3" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://gcore.com" >gcore</a></p>
+    <p> Copyrights &copy; <a href="https://gcore.com" >gcore</a></p>
 </div>
 
 **Key Features of [HTTP/3](#http-3-quic):**
@@ -564,7 +564,7 @@ However, the security benefits far outweigh these costs, and optimizations like 
 
 <div align="center">
     <img src="https://assets.gcore.pro/site-media/uploads-staging/what_is_http_3_2_80d7d29307.png?raw=true" alt="HTTP/2 vs HTTP/3 layers" width="80%" height="100%" class="center">
-    <p> &copy; Copyrights <a href="https://gcore.com" >gcore</a></p>
+    <p> Copyrights &copy; <a href="https://gcore.com" >gcore</a></p>
 </div>
 
 **The Trade-offs:**
@@ -613,7 +613,7 @@ The web continues to evolve, and [HTTP/3](#http-3-quic) won't be the final chapt
 
 #### 3.5. TLS/SSL: The Foundation of Secure Communication {#tls-ssl-security}
 
-While we've discussed [HTTPS](#https-tls) and TLS](#https-tls) in the context of [HTTP/3](#http-3-quic), it's worth diving deeper into how [TLS](#tls-ssl-security) actually works under the hood. [TLS](#tls-ssl-security) (Transport Layer Security) is the backbone of internet security, and understanding its mechanics is crucial for any backend engineer building secure systems.
+While we've discussed [HTTPS](#https-tls) and [TLS](#https-tls) in the context of [HTTP/3](#http-3-quic), it's worth diving deeper into how [TLS](#tls-ssl-security) actually works under the hood. [TLS](#tls-ssl-security) (Transport Layer Security) is the backbone of internet security, and understanding its mechanics is crucial for any backend engineer building secure systems.
 
 **What is [TLS](#tls-ssl-security)?**
 
@@ -623,13 +623,13 @@ While we've discussed [HTTPS](#https-tls) and TLS](#https-tls) in the context of
 2. **Authentication**: Verifies the server's identity to prevent impersonation
 3. **Integrity**: Ensures data hasn't been tampered with during transmission
 
-Think of [TLS](#tls-ssl-security) as a digital lock that protects your data as it travels across the internet. When you see "https://" in a URL, that's HTTP running over [TLS](#tls-ssl-security), ensuring your online banking, shopping, and private communications stay secure.
+Think of [TLS](#tls-ssl-security) as a digital lock that protects your data as it travels across the internet. When you see `https://` in a URL, that's HTTP running over [TLS](#tls-ssl-security), ensuring your online banking, shopping, and private communications stay secure.
 
 **The Encryption Dance: Symmetric vs Asymmetric**
 
 [TLS](#tls-ssl-security) cleverly combines two types of encryption, each with different strengths:
 
-**Symmetric Encryption** uses the same key for both encryption and decryption. It's like a locked box where the same key locks and unlocks it. Algorithms like AES (Advanced Encryption Standard) and ChaCha20 are incredibly fast, making them perfect for encrypting large amounts of data like web pages or file transfers.
+**Symmetric Encryption** uses the same key for both encryption and decryption. It's like a locked box where the same key locks and unlocks it. Algorithms like [AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) (Advanced Encryption Standard) and [ChaCha20](https://en.wikipedia.org/wiki/ChaCha20-Poly1305) are incredibly fast, making them perfect for encrypting large amounts of data like web pages or file transfers.
 
 The challenge? Both parties need the same key, but how do you share it securely without someone intercepting it?
 
@@ -670,7 +670,7 @@ The choice of key exchange algorithm has significant security implications:
 
 **RSA Key Exchange:**
 
-In RSA, the client generates a random "pre-master secret," encrypts it with the server's public key, and sends it. The server decrypts it with its private key, and both derive the same symmetric key.
+In RSA, the client generates a random `pre-master secret`, encrypts it with the server's public key, and sends it. The server decrypts it with its private key, and both derive the same symmetric key.
 
 The problem? If the server's private key is ever compromised—say, through a vulnerability like Heartbleed—an attacker who recorded past encrypted sessions can decrypt them all. RSA lacks **forward secrecy**.
 
@@ -3981,7 +3981,7 @@ Decryption is CPU-intensive work:
 - Subsequent data uses symmetric encryption (faster, but still not free)
 - Libraries like OpenSSL handle this, but it adds latency
 
-This is why [TLS](#tls-ssl-security) termination is often offloaded to specialized hardware or dedicated [proxy](#proxies-reverse-proxies) servers. We covered this in the [HTTPS](#https-tls) and TLS](#https-tls) section.
+This is why [TLS](#tls-ssl-security) termination is often offloaded to specialized hardware or dedicated [proxy](#proxies-reverse-proxies) servers. We covered this in the [HTTPS](#https-tls) and [TLS](#https-tls) section.
 
 #### 4. Parse: Understanding the Protocol
 
