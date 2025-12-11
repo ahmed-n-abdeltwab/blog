@@ -125,8 +125,8 @@ comments:
   giscus:
     repo: ahmed-n-abdeltwab/ahmed-n-abdeltwab.github.io
     repo_id: R_kgDOO83yZQ
-    category: Q&A
-    category_id: DIC_kwDOO83yZc4CzqLL
+    category: Comments
+    category_id: DIC_kwDOO83yZc4CzqQc
     mapping: pathname
     strict: 0
     reactions_enabled: 1
