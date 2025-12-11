@@ -1,0 +1,8 @@
+# Authors configuration
+# You can define custom authors here and reference them in posts using: author: author-key
+
+"Compiled by Ahmed Nasser":
+  name: "Compiled by Ahmed Nasser"
+
+"Ahmed Nasser":
+  name: "Ahmed Nasser"

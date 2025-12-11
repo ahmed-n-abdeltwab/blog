@@ -5,7 +5,6 @@ title: "Backend Communication Fundamentals: Week 1 Recap"
 modify_date: 2025-04-01
 date: 2025-04-01
 excerpt: "A recap of the first week of backend communication fundamentals, covering Pub/Sub, Stateful vs Stateless Systems, Multiplexing, and the Sidecar Pattern."
-author: "Ahmed Nasser"
 categories: ["Backend Communication"]
 tags:
   [

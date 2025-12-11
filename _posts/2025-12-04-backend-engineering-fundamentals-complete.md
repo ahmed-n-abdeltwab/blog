@@ -14,7 +14,7 @@ tags:
   - Hussein Nasser
   - Fundamentals of Backend Engineering
 key: backend-engineering-fundamentals-complete
-author: Hussein Nasser Course Notes
+author: "Compiled by Ahmed Nasser"
 ---
 
 ## Introduction
