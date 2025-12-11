@@ -209,6 +209,13 @@
     
     .license p {
       font-size: map-get($base, font-size-xs);
+      flex-direction: column;
+      align-items: flex-start;
+      gap: map-get($spacers, 1);
     }
+  }
+  
+  .article__support {
+    margin: map-get($spacers, 4) 0 map-get($spacers, 3) 0;
   }
 }
