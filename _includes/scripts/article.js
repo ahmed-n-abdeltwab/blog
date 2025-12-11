@@ -33,7 +33,15 @@
         if (!searchTerm) return;
 
         var matchNumber = parseInt(getUrlParameter('match')) || 1;
-        var regex = new RegExp('(' + searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+        
+        // Escape special regex characters properly
+        var escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        
+        // Create regex that handles multi-word phrases
+        // Replace spaces with flexible whitespace matcher to handle line breaks and multiple spaces
+        var regexPattern = escapedTerm.replace(/\s+/g, '\\s+');
+        var regex = new RegExp('(' + regexPattern + ')', 'gi');
+        
         var allMatches = [];
         var currentMatchCount = 0;
 
@@ -41,7 +49,10 @@
         function highlightTextNodes(node) {
           if (node.nodeType === 3) { // Text node
             var text = node.nodeValue;
+            // Reset regex lastIndex for each text node
+            regex.lastIndex = 0;
             if (regex.test(text)) {
+              regex.lastIndex = 0; // Reset again before replace
               var span = document.createElement('span');
               span.innerHTML = text.replace(regex, function(match) {
                 currentMatchCount++;
@@ -57,9 +68,11 @@
               
               return span;
             }
-          } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE') {
-            for (var i = 0; i < node.childNodes.length; i++) {
-              highlightTextNodes(node.childNodes[i]);
+          } else if (node.nodeType === 1 && node.nodeName !== 'SCRIPT' && node.nodeName !== 'STYLE' && node.nodeName !== 'CODE') {
+            // Create a copy of childNodes array since we'll be modifying the DOM
+            var children = Array.prototype.slice.call(node.childNodes);
+            for (var i = 0; i < children.length; i++) {
+              highlightTextNodes(children[i]);
             }
           }
         }
