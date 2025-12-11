@@ -67,6 +67,14 @@
             </li>
           {%- endif -%}
 
+          {%- if include.article.content -%}
+            {%- include snippets/reading-time.html content=include.article.content -%}
+            {%- assign _reading_time = __return -%}
+            {%- include snippets/get-locale-string.html key='READING_TIME' -%}
+            {%- assign _locale_reading_time = __return -%}
+            <li><i class="far fa-clock"></i> <span>{{ _reading_time }} {{ _locale_reading_time }}</span></li>
+          {%- endif -%}
+
           {%- if _pageview -%}
             {%- if site.pageview.provider -%}
               {%- include snippets/get-locale-string.html key='VIEWS' -%}

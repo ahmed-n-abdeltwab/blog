@@ -1,0 +1,15 @@
+{%- comment -%}
+  Calculate reading time based on word count
+  Average reading speed: 200-250 words per minute
+  We'll use 225 words per minute as a middle ground
+{%- endcomment -%}
+
+{%- assign words = include.content | strip_html | number_of_words -%}
+{%- assign reading_time = words | divided_by: 225.0 -%}
+{%- assign reading_time_minutes = reading_time | ceil -%}
+
+{%- if reading_time_minutes < 1 -%}
+  {%- assign reading_time_minutes = 1 -%}
+{%- endif -%}
+
+{%- assign __return = reading_time_minutes -%}
