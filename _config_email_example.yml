@@ -1,0 +1,38 @@
+# Example Email Subscription Configuration
+# Add this to your _config.yml file
+
+## => Email Subscription (Optional)
+##############################
+# Choose ONE of the following options:
+
+# Option 1: Buttondown (Recommended - Simple & Developer-friendly)
+subscribe:
+  email_service: buttondown
+  form_action: "https://buttondown.email/api/emails/embed-subscribe/YOUR_USERNAME"
+  email_field: "email"
+
+# Option 2: Mailchimp (Popular - More features)
+# subscribe:
+#   email_service: mailchimp
+#   form_action: "https://YOUR_USERNAME.us1.list-manage.com/subscribe/post"
+#   email_field: "EMAIL"
+#   hidden_fields:
+#     u: "YOUR_USER_ID"
+#     id: "YOUR_LIST_ID"
+
+# Option 3: EmailOctopus (Generous free tier)
+# subscribe:
+#   email_service: emailoctopus
+#   form_action: "https://emailoctopus.com/lists/YOUR_LIST_ID/members/embedded/add"
+#   email_field: "email_address"
+#   hidden_fields:
+#     hp: ""
+
+# Option 4: Substack (Newsletter platform)
+# subscribe:
+#   email_service: substack
+#   form_action: "https://YOUR_PUBLICATION.substack.com/api/v1/free"
+#   email_field: "email"
+
+# If you don't want email subscriptions, just don't add this section
+# The subscribe section will still show GitHub and RSS options

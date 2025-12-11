@@ -3,4 +3,154 @@
 {%- assign _paths_rss = __return -%}
 {%- include snippets/get-locale-string.html key='SUBSCRIBE' -%}
 {%- assign _locale_nav_subscribe = __return -%}
-<div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="{{ _paths_rss }}">{{ _locale_nav_subscribe }}</a></div>
+
+<div class="subscribe">
+  <div class="subscribe__header">
+    <i class="fas fa-bell"></i> 
+    <strong>{{ _locale_nav_subscribe }}</strong>
+  </div>
+  <div class="subscribe__description">
+    Get notified when I publish new articles
+  </div>
+  
+  {%- if site.subscribe.email_service -%}
+  <div class="subscribe__email-form">
+    <form class="subscribe__form" 
+          action="{{ site.subscribe.form_action }}" 
+          method="post" 
+          target="_blank"
+          onsubmit="return validateEmail(this)">
+      <div class="subscribe__form-group">
+        <input type="email" 
+               name="{{ site.subscribe.email_field | default: 'email' }}" 
+               class="subscribe__input" 
+               placeholder="Enter your email address" 
+               required 
+               aria-label="Email address">
+        <button type="submit" class="subscribe__button subscribe__button--primary">
+          <i class="fas fa-envelope"></i> Subscribe via Email
+        </button>
+      </div>
+      {%- if site.subscribe.hidden_fields -%}
+        {%- for field in site.subscribe.hidden_fields -%}
+          <input type="hidden" name="{{ field[0] }}" value="{{ field[1] }}">
+        {%- endfor -%}
+      {%- endif -%}
+    </form>
+    <p class="subscribe__privacy">
+      <i class="fas fa-lock"></i> No spam, unsubscribe anytime
+    </p>
+  </div>
+  
+  <div class="subscribe__divider">
+    <span>or</span>
+  </div>
+  {%- endif -%}
+  
+  <div class="subscribe__options">
+    <a class="subscribe__button subscribe__button--secondary" 
+       href="https://github.com/{{ site.repository }}/subscription" 
+       target="_blank" 
+       rel="noopener">
+      <i class="fab fa-github"></i> Watch on GitHub
+    </a>
+    <a class="subscribe__button subscribe__button--secondary" 
+       href="{{ _paths_rss }}" 
+       target="_blank">
+      <i class="fas fa-rss"></i> RSS Feed
+    </a>
+    <button class="subscribe__button subscribe__button--secondary js-copy-rss" 
+            data-rss-url="{{ _paths_rss | absolute_url }}">
+      <i class="fas fa-copy"></i> Copy RSS URL
+    </button>
+  </div>
+  <div class="subscribe__help">
+    <details>
+      <summary>How to use RSS?</summary>
+      <p>RSS feeds let you get updates in your favorite RSS reader app. Popular options:</p>
+      <ul>
+        <li><strong>Feedly</strong> - <a href="https://feedly.com/i/subscription/feed/{{ _paths_rss | absolute_url | url_encode }}" target="_blank">Add to Feedly</a></li>
+        <li><strong>Inoreader</strong> - <a href="https://www.inoreader.com/?add_feed={{ _paths_rss | absolute_url | url_encode }}" target="_blank">Add to Inoreader</a></li>
+        <li><strong>NewsBlur</strong> - Paste the RSS URL in the app</li>
+        <li><strong>Thunderbird</strong> - Add as a feed in your email client</li>
+      </ul>
+    </details>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Email validation
+  window.validateEmail = function(form) {
+    var emailInput = form.querySelector('input[type="email"]');
+    var email = emailInput.value.trim();
+    
+    // Basic email validation
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert('Please enter a valid email address');
+      return false;
+    }
+    
+    // Show success message
+    var submitButton = form.querySelector('button[type="submit"]');
+    var originalHTML = submitButton.innerHTML;
+    submitButton.innerHTML = '<i class="fas fa-check"></i> Subscribing...';
+    submitButton.disabled = true;
+    
+    // Re-enable after form submission
+    setTimeout(function() {
+      submitButton.innerHTML = originalHTML;
+      submitButton.disabled = false;
+      emailInput.value = '';
+    }, 3000);
+    
+    return true;
+  };
+  
+  // RSS copy functionality
+  var copyButton = document.querySelector('.js-copy-rss');
+  if (copyButton) {
+    copyButton.addEventListener('click', function() {
+      var rssUrl = this.getAttribute('data-rss-url');
+      
+      // Try modern clipboard API first
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(rssUrl).then(function() {
+          showCopyFeedback(copyButton, 'Copied!');
+        }).catch(function() {
+          fallbackCopy(rssUrl, copyButton);
+        });
+      } else {
+        fallbackCopy(rssUrl, copyButton);
+      }
+    });
+  }
+  
+  function fallbackCopy(text, button) {
+    var textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+      document.execCommand('copy');
+      showCopyFeedback(button, 'Copied!');
+    } catch (err) {
+      showCopyFeedback(button, 'Failed to copy');
+    }
+    document.body.removeChild(textarea);
+  }
+  
+  function showCopyFeedback(button, message) {
+    var originalHTML = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i> ' + message;
+    button.disabled = true;
+    setTimeout(function() {
+      button.innerHTML = originalHTML;
+      button.disabled = false;
+    }, 2000);
+  }
+})();
+</script>

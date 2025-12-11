@@ -1,0 +1,268 @@
+// Subscribe section styling
+
+.subscribe {
+  margin: map-get($spacers, 4) 0;
+  padding: map-get($spacers, 4);
+  background-color: rgba($main-color-1, 0.05);
+  border-left: 4px solid $main-color-1;
+  border-radius: map-get($base, border-radius);
+  
+  @media print {
+    display: none;
+  }
+}
+
+.subscribe__header {
+  font-size: map-get($base, font-size-h4);
+  font-weight: map-get($base, font-weight-bold);
+  color: $text-color;
+  margin-bottom: map-get($spacers, 2);
+  
+  i {
+    color: $main-color-1;
+    margin-right: map-get($spacers, 1);
+  }
+}
+
+.subscribe__description {
+  color: $text-color-l;
+  margin-bottom: map-get($spacers, 3);
+  font-size: map-get($base, font-size-sm);
+}
+
+.subscribe__email-form {
+  margin-bottom: map-get($spacers, 3);
+}
+
+.subscribe__form {
+  margin-bottom: map-get($spacers, 2);
+}
+
+.subscribe__form-group {
+  display: flex;
+  gap: map-get($spacers, 2);
+  
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.subscribe__input {
+  flex: 1;
+  padding: map-get($spacers, 2) map-get($spacers, 3);
+  border: 2px solid $border-color;
+  border-radius: map-get($button, pill-radius);
+  font-size: map-get($base, font-size-sm);
+  color: $text-color;
+  background-color: $background-color;
+  @include transition(border-color 0.2s ease);
+  
+  &:focus {
+    outline: none;
+    border-color: $main-color-1;
+    box-shadow: 0 0 0 3px rgba($main-color-1, 0.1);
+  }
+  
+  &::placeholder {
+    color: $text-color-l;
+  }
+  
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+  }
+}
+
+.subscribe__privacy {
+  font-size: map-get($base, font-size-xs);
+  color: $text-color-l;
+  margin: 0;
+  
+  i {
+    color: $main-color-1;
+    margin-right: 0.25rem;
+  }
+}
+
+.subscribe__divider {
+  position: relative;
+  text-align: center;
+  margin: map-get($spacers, 3) 0;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: $border-color-l;
+  }
+  
+  span {
+    position: relative;
+    display: inline-block;
+    padding: 0 map-get($spacers, 2);
+    background-color: rgba($main-color-1, 0.05);
+    color: $text-color-l;
+    font-size: map-get($base, font-size-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.subscribe__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: map-get($spacers, 2);
+  margin-bottom: map-get($spacers, 3);
+  
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+}
+
+.subscribe__button {
+  display: inline-flex;
+  align-items: center;
+  gap: map-get($spacers, 1);
+  padding: map-get($spacers, 2) map-get($spacers, 3);
+  border-radius: map-get($button, pill-radius);
+  font-weight: map-get($base, font-weight);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: map-get($base, font-size-sm);
+  @include transition(all 0.2s ease);
+  
+  i {
+    font-size: 1.1em;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  @include media-breakpoint-down(sm) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.subscribe__button--primary {
+  background-color: $main-color-1;
+  color: #fff;
+  
+  &:hover {
+    background-color: darken($main-color-1, 10%);
+    color: #fff;
+  }
+}
+
+.subscribe__button--secondary {
+  background-color: transparent;
+  color: $text-color;
+  border: 2px solid $border-color;
+  
+  &:hover {
+    background-color: rgba($main-color-1, 0.1);
+    border-color: $main-color-1;
+    color: $text-color;
+  }
+}
+
+.subscribe__help {
+  margin-top: map-get($spacers, 3);
+  padding-top: map-get($spacers, 3);
+  border-top: 1px solid $border-color-l;
+  
+  details {
+    summary {
+      cursor: pointer;
+      color: $text-color-l;
+      font-size: map-get($base, font-size-sm);
+      user-select: none;
+      
+      &:hover {
+        color: $main-color-1;
+      }
+      
+      &::-webkit-details-marker {
+        color: $main-color-1;
+      }
+    }
+    
+    p {
+      margin: map-get($spacers, 2) 0;
+      color: $text-color-l;
+      font-size: map-get($base, font-size-sm);
+    }
+    
+    ul {
+      margin: map-get($spacers, 2) 0;
+      padding-left: map-get($spacers, 4);
+      
+      li {
+        margin: map-get($spacers, 1) 0;
+        color: $text-color-l;
+        font-size: map-get($base, font-size-sm);
+        
+        strong {
+          color: $text-color;
+        }
+        
+        a {
+          color: $main-color-1;
+          text-decoration: none;
+          
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark theme adjustments
+.hero--dark {
+  .subscribe {
+    background-color: rgba($main-color-theme-dark, 0.1);
+    border-left-color: $main-color-theme-dark;
+  }
+  
+  .subscribe__button--primary {
+    background-color: $main-color-theme-dark;
+    
+    &:hover {
+      background-color: lighten($main-color-theme-dark, 10%);
+    }
+  }
+}
+
+// Light theme adjustments
+.hero--light {
+  .subscribe {
+    background-color: rgba($main-color-theme-light, 0.1);
+    border-left-color: $main-color-theme-light;
+  }
+  
+  .subscribe__button--primary {
+    background-color: $main-color-theme-light;
+    
+    &:hover {
+      background-color: darken($main-color-theme-light, 10%);
+    }
+  }
+}
