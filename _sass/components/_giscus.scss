@@ -1,0 +1,40 @@
+// Giscus comment system styling fixes
+
+// Container styling
+.giscus, .giscus-frame {
+  // Ensure the iframe is fully visible
+  width: 100% !important;
+  max-width: 100% !important;
+  border: none !important;
+  
+  // Ensure proper z-index
+  position: relative;
+  z-index: 1;
+}
+
+// Fix for dark mode
+.giscus-frame {
+  color-scheme: auto;
+}
+
+// Ensure proper spacing
+.js-giscus-comments {
+  margin: map-get($spacers, 4) 0;
+  min-height: 200px;
+  
+  @media print {
+    display: none;
+  }
+}
+
+// Make sure the comment box is visible
+.gsc-comment-box {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+// Ensure reactions are visible
+.gsc-reactions {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
