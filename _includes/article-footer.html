@@ -53,16 +53,27 @@
     <div class="article__license">{%- include article/footer/license.html license=_license_data -%}</div>
   {%- endif -%}
 
-  <table>
-    <thead><tr>
-      <th>Venmo</th>
-      <th>Paypal</th>
-    </tr></thead>
-    <tbody><tr>
-      <!--
-      <td><img style="max-width: 150px; max-height: 150px" src="https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/venmo.jpeg" alt="Venmo" /></td>
-      <td><img style="max-width: 150px; max-height: 150px" src="https://raw.githubusercontent.com/Zhenye-Na/img-hosting-picgo/master/img/paypal.jpg" alt="Paypal" /></td>
--->
-    </tr></tbody>
-  </table>
+  {%- if site.buymeacoffee -%}
+    <div class="article__support">
+      <div class="support-card">
+        <div class="support-card__icon">
+          ☕
+        </div>
+        <div class="support-card__content">
+          <h4 class="support-card__title">Enjoy this article?</h4>
+          <p class="support-card__description">
+            If you found this helpful, consider buying me a coffee! It helps me create more content like this.
+          </p>
+          <a href="https://buymeacoffee.com/{{ site.buymeacoffee }}" 
+             class="support-card__button" 
+             target="_blank" 
+             rel="noopener">
+            <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" 
+                 alt="Buy Me A Coffee" 
+                 style="height: 50px !important;width: 217px !important;" />
+          </a>
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
 </footer>

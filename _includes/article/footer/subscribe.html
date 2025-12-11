@@ -48,8 +48,9 @@
   {%- endif -%}
   
   <div class="subscribe__options">
+    {%- assign _watch_repo = site.blog_repository | default: site.repository -%}
     <a class="subscribe__button subscribe__button--secondary" 
-       href="https://github.com/{{ site.repository }}/subscription" 
+       href="https://github.com/{{ _watch_repo }}/subscription" 
        target="_blank" 
        rel="noopener">
       <i class="fab fa-github"></i> Watch on GitHub

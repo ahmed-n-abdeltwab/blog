@@ -59,6 +59,11 @@ author:
 repository: ahmed-n-abdeltwab/ahmed-n-abdeltwab.github.io
 repository_tree: master
 
+## Blog Repository (for Watch on GitHub button)
+## If you have a separate repo for blog content, specify it here
+## Otherwise, it will use the main repository above
+blog_repository: ahmed-n-abdeltwab/blog  # Your blog repo with posts
+
 
 ## => Paths
 ##############################
@@ -76,6 +81,9 @@ excerpt_separator: <!--more-->
 
 ## license
 license: CC-BY-NC-4.0 # "CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0"
+
+## Buy Me a Coffee
+buymeacoffee: ahmednabded # Your Buy Me a Coffee username
 
 ## TOC
 toc:

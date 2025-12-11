@@ -1,17 +1,214 @@
 .article__footer {
-  margin: map-get($spacers, 4) 0;
+  margin: map-get($spacers, 5) 0 map-get($spacers, 4) 0;
+  padding-top: map-get($spacers, 5);
+  border-top: 2px solid rgba($main-color-1, 0.1);
   font-size: map-get($base, font-size-sm);
+  
+  // Add subtle background gradient
+  background: linear-gradient(to bottom, 
+    rgba($main-color-1, 0.02) 0%, 
+    transparent 100%);
+  padding: map-get($spacers, 5) map-get($spacers, 3);
+  border-radius: map-get($base, border-radius) * 2;
+  
+  @media print {
+    background: none;
+    border-top: 1px solid $border-color;
+    padding: map-get($spacers, 3) 0;
+  }
 }
 
-.article__license, .article__subscribe {
+// Last updated timestamp styling
+.article__footer > span {
+  display: inline-block;
+  padding: map-get($spacers, 1) map-get($spacers, 2);
+  background-color: rgba($main-color-1, 0.08);
+  border-radius: map-get($base, border-radius);
+  color: $text-color-l;
+  font-size: map-get($base, font-size-xs);
+  margin-bottom: map-get($spacers, 4);
+  
+  time {
+    color: $main-color-1;
+    font-weight: map-get($base, font-weight-bold);
+  }
+}
+
+// Subscribe section
+.article__subscribe {
+  margin: map-get($spacers, 4) 0;
+  
   a {
     @include link-colors($text-color, $main-color-1);
   }
 }
 
+// License section - enhanced styling
 .article__license {
-  color: $text-color-l;
+  margin: map-get($spacers, 4) 0;
+  padding: map-get($spacers, 3) map-get($spacers, 4);
+  background: linear-gradient(135deg, 
+    rgba($main-color-1, 0.03) 0%, 
+    rgba($main-color-1, 0.01) 100%);
+  border-left: 4px solid rgba($main-color-1, 0.3);
+  border-radius: map-get($base, border-radius);
+  @include transition(all 0.3s ease);
+  
+  &:hover {
+    border-left-color: $main-color-1;
+    background: linear-gradient(135deg, 
+      rgba($main-color-1, 0.05) 0%, 
+      rgba($main-color-1, 0.02) 100%);
+    box-shadow: 0 2px 8px rgba($main-color-1, 0.1);
+  }
+  
+  .license {
+    p {
+      margin: 0;
+      color: $text-color-l;
+      display: flex;
+      align-items: center;
+      gap: map-get($spacers, 2);
+      flex-wrap: wrap;
+      line-height: 1.6;
+      
+      &::before {
+        content: "📄";
+        font-size: 1.2em;
+        flex-shrink: 0;
+      }
+    }
+  }
+  
+  a {
+    color: $main-color-1;
+    text-decoration: none;
+    font-weight: map-get($base, font-weight-bold);
+    @include transition(color 0.2s ease);
+    
+    &:hover {
+      color: darken($main-color-1, 15%);
+      text-decoration: underline;
+    }
+  }
+  
   img {
-    height: map-get($base, font-size) * 1.6;
+    height: 31px;
+    width: auto;
+    vertical-align: middle;
+    border-radius: 4px;
+    @include transition(transform 0.2s ease);
+    
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  
+  @media print {
+    background: transparent;
+    border: 1px solid $border-color;
+    box-shadow: none;
+  }
+}
+
+// Section dividers
+.article__footer > * + * {
+  margin-top: map-get($spacers, 4);
+}
+
+// Dark theme adjustments
+.hero--dark {
+  .article__footer {
+    border-top-color: rgba($main-color-theme-dark, 0.2);
+    background: linear-gradient(to bottom, 
+      rgba($main-color-theme-dark, 0.05) 0%, 
+      transparent 100%);
+  }
+  
+  .article__footer > span {
+    background-color: rgba($main-color-theme-dark, 0.15);
+    
+    time {
+      color: $main-color-theme-dark;
+    }
+  }
+  
+  .article__license {
+    background: linear-gradient(135deg, 
+      rgba($main-color-theme-dark, 0.08) 0%, 
+      rgba($main-color-theme-dark, 0.03) 100%);
+    border-left-color: rgba($main-color-theme-dark, 0.4);
+    
+    &:hover {
+      border-left-color: $main-color-theme-dark;
+      background: linear-gradient(135deg, 
+        rgba($main-color-theme-dark, 0.12) 0%, 
+        rgba($main-color-theme-dark, 0.05) 100%);
+      box-shadow: 0 2px 8px rgba($main-color-theme-dark, 0.2);
+    }
+    
+    a {
+      color: $main-color-theme-dark;
+      
+      &:hover {
+        color: lighten($main-color-theme-dark, 15%);
+      }
+    }
+  }
+}
+
+// Light theme adjustments
+.hero--light {
+  .article__footer {
+    border-top-color: rgba($main-color-theme-light, 0.2);
+    background: linear-gradient(to bottom, 
+      rgba($main-color-theme-light, 0.05) 0%, 
+      transparent 100%);
+  }
+  
+  .article__footer > span {
+    background-color: rgba($main-color-theme-light, 0.15);
+    
+    time {
+      color: $main-color-theme-light;
+    }
+  }
+  
+  .article__license {
+    background: linear-gradient(135deg, 
+      rgba($main-color-theme-light, 0.08) 0%, 
+      rgba($main-color-theme-light, 0.03) 100%);
+    border-left-color: rgba($main-color-theme-light, 0.4);
+    
+    &:hover {
+      border-left-color: $main-color-theme-light;
+      background: linear-gradient(135deg, 
+        rgba($main-color-theme-light, 0.12) 0%, 
+        rgba($main-color-theme-light, 0.05) 100%);
+      box-shadow: 0 2px 8px rgba($main-color-theme-light, 0.2);
+    }
+    
+    a {
+      color: $main-color-theme-light;
+      
+      &:hover {
+        color: darken($main-color-theme-light, 15%);
+      }
+    }
+  }
+}
+
+// Mobile responsiveness
+@include media-breakpoint-down(sm) {
+  .article__footer {
+    padding: map-get($spacers, 4) map-get($spacers, 2);
+  }
+  
+  .article__license {
+    padding: map-get($spacers, 2) map-get($spacers, 3);
+    
+    .license p {
+      font-size: map-get($base, font-size-xs);
+    }
   }
 }

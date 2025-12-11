@@ -1,0 +1,183 @@
+// Buy Me a Coffee / Support section styling
+
+.article__support {
+  margin: map-get($spacers, 5) 0 map-get($spacers, 4) 0;
+  
+  @media print {
+    display: none;
+  }
+}
+
+.support-card {
+  display: flex;
+  align-items: center;
+  gap: map-get($spacers, 3);
+  padding: map-get($spacers, 4);
+  background: linear-gradient(135deg, 
+    rgba(#FFDD00, 0.08) 0%, 
+    rgba(#FFDD00, 0.03) 100%);
+  border: 2px solid rgba(#FFDD00, 0.3);
+  border-radius: map-get($base, border-radius) * 2;
+  @include transition(all 0.3s ease);
+  position: relative;
+  overflow: hidden;
+  
+  // Subtle pattern overlay
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 50%, rgba(#FFDD00, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(#FFDD00, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  &:hover {
+    border-color: rgba(#FFDD00, 0.5);
+    box-shadow: 0 8px 24px rgba(#FFDD00, 0.15);
+    transform: translateY(-3px);
+    background: linear-gradient(135deg, 
+      rgba(#FFDD00, 0.12) 0%, 
+      rgba(#FFDD00, 0.05) 100%);
+  }
+  
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.support-card__icon {
+  font-size: 4rem;
+  line-height: 1;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  @include transition(transform 0.3s ease);
+  
+  .support-card:hover & {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  
+  @include media-breakpoint-down(sm) {
+    font-size: 3rem;
+  }
+}
+
+.support-card__content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.support-card__title {
+  margin: 0 0 map-get($spacers, 2) 0;
+  font-size: map-get($base, font-size-h4);
+  font-weight: map-get($base, font-weight-bold);
+  color: $text-color;
+  
+  // Add a subtle gradient to the text
+  background: linear-gradient(135deg, $text-color 0%, darken($text-color, 10%) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.support-card__description {
+  margin: 0 0 map-get($spacers, 3) 0;
+  color: $text-color-l;
+  font-size: map-get($base, font-size-sm);
+  line-height: 1.6;
+}
+
+.support-card__button {
+  display: inline-block;
+  @include transition(transform 0.2s ease);
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+  
+  img {
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// License section improvements
+.article__license {
+  margin: map-get($spacers, 4) 0;
+  padding: map-get($spacers, 3);
+  background-color: rgba($border-color, 0.05);
+  border-left: 4px solid $border-color;
+  border-radius: map-get($base, border-radius);
+  
+  .license {
+    p {
+      margin: 0;
+      font-size: map-get($base, font-size-sm);
+      color: $text-color-l;
+      display: flex;
+      align-items: center;
+      gap: map-get($spacers, 2);
+      flex-wrap: wrap;
+      
+      a {
+        color: $main-color-1;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      
+      img {
+        height: 31px;
+        width: auto;
+        vertical-align: middle;
+      }
+    }
+  }
+  
+  @media print {
+    display: block !important;
+    background-color: transparent;
+    border: 1px solid $border-color;
+  }
+}
+
+// Dark theme adjustments
+.hero--dark {
+  .support-card {
+    background: linear-gradient(135deg, rgba($main-color-theme-dark, 0.1) 0%, rgba($main-color-theme-dark, 0.05) 100%);
+    border-color: rgba($main-color-theme-dark, 0.3);
+    
+    &:hover {
+      border-color: rgba($main-color-theme-dark, 0.5);
+      box-shadow: 0 8px 16px rgba($main-color-theme-dark, 0.2);
+    }
+  }
+}
+
+// Light theme adjustments
+.hero--light {
+  .support-card {
+    background: linear-gradient(135deg, rgba($main-color-theme-light, 0.1) 0%, rgba($main-color-theme-light, 0.05) 100%);
+    border-color: rgba($main-color-theme-light, 0.3);
+    
+    &:hover {
+      border-color: rgba($main-color-theme-light, 0.5);
+      box-shadow: 0 8px 16px rgba($main-color-theme-light, 0.2);
+    }
+  }
+}
