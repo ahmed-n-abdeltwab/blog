@@ -7,7 +7,8 @@ window.TEXT_SEARCH_DATA={
       {'title':'{{ _article.title | url_encode }}',
       {%- include snippets/prepend-baseurl.html path=_article.url -%}
       {%- assign _url = __return -%}
-      'url':'{{ _url | url_encode }}'}
+      'url':'{{ _url | url_encode }}',
+      'content':'{{ _article.content | strip_html | strip_newlines | url_encode }}'}
       {%- endfor -%}
     ]
   {%- endfor -%}

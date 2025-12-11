@@ -881,7 +881,7 @@ This handshake process is elegant—it uses HTTP to establish a secure connectio
 
 **Practical Example: Building a Chat Application**
 
-Let's look at a real implementation of a [WebSocket](#websockets)-based chat application. This example demonstrates the push notification model, where the server instantly pushes messages to all connected clients without them needing to request updates.
+Let's look at a real implementation of a WebSocket-based chat application. This example demonstrates the push notification model, where the server instantly pushes messages to all connected clients without them needing to request updates.
 
 Server-side implementation using Node.js and the `ws` library:
 
