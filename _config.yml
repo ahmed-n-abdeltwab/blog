@@ -119,9 +119,24 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: disqus # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: giscus # false (default), "disqus", "gitalk", "giscus", "valine", "custom"
 
-  ## Disqus
+  ## Giscus (GitHub Discussions)
+  giscus:
+    repo: ahmed-n-abdeltwab/ahmed-n-abdeltwab.github.io
+    repo_id: R_kgDOO83yZQ
+    category: Q&A
+    category_id: DIC_kwDOO83yZc4CzqLL
+    mapping: pathname
+    strict: 0
+    reactions_enabled: 1
+    emit_metadata: 1
+    input_position: top
+    theme: preferred_color_scheme
+    lang: en
+    loading: lazy
+
+  ## Disqus (old - now disabled)
   disqus:
     shortname: Ahmed # the Disqus shortname for the site
 
