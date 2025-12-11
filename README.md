@@ -1,4 +1,4 @@
-# 📝 Ahmed's Technical Blog
+# Ahmed's Technical Blog
 
 > A modern, feature-rich technical blog built with Jekyll, focusing on backend engineering, system design, and software development.
 
@@ -47,13 +47,13 @@ bundle exec jekyll clean
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 - [Site Log](site-log.md) - Update history
 
 ---
 
-## 🛠️ Built With
+## Built With
 
 - **[Jekyll](https://jekyllrb.com/)** - Static site generator
 - **[Jekyll Text Theme](https://github.com/kitian616/jekyll-TeXt-theme)** - Base theme
@@ -64,18 +64,20 @@ bundle exec jekyll clean
 
 ---
 
-## 📝 License
+## License
 
 - **Content**: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
 - **Code**: MIT License
 
 ---
 
-## ☕ Support
+## Support
 
-If you find this blog helpful, consider:
+If you find this blog helpful, consider buying me a coffee:
 
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/ahmednabded)
+<a href="https://buymeacoffee.com/ahmednabded" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="50" />
+</a>
 
 ---
 
