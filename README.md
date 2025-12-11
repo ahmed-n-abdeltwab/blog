@@ -1,9 +1,84 @@
-# Personal Website
+# 📝 Ahmed's Technical Blog
 
-Source codes powering [my personal website](https://ahmed-n-abdeltwab.github.io/)
+> A modern, feature-rich technical blog built with Jekyll, focusing on backend engineering, system design, and software development.
 
-See update history [here](./site-log.md).
-<br><br>
+[![Live Site](https://img.shields.io/badge/Live-ahmed--n--abdeltwab.github.io-blue?style=for-the-badge)](https://ahmed-n-abdeltwab.github.io/)
+[![Jekyll](https://img.shields.io/badge/Jekyll-4.x-red?style=for-the-badge&logo=jekyll)](https://jekyllrb.com/)
+[![License](https://img.shields.io/badge/License-CC--BY--NC--4.0-green?style=for-the-badge)](LICENSE)
+
+---
+
+## Quick Start
+
+### Prerequisites
+
+- Ruby 3.x
+- Bundler
+- Git
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/ahmed-n-abdeltwab/blog.git
+cd blog
+
+# Install dependencies
+bundle install
+
+# Serve locally
+bundle exec jekyll serve
+
+# Visit http://localhost:4000
+```
+
+### Development
+
+```bash
+# Serve with live reload
+bundle exec jekyll serve --livereload
+
+# Build for production
+bundle exec jekyll build
+
+# Clean build files
+bundle exec jekyll clean
+```
+
+---
+
+## 📚 Documentation
+
+- [Site Log](site-log.md) - Update history
+
+---
+
+## 🛠️ Built With
+
+- **[Jekyll](https://jekyllrb.com/)** - Static site generator
+- **[Jekyll Text Theme](https://github.com/kitian616/jekyll-TeXt-theme)** - Base theme
+- **[Giscus](https://giscus.app/)** - Comment system
+- **[Font Awesome](https://fontawesome.com/)** - Icons
+- **[MathJax](https://www.mathjax.org/)** - Math rendering
+- **[Mermaid](https://mermaid-js.github.io/)** - Diagrams
+
+---
+
+## 📝 License
+
+- **Content**: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+- **Code**: MIT License
+
+---
+
+## ☕ Support
+
+If you find this blog helpful, consider:
+
+[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/ahmednabded)
+
+---
+
 <p align="center">
-<span style="color:#1d58a6"><sup> &copy; Copyright Ahmed Nasser <img src="https://cdn3.iconfinder.com/data/icons/coffee-11/500/Coffee_brain-512.png" width="20" height="auto" /> Feb 2025 </sup></span>
+  <sub>&copy; 2025 Ahmed Nasser. All rights reserved.</sub>
 </p>
