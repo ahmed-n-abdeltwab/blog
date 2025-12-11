@@ -4,6 +4,33 @@
   @media print {
     line-height: map-get($base, line-height);
   }
+  
+  // Search highlight styling
+  mark.search-highlight {
+    background-color: #ffeb3b;
+    color: #000;
+    padding: 0.1em 0.3em;
+    border-radius: 3px;
+    font-weight: map-get($base, font-weight-bold);
+    box-shadow: 0 0 0 2px rgba(255, 235, 59, 0.3);
+  }
+  
+  mark.search-highlight--target {
+    background-color: #ff9800;
+    box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.4);
+    animation: highlight-pulse 1.5s ease-in-out;
+  }
+  
+  @keyframes highlight-pulse {
+    0%, 100% {
+      background-color: #ff9800;
+      box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.4);
+    }
+    50% {
+      background-color: #ffb74d;
+      box-shadow: 0 0 0 6px rgba(255, 152, 0, 0.6);
+    }
+  }
   @include block-elements() {
     margin: map-get($spacers, 3) 0;
     @media print {
