@@ -5,6 +5,10 @@ html,
   height: 100%;
 }
 
+iframe.giscus-frame {
+  color-scheme: light dark !important;
+}
+
 .layout--page {
   &.layout--page--sidebar {
     .page__viewport,
@@ -56,6 +60,7 @@ html,
 
 .page__comments {
   margin: map-get($spacers, 4) 0;
+  background-color: $background-color;
 }
 
 .page__aside {
