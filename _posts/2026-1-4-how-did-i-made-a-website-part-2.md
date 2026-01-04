@@ -17,7 +17,7 @@ author: "Compiled by Ahmed Nasser"
 
 ## Introduction
 
-In Part 1, I shared how I built the backend for my brother's coaching platform](https://ahmed-n-abdeltwab.github.io/blog/2025/11/16/how-did-i-made-a-website.html) — from database design to NestJS modules to Swagger documentation. But building features is only half the battle. The real engineering challenge? Making sure everything actually works, stays working, and can be deployed reliably.
+In Part 1, I shared [how I built the backend for my brother's coaching platform](https://ahmed-n-abdeltwab.github.io/blog/2025/11/16/how-did-i-made-a-website.html) — from database design to NestJS modules to Swagger documentation. But building features is only half the battle. The real engineering challenge? Making sure everything actually works, stays working, and can be deployed reliably.
 
 This part covers the testing infrastructure, the type-safe API contracts system, and the CI/CD pipeline that ties everything together. These aren't just "nice to haves" — they're what separate a hobby project from production-ready software.
 
