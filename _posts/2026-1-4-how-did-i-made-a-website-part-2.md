@@ -17,7 +17,7 @@ author: "Compiled by Ahmed Nasser"
 
 ## Introduction
 
-In Part 1, I shared [how I built the backend for my brother's coaching platform](https://ahmed-n-abdeltwab.github.io/blog/2025/11/16/how-did-i-made-a-website.html) — from database design to NestJS modules to Swagger documentation. But building features is only half the battle. The real engineering challenge? Making sure everything actually works, stays working, and can be deployed reliably.
+In Part 1, I shared how I built the backend for my brother's coaching platform](https://ahmed-n-abdeltwab.github.io/blog/2025/11/16/how-did-i-made-a-website.html) — from database design to NestJS modules to Swagger documentation. But building features is only half the battle. The real engineering challenge? Making sure everything actually works, stays working, and can be deployed reliably.
 
 This part covers the testing infrastructure, the type-safe API contracts system, and the CI/CD pipeline that ties everything together. These aren't just "nice to haves" — they're what separate a hobby project from production-ready software.
 
@@ -228,6 +228,43 @@ When you call `test.http.authenticatedPost('/api/sessions', token, { body: {...}
 4. The response is typed as `TypedResponse<SessionResponse>`
 
 If the API changes and the contracts are regenerated, tests that use incorrect types fail at compile time — not at runtime.
+
+### The Trade-offs: What I Gained and What I Lost
+
+Every architectural decision has trade-offs. Here's an honest look at what the mixin architecture costs and what it buys.
+
+**What I Gained:**
+
+1. **Consistency across 50+ test files**: Every test follows the same pattern. New team members (or future me) can read any test file and immediately understand the structure.
+
+2. **Type safety everywhere**: `test.mocks.PrismaService.account.create` has full IntelliSense. Typos are caught at compile time, not when tests mysteriously fail.
+
+3. **Reduced boilerplate**: Setting up a service test went from 40+ lines of NestJS testing module configuration to 10 lines of declarative config.
+
+4. **Composability**: Need HTTP + Database? Use `IntegrationTest`. Need just mocks? Use `ServiceTest`. The capabilities compose without inheritance hell.
+
+**What I Lost:**
+
+1. **Indirection**: When something breaks, you're debugging through mixin layers instead of plain Jest code. The stack traces are longer.
+
+2. **Learning curve**: New developers need to understand the mixin system before writing tests. Plain Jest is more universally known.
+
+```typescript
+// This interface is manual — if PrismaService adds a method, you update this
+interface AccountsMocks {
+  PrismaService: {
+    account: {
+      create: jest.Mock;
+      findMany: jest.Mock;
+      findFirst: jest.Mock;
+      update: jest.Mock;
+      delete: jest.Mock;
+    };
+  };
+}
+```
+
+For this project, the trade-off was worth it. The coaching platform has 50+ test files across services, controllers, and integration tests. The consistency and type safety pay dividends every time I add a new feature or refactor existing code.
 
 ---
 
@@ -928,6 +965,7 @@ This part covered the engineering infrastructure that makes the coaching platfor
 
 - **Mixin Architecture**: Composable test capabilities that snap together like LEGO blocks
 - **Auto-Mocking**: Prototype inspection creates fully-typed mocks automatically
+- **Trade-offs Analysis**: What the abstraction costs vs. what it buys — and when plain Jest is better
 - **Type Contracts**: Single source of truth flowing from Swagger to TypeScript to tests
 - **Discriminated Unions**: Type-safe error handling with exhaustive checking
 - **Nx Affected**: Only test what changed, cutting CI time by 80%
@@ -938,7 +976,7 @@ This part covered the engineering infrastructure that makes the coaching platfor
 
 The platform is now deployed and my brother is using it to manage his coaching sessions. The type-safe API contracts mean I can refactor with confidence, and the CI pipeline catches issues before they reach production.
 
-Next up: deploying the backend to production — Kubernetes, cloud infrastructure, and making it all work reliably.
+Next up: deploying the backend to production — cloud platform, cloud infrastructure, and making it all work reliably.
 
 See you next time.
 
