@@ -18,113 +18,387 @@ mathjax_autoNumber: true
 key: subset-sub-divisibility
 ---
 
-Inspired by the brilliant [3Blue1Brown video on generating functions](https://www.youtube.com/watch?v=bOXCLR3Wric), this post explores an elegant Olympiad-level counting problem. We'll break it down step by step, using generalized variables so you can apply the solution to different cases.
+Inspired by the brilliant [3Blue1Brown video on generating functions](https://www.youtube.com/watch?v=bOXCLR3Wric), this post explores an elegant Olympiad-level counting problem.
 
 ---
 
-## Part 1: Understanding the Puzzle
+### The Problem
 
-### The Problem Statement
+Given two positive integers $n$ and $k$ (where $2 \le k \le n$), answer this:
 
-Given two positive integers $n$ and $k$ (where $2 \leq k \leq n$), we want to answer:
+> How many subsets of $\lbrace 1, 2, 3, \ldots, n \rbrace$ have a sum divisible by $k$?
 
-> How many subsets of $\\{1, 2, 3, \ldots, n\\}$ have a sum divisible by $k$?
+Let's say $n = 2000$ and $k = 5$. You need to count how many subsets have sums divisible by 5.
 
-### A Small Example: Building Intuition
+Your first instinct: iterate through all subsets, sum each one, check divisibility.
 
-Let's start with $n = 3$ and $k = 2$ to see what's happening.
+**The problem:** There are $2^{2000}$ subsets.
 
-The set is $\\{1, 2, 3\\}$, and all possible subsets are:
+To put this in perspective:
+- The number of atoms in the observable universe: $\approx 10^{80}$
+- The value of $2^{2000}$: $\approx 10^{602}$
 
-$$\emptyset, \\{1\\}, \\{2\\}, \\{3\\}, \\{1,2\\}, \\{1,3\\}, \\{2,3\\}, \\{1,2,3\\}$$
+Even if you could check one trillion subsets per second, you'd need more time than the age of the universe—multiplied by itself, many times over.
 
-Their sums are:
-
-$$0, 1, 2, 3, 3, 4, 5, 6$$
-
-For $k = 2$ (divisible by 2), we count subsets with even sums:
-- $\emptyset$ → sum = $0$ ✓
-- $\\{2\\}$ → sum = $2$ ✓
-- $\\{1, 3\\}$ → sum = $4$ ✓
-- $\\{1, 2, 3\\}$ → sum = $6$ ✓
-
-Answer: 4 subsets
-
-### Why This Gets Hard Fast
-
-For $n = 2000$, the total number of subsets is $2^{2000}$. This number is so astronomically large that it exceeds the number of atoms in the observable universe! Clearly, we can't iterate through every subset.
-
-We need a smarter approach.
+**Brute force is not just slow. It's impossible.**
 
 ---
 
-## Part 2: Breaking Down the Solution
+### The Total Population
 
-### Step 2.1: Counting Total Subsets
+Before we can count a subset, we need to understand the full landscape.
 
-For any set with $n$ elements, each element has 2 choices: either it's "in" the subset or "out" of the subset.
+For a set with $n$ elements, each element has exactly 2 choices:
+- It's **in** the subset
+- It's **out** of the subset
 
-Think of it as $n$ light switches, each with 2 positions:
+Think of $n$ light switches, each with 2 positions:
 
 $$\text{Total subsets} = \underbrace{2 \times 2 \times \cdots \times 2}_{n \text{ times}} = 2^n$$
 
-This is our foundation. For $n = 2000$, we have $2^{2000}$ total subsets.
+For $n = 2000$, we have $2^{2000}$ total subsets. This is our starting point.
 
-### Step 2.2: Distributing Subsets by Remainder
+### The Remainder Buckets
 
-When we divide subset sums by $k$, we get remainders: $0, 1, 2, \ldots, k-1$.
+When we divide any subset's sum by $k$, we get a remainder from $\lbrace 0, 1, 2, \ldots, k-1 \rbrace$.
 
-We want to count subsets in the "remainder 0" bucket (divisible by $k$).
+We want subsets in the "remainder 0" bucket—those divisible by $k$.
 
-You might think each bucket gets an equal share: $\frac{2^n}{k}$ subsets each. But that's not quite right! The distribution is slightly uneven due to the mathematical structure of the problem.
+**Naive guess:** Each of the $k$ buckets gets an equal share, so:
 
-### Step 2.3: The Balanced Distribution Formula
+$$\text{Count} \stackrel{?}{=} \frac{2^n}{k}$$
 
-The exact count uses this formula:
+But this is **wrong**. The distribution isn't perfectly uniform.
+
+**Why?** Because the numbers $1, 2, 3, \ldots, n$ have structure. They cycle through remainders in a predictable pattern. This creates subtle imbalances.
+
+### The Correction Factor
+
+The exact formula accounts for this imbalance:
 
 $$\boxed{\text{Count} = \frac{2^n + (k-1) \cdot 2^{n/k}}{k}}$$
 
-Let's decode each part using generalized variables:
+Let's decode each component:
 
-| Symbol | Meaning | Example ($n=2000, k=5$) |
-|--------|---------|-------------------------|
-| $n$ | Size of the set | $2000$ |
-| $k$ | Divisor we're checking | $5$ |
-| $2^n$ | Total subsets | $2^{2000}$ |
-| $2^{n/k}$ | Correction factor | $2^{400}$ |
-| $(k-1)$ | Symmetry multiplier | $4$ |
+| Symbol | Meaning | Role |
+|--------|---------|------|
+| $2^n$ | Total subsets | The full population |
+| $2^{n/k}$ | Correction factor | Captures periodicity |
+| $(k-1)$ | Symmetry multiplier | Balances non-zero remainders |
+| $\div k$ | Bucket selector | Extracts one remainder class |
 
-The formula works because:
-1. $2^n$ gives us the total population
-2. $2^{n/k}$ captures the periodicity (every $k$ numbers form a "cycle")
-3. $(k-1)$ accounts for symmetry in the remainder distribution
-4. Dividing by $k$ gives us the count for one specific remainder bucket
+**The key insight:** $2^{n/k}$ appears because the remainders cycle every $k$ numbers. In the range $1$ to $n$, we have $\frac{n}{k}$ complete cycles. Each cycle contributes a multiplicative factor to the correction term.
 
-### Step 2.4: Why $n/k$ in the Exponent?
+Imagine a clock with $k$ hours. As we add numbers $1, 2, 3, \ldots, n$, their remainders (mod $k$) tick around this clock.
 
-Think of a clock with $k$ hours. As we add numbers $1, 2, 3, \ldots, n$, their remainders (mod $k$) cycle around this clock.
+- Every $k$ consecutive numbers complete one full rotation
+- In the range $1$ to $n$, we have $\frac{n}{k}$ complete rotations
+- Each rotation contributes a factor of 2 to the correction term
+- Thus: $2^{n/k}$
 
-- Every $k$ consecutive numbers complete one full cycle
-- In the range $1$ to $n$, we have $\frac{n}{k}$ complete cycles
-- Each cycle contributes a factor to the correction term
-
-This is why the exponent is $\frac{n}{k}$, not $n$ or $\frac{n}{2k}$.
+**Example:** For $n = 15$ and $k = 3$:
+- Numbers $1, 2, 3$ → remainders $1, 2, 0$ (one cycle)
+- Numbers $4, 5, 6$ → remainders $1, 2, 0$ (two cycles)
+- Numbers $7, 8, 9$ → remainders $1, 2, 0$ (three cycles)
+- And so on...
+- Total cycles: $\frac{15}{3} = 5$
+- Correction factor: $2^5 = 32$
 
 ---
 
-## Part 3: Implementation Approaches
+## See the Math in Motion
 
-### Approach A: Mathematical Formula (Fast)
+Before we write any code, let's validate the formula interactively. Adjust $n$ and $k$ below and watch how the correction factor and target count respond in real-time.
 
-For large $n$, we use modular arithmetic and binary exponentiation.
+<div id="demo-container" style="border: 2px solid #3498db; padding: 20px; border-radius: 10px; margin: 20px 0; background-color: #f8f9fa;">
+  <h3 style="margin-top: 0;">Subset Divisibility Calculator</h3>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+    <div>
+      <div style="margin: 15px 0;">
+        <label for="input-n" style="display: inline-block; width: 150px; font-weight: bold;">Set size (n):</label>
+        <input id="input-n" type="range" value="10" min="1" max="30" style="width: 150px;" oninput="updateValues()">
+        <span id="n-value" style="margin-left: 10px; font-weight: bold; color: #3498db;">10</span>
+      </div>
+      
+      <div style="margin: 15px 0;">
+        <label for="input-k" style="display: inline-block; width: 150px; font-weight: bold;">Divisor (k):</label>
+        <input id="input-k" type="range" value="3" min="2" max="10" style="width: 150px;" oninput="updateValues()">
+        <span id="k-value" style="margin-left: 10px; font-weight: bold; color: #e74c3c;">3</span>
+      </div>
+    </div>
+    
+    <div id="live-metrics" style="background-color: #fff; padding: 15px; border-radius: 5px; border: 1px solid #ddd;">
+      <h4 style="margin-top: 0; color: #2c3e50;">Live Metrics:</h4>
+      <p style="margin: 8px 0;"><strong>Total Subsets (2<sup>n</sup>):</strong> <span id="live-total" style="color: #27ae60;">1024</span></p>
+      <p style="margin: 8px 0;"><strong>Correction Factor (2<sup>n/k</sup>):</strong> <span id="live-correction" style="color: #f39c12;">8</span></p>
+      <p style="margin: 8px 0;"><strong>Target Subsets:</strong> <span id="live-target" style="color: #e74c3c;">342</span></p>
+      <p style="margin: 8px 0; font-size: 12px; color: #7f8c8d;">Formula: (2<sup>n</sup> + (k-1)·2<sup>n/k</sup>) / k</p>
+    </div>
+  </div>
+  
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+    <div>
+      <h4 style="color: #2c3e50;">Remainder Distribution</h4>
+      <canvas id="distribution-graph" width="400" height="300" style="border: 1px solid #ddd; border-radius: 5px; background-color: white;"></canvas>
+    </div>
+    
+    <div>
+      <h4 style="color: #2c3e50;">Growth Visualization (n vs Subsets)</h4>
+      <canvas id="growth-graph" width="400" height="300" style="border: 1px solid #ddd; border-radius: 5px; background-color: white;"></canvas>
+    </div>
+  </div>
+  
+  <div id="formula-breakdown" style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 5px; border: 1px solid #ffc107;">
+    <h4 style="margin-top: 0; color: #856404;">Formula Breakdown:</h4>
+    <p id="formula-text" style="font-family: monospace; color: #212529;"></p>
+  </div>
+</div>
 
-Time complexity: $O(\log n)$
+<script>
+let currentN = 10;
+let currentK = 3;
+
+function updateValues() {
+    currentN = parseInt(document.getElementById('input-n').value);
+    currentK = parseInt(document.getElementById('input-k').value);
+    
+    document.getElementById('n-value').textContent = currentN;
+    document.getElementById('k-value').textContent = currentK;
+    
+    calculateSubsets();
+}
+
+function calculateSubsets() {
+    const n = currentN;
+    const k = currentK;
+    
+    if (n < 1 || k < 2 || k > n) {
+        return;
+    }
+    
+    // Calculate metrics
+    const totalSubsets = Math.pow(2, n);
+    const correctionFactor = Math.pow(2, n / k);
+    const numerator = totalSubsets + (k - 1) * correctionFactor;
+    const targetSubsets = Math.floor(numerator / k);
+    
+    // Update live metrics
+    document.getElementById('live-total').textContent = formatNumber(totalSubsets);
+    document.getElementById('live-correction').textContent = formatNumber(correctionFactor);
+    document.getElementById('live-target').textContent = formatNumber(targetSubsets);
+    
+    // Update formula breakdown
+    document.getElementById('formula-text').innerHTML = 
+        `(${formatNumber(totalSubsets)} + ${k-1} × ${formatNumber(correctionFactor)}) / ${k} = ${formatNumber(targetSubsets)}`;
+    
+    // Calculate using DP for visualization (works for small n)
+    const dp = Array(n + 1).fill(0).map(() => Array(k).fill(0));
+    dp[0][0] = 1;
+    
+    for (let i = 1; i <= n; i++) {
+        for (let r = 0; r < k; r++) {
+            dp[i][r] = dp[i-1][r];
+            const prevRemainder = (r - i % k + k) % k;
+            dp[i][r] += dp[i-1][prevRemainder];
+        }
+    }
+    
+    // Draw graphs
+    drawDistributionGraph(dp[n], k);
+    drawGrowthGraph(n, k);
+}
+
+function formatNumber(num) {
+    if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+    if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+    if (num >= 1e3) return (num / 1e3).toFixed(2) + 'K';
+    return num.toFixed(0);
+}
+
+function drawDistributionGraph(distribution, k) {
+    const canvas = document.getElementById('distribution-graph');
+    const ctx = canvas.getContext('2d');
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const padding = 40;
+    const graphWidth = canvas.width - 2 * padding;
+    const graphHeight = canvas.height - 2 * padding;
+    const barWidth = graphWidth / k;
+    const maxValue = Math.max(...distribution);
+    const scale = graphHeight / maxValue;
+    
+    // Draw axes
+    ctx.strokeStyle = '#2c3e50';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, canvas.height - padding);
+    ctx.lineTo(canvas.width - padding, canvas.height - padding);
+    ctx.stroke();
+    
+    // Draw bars
+    for (let i = 0; i < k; i++) {
+        const barHeight = distribution[i] * scale;
+        const x = padding + i * barWidth;
+        const y = canvas.height - padding - barHeight;
+        
+        ctx.fillStyle = i === 0 ? '#e74c3c' : '#3498db';
+        ctx.fillRect(x + 5, y, barWidth - 10, barHeight);
+        
+        // X-axis labels
+        ctx.fillStyle = '#2c3e50';
+        ctx.font = '11px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText(i, x + barWidth / 2, canvas.height - padding + 15);
+        
+        // Value labels
+        ctx.fillStyle = '#2c3e50';
+        ctx.font = '10px Arial';
+        ctx.fillText(distribution[i], x + barWidth / 2, y - 5);
+    }
+    
+    // Axis labels
+    ctx.fillStyle = '#2c3e50';
+    ctx.font = 'bold 12px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Remainder (mod ' + k + ')', canvas.width / 2, canvas.height - 5);
+    
+    ctx.save();
+    ctx.translate(15, canvas.height / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('Count', 0, 0);
+    ctx.restore();
+}
+
+function drawGrowthGraph(n, k) {
+    const canvas = document.getElementById('growth-graph');
+    const ctx = canvas.getContext('2d');
+    
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    const padding = 40;
+    const graphWidth = canvas.width - 2 * padding;
+    const graphHeight = canvas.height - 2 * padding;
+    
+    // Draw axes
+    ctx.strokeStyle = '#2c3e50';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(padding, padding);
+    ctx.lineTo(padding, canvas.height - padding);
+    ctx.lineTo(canvas.width - padding, canvas.height - padding);
+    ctx.stroke();
+    
+    // Generate data points
+    const maxN = Math.min(n + 5, 30);
+    const points = [];
+    let maxY = 0;
+    
+    for (let i = 1; i <= maxN; i++) {
+        const total = Math.pow(2, i);
+        const correction = Math.pow(2, i / k);
+        const target = (total + (k - 1) * correction) / k;
+        points.push({ x: i, total, target });
+        maxY = Math.max(maxY, total);
+    }
+    
+    const scaleX = graphWidth / maxN;
+    const scaleY = graphHeight / Math.log2(maxY);
+    
+    // Draw total subsets line
+    ctx.strokeStyle = '#27ae60';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    points.forEach((p, i) => {
+        const x = padding + p.x * scaleX;
+        const y = canvas.height - padding - Math.log2(p.total) * scaleY;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    // Draw target subsets line
+    ctx.strokeStyle = '#e74c3c';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    points.forEach((p, i) => {
+        const x = padding + p.x * scaleX;
+        const y = canvas.height - padding - Math.log2(p.target) * scaleY;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.stroke();
+    
+    // Highlight current n
+    const currentPoint = points[n - 1];
+    const currentX = padding + currentPoint.x * scaleX;
+    const currentY = canvas.height - padding - Math.log2(currentPoint.target) * scaleY;
+    
+    ctx.fillStyle = '#e74c3c';
+    ctx.beginPath();
+    ctx.arc(currentX, currentY, 5, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Axis labels
+    ctx.fillStyle = '#2c3e50';
+    ctx.font = 'bold 12px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Set Size (n)', canvas.width / 2, canvas.height - 5);
+    
+    ctx.save();
+    ctx.translate(15, canvas.height / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('log₂(Subsets)', 0, 0);
+    ctx.restore();
+    
+    // Legend
+    ctx.font = '11px Arial';
+    ctx.fillStyle = '#27ae60';
+    ctx.fillRect(canvas.width - 150, 20, 15, 3);
+    ctx.fillStyle = '#2c3e50';
+    ctx.textAlign = 'left';
+    ctx.fillText('Total (2ⁿ)', canvas.width - 130, 25);
+    
+    ctx.fillStyle = '#e74c3c';
+    ctx.fillRect(canvas.width - 150, 35, 15, 3);
+    ctx.fillStyle = '#2c3e50';
+    ctx.fillText('Divisible by k', canvas.width - 130, 40);
+}
+
+// Initialize on page load
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateValues);
+} else {
+    updateValues();
+}
+</script>
+
+### What You're Seeing
+
+**Left graph:** The distribution of subsets across remainder buckets. Notice that remainder 0 (red bar) is slightly larger than the others—this is the correction factor at work.
+
+**Right graph:** Exponential growth on a logarithmic scale. The green line shows total subsets ($2^n$), and the red line shows divisible subsets. They grow in parallel, but the gap between them is determined by $k$.
+
+**Key observation:** As you increase $k$, the correction factor shrinks (because $n/k$ decreases), and the distribution becomes more uniform.
+
+---
+
+### Approach A: Mathematical Formula (Fast, Large $n$)
+
+When $n$ is huge (like $n = 2000$), we use the closed-form formula with modular arithmetic.
+
+**Time complexity:** $O(\log n)$  
+**Space complexity:** $O(1)$  
+**Best for:** Competitive programming, large $n$, single queries
 
 ```cpp
 #include <iostream>
 using namespace std;
 
 // Binary exponentiation with modular arithmetic
+// Computes (base^exp) % mod in O(log exp) time
 long long power(long long base, long long exp, long long mod) {
     long long result = 1;
     base %= mod;
@@ -139,7 +413,7 @@ long long power(long long base, long long exp, long long mod) {
 }
 
 // Modular inverse using Fermat's Little Theorem
-// Works when mod is prime: a^(-1) ≡ a^(mod-2) (mod mod)
+// For prime mod: a^(-1) ≡ a^(mod-2) (mod mod)
 long long modInverse(long long n, long long mod) {
     return power(n, mod - 2, mod);
 }
@@ -162,11 +436,13 @@ int main() {
 }
 ```
 
-### Approach B: Dynamic Programming (Flexible)
+### Approach B: Dynamic Programming (Flexible, Small $n$)
 
-For smaller $n$ or when you need to track the process, use DP.
+When $n$ is moderate (say, $n \le 10^4$) and you need to track the process or handle variations, use DP.
 
-Time complexity: $O(n \cdot k)$
+**Time complexity:** $O(n \cdot k)$  
+**Space complexity:** $O(n \cdot k)$ (can be optimized to $O(k)$)  
+**Best for:** Educational purposes, debugging, extensions (e.g., "count subsets with sum exactly $m$")
 
 ```cpp
 #include <iostream>
@@ -174,7 +450,7 @@ Time complexity: $O(n \cdot k)$
 using namespace std;
 
 int main() {
-    int n = 20;  // Size of set (smaller for DP)
+    int n = 20;  // Size of set
     int k = 5;   // Divisor
     long long mod = 1e9 + 7;
     
@@ -184,10 +460,10 @@ int main() {
     
     for (int i = 1; i <= n; i++) {
         for (int r = 0; r < k; r++) {
-            // Don't include element i
+            // Option 1: Don't include element i
             dp[i][r] = dp[i-1][r];
             
-            // Include element i (value = i)
+            // Option 2: Include element i (value = i)
             int prev_remainder = (r - i % k + k) % k;
             dp[i][r] = (dp[i][r] + dp[i-1][prev_remainder]) % mod;
         }
@@ -195,165 +471,55 @@ int main() {
     
     cout << "Subsets divisible by " << k << ": " << dp[n][0] << endl;
     
+    // Bonus: Print distribution across all remainders
+    cout << "\nDistribution by remainder:\n";
+    for (int r = 0; r < k; r++) {
+        cout << "Remainder " << r << ": " << dp[n][r] << endl;
+    }
+    
     return 0;
 }
 ```
 
----
-
-## Part 4: Interactive Demo
-
-Try changing the values of $n$ and $k$ to see how the formula works:
-
-<div id="demo-container" style="border: 2px solid #3498db; padding: 20px; border-radius: 10px; margin: 20px 0; background-color: #f8f9fa;">
-  <h3 style="margin-top: 0;">Subset Divisibility Calculator</h3>
-  
-  <div style="margin: 15px 0;">
-    <label for="input-n" style="display: inline-block; width: 150px; font-weight: bold;">Set size (n):</label>
-    <input id="input-n" type="number" value="10" min="1" max="100" style="padding: 5px; width: 100px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
-  
-  <div style="margin: 15px 0;">
-    <label for="input-k" style="display: inline-block; width: 150px; font-weight: bold;">Divisor (k):</label>
-    <input id="input-k" type="number" value="3" min="2" max="20" style="padding: 5px; width: 100px; border: 1px solid #ccc; border-radius: 4px;">
-  </div>
-  
-  <button onclick="calculateSubsets()" style="background-color: #3498db; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px;">Calculate</button>
-  
-  <div id="result-output" style="margin-top: 20px; padding: 15px; background-color: #e8f4f8; border-radius: 5px; display: none;">
-    <h4 style="margin-top: 0; color: #2c3e50;">Results:</h4>
-    <p><strong>Total subsets:</strong> <span id="total-subsets"></span></p>
-    <p><strong>Subsets divisible by k:</strong> <span id="divisible-subsets"></span></p>
-    <p><strong>Percentage:</strong> <span id="percentage"></span>%</p>
-  </div>
-  
-  <canvas id="distribution-graph" width="600" height="300" style="margin-top: 20px; border: 1px solid #ddd; display: none;"></canvas>
-</div>
-
-<script>
-function calculateSubsets() {
-    const n = parseInt(document.getElementById('input-n').value);
-    const k = parseInt(document.getElementById('input-k').value);
-    
-    if (n < 1 || k < 2 || k > n) {
-        alert('Please ensure n ≥ 1 and 2 ≤ k ≤ n');
-        return;
-    }
-    
-    // Calculate using DP for visualization (works for small n)
-    const dp = Array(n + 1).fill(0).map(() => Array(k).fill(0));
-    dp[0][0] = 1;
-    
-    for (let i = 1; i <= n; i++) {
-        for (let r = 0; r < k; r++) {
-            dp[i][r] = dp[i-1][r];
-            const prevRemainder = (r - i % k + k) % k;
-            dp[i][r] += dp[i-1][prevRemainder];
-        }
-    }
-    
-    const totalSubsets = Math.pow(2, n);
-    const divisibleSubsets = dp[n][0];
-    const percentage = ((divisibleSubsets / totalSubsets) * 100).toFixed(2);
-    
-    // Display results
-    document.getElementById('total-subsets').textContent = totalSubsets.toLocaleString();
-    document.getElementById('divisible-subsets').textContent = divisibleSubsets.toLocaleString();
-    document.getElementById('percentage').textContent = percentage;
-    document.getElementById('result-output').style.display = 'block';
-    
-    // Draw distribution graph
-    drawGraph(dp[n], k);
-}
-
-function drawGraph(distribution, k) {
-    const canvas = document.getElementById('distribution-graph');
-    const ctx = canvas.getContext('2d');
-    canvas.style.display = 'block';
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const barWidth = canvas.width / k;
-    const maxValue = Math.max(...distribution);
-    const scale = (canvas.height - 40) / maxValue;
-    
-    // Draw bars
-    for (let i = 0; i < k; i++) {
-        const barHeight = distribution[i] * scale;
-        const x = i * barWidth;
-        const y = canvas.height - barHeight - 20;
-        
-        // Bar color (highlight remainder 0)
-        ctx.fillStyle = i === 0 ? '#e74c3c' : '#3498db';
-        ctx.fillRect(x + 5, y, barWidth - 10, barHeight);
-        
-        // Label
-        ctx.fillStyle = '#2c3e50';
-        ctx.font = '12px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('r=' + i, x + barWidth / 2, canvas.height - 5);
-        ctx.fillText(distribution[i], x + barWidth / 2, y - 5);
-    }
-    
-    // Title
-    ctx.fillStyle = '#2c3e50';
-    ctx.font = 'bold 14px Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText('Distribution of Subsets by Remainder (mod ' + k + ')', 10, 15);
-}
-
-// Calculate on page load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', calculateSubsets);
-} else {
-    calculateSubsets();
-}
-</script>
+**Space optimization:** Since `dp[i]` only depends on `dp[i-1]`, we can use two 1D arrays instead of a 2D array, reducing space to $O(k)$.
 
 ---
 
-## Part 5: Real-World Applications
+## Where This Fits in the Real World
 
-While counting subsets of 2000 numbers might seem abstract, the underlying mathematics (generating functions and roots of unity) powers many real-world technologies:
+The mathematics we've explored—generating functions, roots of unity, modular arithmetic—powers technologies you use every day.
 
-### A. Digital Signal Processing (DSP)
+### 1. Digital Signal Processing (DSP)
 
-The "roots of unity filter" in our formula is the same principle behind the Discrete Fourier Transform (DFT).
+The "roots of unity filter" in our formula is the foundation of the Discrete Fourier Transform (DFT).
 
 When your phone processes audio or decodes a Wi-Fi signal, it breaks complex waves into discrete frequencies using these mathematical filters—just like we filtered subsets by their remainder.
 
-### B. Cryptography & Error Correction
+**Connection:** Both problems involve partitioning a large space (subsets or signals) into equivalence classes (remainders or frequencies) using periodic structure.
+
+### 2. Cryptography & Error Correction
 
 Reed-Solomon codes (used in QR codes, CDs, and satellite communication) rely on polynomial mathematics and modular arithmetic.
 
 If data gets corrupted during transmission, the system checks if certain sums match expected divisibility properties. A mismatch reveals which bits were flipped.
 
-### C. Load Balancing in Distributed Systems
+**Connection:** The DP approach is similar to how error-correcting codes track "syndrome" values—remainders that indicate corruption.
+
+### 3. Load Balancing in Distributed Systems
 
 When distributing tasks across $k$ servers, engineers use modular arithmetic to ensure even distribution.
 
 The same combinatorial formulas help predict whether one server (or "remainder bucket") will be overloaded compared to others.
 
-### D. Combinatorial Chemistry
+**Connection:** Our formula quantifies imbalance. If the correction factor is large, the distribution is uneven; if small, it's nearly uniform.
+
+### 4. Combinatorial Chemistry
 
 Scientists use generating functions to count molecular structures (isomers).
 
 If they need molecules with specific symmetry or bonding patterns (like a sum divisible by a certain value), these formulas predict how many such structures exist before lab work begins.
 
----
-
-## Part 6: Key Takeaways & Summary
-
-Here's what we learned:
-
-1. For a set of size $n$, there are $2^n$ total subsets
-2. Subsets distribute across $k$ remainder buckets when we divide sums by $k$
-3. The count of subsets divisible by $k$ is: $\frac{2^n + (k-1) \cdot 2^{n/k}}{k}$
-4. We can compute this efficiently using modular arithmetic ($O(\log n)$) or DP ($O(n \cdot k)$)
-5. The mathematics generalizes to any $n$ and $k$—just plug in different values!
-
-The beauty of this problem is how it transforms an impossible brute-force task into an elegant mathematical formula. By understanding the structure and periodicity of remainders, we can calculate answers for astronomically large sets.
+**Connection:** The DP table is a generating function in disguise. Each entry encodes a polynomial coefficient representing "ways to achieve this state."
 
 ---
 
@@ -364,4 +530,3 @@ The beauty of this problem is how it transforms an impossible brute-force task i
 - [Generating Functions on Wikipedia](https://en.wikipedia.org/wiki/Generating_function) - Mathematical background
 - [Modular Arithmetic Tutorial](https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/what-is-modular-arithmetic) - Khan Academy
 - [Dynamic Programming Patterns](https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns) - LeetCode guide
-
