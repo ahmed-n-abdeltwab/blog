@@ -47,8 +47,8 @@ RUN useradd -m -s /bin/bash developer \
 USER developer
 WORKDIR /home/developer
 
-# Node.js 22.16.0 via NVM
-ENV NODE_VERSION=22.16.0
+# Node.js 
+ENV NODE_VERSION=22.22.3
 ENV NVM_DIR=/home/developer/.nvm
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash \
@@ -59,16 +59,16 @@ RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | b
 
 ENV PATH="$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH"
 
-# Yarn 4.12.0 via corepack (needs root to write to system dirs)
+# Yarn via corepack (needs root to write to system dirs)
 USER root
 RUN corepack enable
 USER developer
 RUN corepack prepare yarn@4.12.0 --activate
 
-# Meteor 3.3.2
+# Meteor 
 ENV PATH="/home/developer/.meteor:$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH"
 
-RUN curl "https://install.meteor.com/?release=3.3.2" | sh
+RUN curl "https://install.meteor.com/?release=3.4.1" | sh
 
 # Deno 2.3.1
 ENV DENO_INSTALL=/home/developer/.deno
@@ -88,7 +88,6 @@ EXPOSE 3000
 CMD ["bash"]
 ```
 
-The versions here aren't random — they're pulled straight from the project itself. Node 22.16.0 comes from `package.json` engines, Meteor 3.3.2 from `apps/meteor/.meteor/release`, and Deno 2.3.1 from `.tool-versions`. The `developer` user gets passwordless sudo so you're not fighting permissions mid-session, and `/workspace` is where the host folder lands.
 
 ### Building the image
 
